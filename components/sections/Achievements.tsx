@@ -146,77 +146,7 @@ export default function Achievements() {
           ))}
         </div>
 
-        {/* ── Full achievements list (top to bottom) ── */}
-        <div className="flex items-center gap-2 mb-6">
-          <Crosshair size={14} className="text-[var(--amber)]" />
-          <h3 className="font-mono text-[0.65rem] text-[var(--amber)] uppercase tracking-widest">
-            All Achievements
-          </h3>
-        </div>
-
-        <div className="space-y-2 mb-16">
-          {achievements.map((a, i) => {
-            const imgs = getImages(a);
-            const typeColor =
-              a.type === "Winner"
-                ? "text-emerald-500 bg-emerald-500/10 border-emerald-500/20"
-                : a.type === "Award"
-                ? "text-[var(--amber)] bg-[var(--amber)]/10 border-[var(--amber)]/20"
-                : "text-[var(--accent)] bg-[var(--accent)]/10 border-[var(--accent)]/20";
-
-            return (
-              <div
-                key={i}
-                className="flex items-center gap-4 px-4 py-3 rounded-xl border
-                           border-[var(--border)] bg-[var(--surface)]/50
-                           hover:border-[var(--border-hover)] hover:bg-[var(--surface)]
-                           transition-all duration-200 group"
-              >
-                {/* Index number */}
-                <span className="font-mono text-[0.55rem] text-[var(--text-subtle)] w-5 shrink-0 text-right">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
-                {/* Type badge */}
-                <span
-                  className={`text-[0.55rem] font-mono font-bold tracking-widest uppercase
-                              px-2 py-0.5 rounded-full border shrink-0 ${typeColor}`}
-                >
-                  {a.type}
-                </span>
-
-                {/* Year */}
-                <span className="font-mono text-[0.6rem] text-[var(--text-subtle)] shrink-0 w-8">
-                  {a.year}
-                </span>
-
-                {/* Title + event */}
-                <div className="flex-1 min-w-0">
-                  <p className="text-[0.8rem] font-semibold text-[var(--text)] leading-snug truncate">
-                    {a.title}
-                  </p>
-                  <p className="text-[0.65rem] text-[var(--text-subtle)] truncate mt-0.5">
-                    {a.event}
-                  </p>
-                </div>
-
-                {/* Certificate thumbnail — right side */}
-                {imgs.length > 0 && (
-                  <button
-                    onClick={() => openLightbox(imgs)}
-                    className="shrink-0 w-10 h-10 rounded-lg overflow-hidden border
-                               border-[var(--border)] hover:border-[var(--accent)]
-                               transition-colors relative opacity-70 group-hover:opacity-100"
-                    title="View certificate"
-                  >
-                    <Image src={imgs[0]} alt={a.title} fill className="object-cover" />
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
+       
         {/* ── Certifications timeline label ── */}
         <div className="flex items-center gap-2 mb-8">
           <BookMarked size={14} className="text-[var(--violet)]" />
