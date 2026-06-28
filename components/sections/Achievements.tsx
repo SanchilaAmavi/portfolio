@@ -21,8 +21,6 @@ type Item = {
   [key: string]: any;
 };
 
-// Returns the list of images for an item, whether it used the old
-// single `image` field or the new `images` array.
 function getImages(item: Item): string[] {
   if (item.images && item.images.length > 0) return item.images;
   if (item.image) return [item.image];
@@ -38,25 +36,34 @@ export default function Achievements() {
   const total = achievements.length;
 
   const next = useCallback(() => setIndex((i) => (i + 1) % total), [total]);
-  const prev = useCallback(() => setIndex((i) => (i - 1 + total) % total), [total]);
+  const prev = useCallback(
+    () => setIndex((i) => (i - 1 + total) % total),
+    [total]
+  );
 
+  // Auto-advance every 3 seconds unless paused
   useEffect(() => {
     if (paused) return;
     const id = setInterval(next, AUTO_ADVANCE_MS);
     return () => clearInterval(id);
   }, [next, paused]);
 
-  const card = (offset: number) => achievements[(index + offset + total) % total];
+  const card = (offset: number) =>
+    achievements[(index + offset + total) % total];
 
   const openLightbox = (images: string[], startAt = 0) => {
     if (images.length === 0) return;
     setLightbox({ images, index: startAt });
   };
   const lightboxNext = () =>
-    setLightbox((lb) => (lb ? { ...lb, index: (lb.index + 1) % lb.images.length } : lb));
+    setLightbox((lb) =>
+      lb ? { ...lb, index: (lb.index + 1) % lb.images.length } : lb
+    );
   const lightboxPrev = () =>
     setLightbox((lb) =>
-      lb ? { ...lb, index: (lb.index - 1 + lb.images.length) % lb.images.length } : lb
+      lb
+        ? { ...lb, index: (lb.index - 1 + lb.images.length) % lb.images.length }
+        : lb
     );
 
   return (
@@ -71,10 +78,12 @@ export default function Achievements() {
             className="text-4xl md:text-5xl font-extrabold leading-tight"
             style={{ fontFamily: "Syne, sans-serif" }}
           >
-            Achievements &amp; <span className="gradient-text">Certifications</span>
+            Achievements &amp;{" "}
+            <span className="gradient-text">Certifications</span>
           </h2>
           <p className="text-[var(--text-muted)] mt-3 max-w-xl text-sm">
-            Competition results and professional certifications from my engineering journey.
+            Competition results and professional certifications from my
+            engineering journey.
           </p>
         </div>
 
@@ -86,27 +95,41 @@ export default function Achievements() {
           </h3>
         </div>
 
+        {/*
+          Carousel wrapper:
+          - onMouseEnter pauses auto-advance
+          - All three cards sit in a flex row; the centre card is always
+            "active" (full opacity, scale-100), the two side peeks are
+            smaller (scale-90, opacity-40) but scale up on hover.
+        */}
         <div
           className="relative flex items-center justify-center gap-3 md:gap-4"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
+          {/* Prev arrow */}
           <button
             onClick={prev}
             aria-label="Previous achievement"
-            className="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--border-hover)] transition-colors shrink-0"
+            className="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--border-hover)] transition-colors shrink-0 z-10"
           >
             <ChevronLeft size={16} />
           </button>
 
-          <SidePeek achievement={card(-1)} />
-          <MainCard achievement={card(0)} onView={openLightbox} />
-          <SidePeek achievement={card(1)} />
+          {/* Left peek — hovering makes it grow toward the centre size */}
+          <SidePeek achievement={card(-1)} onClick={prev} />
 
+          {/* Active centre card */}
+          <MainCard achievement={card(0)} onView={openLightbox} />
+
+          {/* Right peek */}
+          <SidePeek achievement={card(1)} onClick={next} />
+
+          {/* Next arrow */}
           <button
             onClick={next}
             aria-label="Next achievement"
-            className="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--border-hover)] transition-colors shrink-0"
+            className="hidden md:flex items-center justify-center w-9 h-9 rounded-full border border-[var(--border)] text-[var(--text-muted)] hover:text-[var(--text)] hover:border-[var(--border-hover)] transition-colors shrink-0 z-10"
           >
             <ChevronRight size={16} />
           </button>
@@ -120,7 +143,9 @@ export default function Achievements() {
               onClick={() => setIndex(i)}
               aria-label={`Go to slide ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === index ? "w-6 bg-[var(--accent)]" : "w-1.5 bg-[var(--border)]"
+                i === index
+                  ? "w-6 bg-[var(--accent)]"
+                  : "w-1.5 bg-[var(--border)]"
               }`}
             />
           ))}
@@ -135,30 +160,72 @@ export default function Achievements() {
         </div>
 
         <div className="relative max-w-2xl">
+          {/* Vertical timeline line */}
           <div className="absolute left-[15px] top-2 bottom-2 w-px bg-[var(--border)]" />
-          <div className="space-y-10">
+
+          <div className="space-y-8">
             {certifications.map((c, i) => {
               const imgs = getImages(c);
               return (
-                <div key={i} className="relative flex gap-5">
+                <div key={i} className="relative flex gap-4">
+                  {/* Timeline dot */}
                   <div className="relative z-10 w-8 h-8 rounded-full bg-[var(--surface)] border border-[var(--border)] flex items-center justify-center shrink-0">
                     <BookMarked size={13} className="text-[var(--violet)]" />
                   </div>
+
+                  {/*
+                    Card body:
+                    - thumbnail always visible at top-right when images exist
+                    - reduced gap between dot and content (gap-4 instead of gap-5)
+                  */}
                   <div className="flex-1 min-w-0 pb-2">
-                    <span className="font-mono text-[0.65rem] text-[var(--text-subtle)]">
-                      {c.year} / {c.issuer}
-                    </span>
-                    <h4 className="font-bold text-[var(--text)] text-base mt-1">{c.title}</h4>
-                    <p className="text-[0.8rem] text-[var(--text-muted)] mt-1.5 leading-relaxed">
-                      {c.description}
-                    </p>
-                    <div className="flex items-center gap-4 mt-3">
+                    {/* Top row: meta + always-visible thumbnail */}
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        {/* Reduced top spacing — bring text up close to dot */}
+                        <span className="font-mono text-[0.65rem] text-[var(--text-subtle)] leading-none">
+                          {c.year} / {c.issuer}
+                        </span>
+                        <h4 className="font-bold text-[var(--text)] text-base mt-0.5 leading-snug">
+                          {c.title}
+                        </h4>
+                        <p className="text-[0.8rem] text-[var(--text-muted)] mt-1.5 leading-relaxed">
+                          {c.description}
+                        </p>
+                      </div>
+
+                      {/* Always-visible certificate thumbnail (top-right corner) */}
+                      {imgs.length > 0 && (
+                        <button
+                          onClick={() => openLightbox(imgs)}
+                          className="shrink-0 w-16 h-16 rounded-lg overflow-hidden border border-[var(--border)] hover:border-[var(--accent)] transition-colors shadow-sm hover:shadow-md group relative"
+                          title="View certificate"
+                        >
+                          <Image
+                            src={imgs[0]}
+                            alt={c.title}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-200"
+                          />
+                          {imgs.length > 1 && (
+                            <span className="absolute bottom-0.5 right-0.5 bg-black/60 text-white text-[0.45rem] font-mono px-1 py-0.5 rounded flex items-center gap-0.5 leading-none">
+                              <ImageIcon size={7} />
+                              {imgs.length}
+                            </span>
+                          )}
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Action links */}
+                    <div className="flex items-center gap-4 mt-2.5">
                       {imgs.length > 0 && (
                         <button
                           onClick={() => openLightbox(imgs)}
                           className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium text-[var(--text)] hover:text-[var(--accent)] transition-colors"
                         >
-                          View certificate{imgs.length > 1 ? `s (${imgs.length})` : ""}{" "}
+                          View certificate
+                          {imgs.length > 1 ? `s (${imgs.length})` : ""}{" "}
                           <ExternalLink size={12} />
                         </button>
                       )}
@@ -181,7 +248,7 @@ export default function Achievements() {
         </div>
       </div>
 
-      {/* Lightbox — supports multiple images per entry */}
+      {/* ── Lightbox ── */}
       {lightbox && (
         <div
           className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-6"
@@ -250,6 +317,7 @@ export default function Achievements() {
   );
 }
 
+// ─── Main (active) card ────────────────────────────────────────────────────────
 function MainCard({
   achievement,
   onView,
@@ -261,17 +329,32 @@ function MainCard({
   const imgs = getImages(a);
 
   return (
-    <div className="card flex-1 max-w-xl overflow-hidden flex flex-col md:flex-row transition-all">
+    /*
+      Fixed height so ALL cards (main + side peek) occupy the same vertical
+      space — only the active card is at full scale (scale-100), the side
+      peeks sit at scale-90 so the centre card appears "zoomed".
+    */
+    <div
+      className="card flex-1 max-w-xl overflow-hidden flex flex-col md:flex-row
+                 transition-all duration-300 scale-100 z-10 shadow-lg"
+      style={{ minHeight: "220px" }}
+    >
       <div className="p-6 flex-1 flex flex-col gap-3">
         <div className="flex items-center gap-2">
-          <span className={`tag ${a.type === "Winner" ? "tag-green" : "tag-accent"}`}>
+          <span
+            className={`tag ${
+              a.type === "Winner" ? "tag-green" : "tag-accent"
+            }`}
+          >
             {a.type}
           </span>
           <span className="font-mono text-[0.6rem] text-[var(--text-subtle)]">
             {a.year} · {a.event}
           </span>
         </div>
-        <h4 className="text-lg font-bold text-[var(--text)] leading-snug">{a.title}</h4>
+        <h4 className="text-lg font-bold text-[var(--text)] leading-snug">
+          {a.title}
+        </h4>
         {a.description && (
           <p className="text-[0.8rem] text-[var(--text-muted)] leading-relaxed flex-1">
             {a.description}
@@ -280,7 +363,9 @@ function MainCard({
         {imgs.length > 0 ? (
           <button
             onClick={() => onView(imgs)}
-            className="self-start mt-1 inline-flex items-center gap-1.5 text-[0.78rem] font-semibold text-[var(--text)] bg-[var(--surface)] border border-[var(--border)] rounded-full px-3.5 py-1.5 hover:border-[var(--border-hover)] transition-colors"
+            className="self-start mt-1 inline-flex items-center gap-1.5 text-[0.78rem] font-semibold
+                       text-[var(--text)] bg-[var(--surface)] border border-[var(--border)]
+                       rounded-full px-3.5 py-1.5 hover:border-[var(--border-hover)] transition-colors"
           >
             View certificate{imgs.length > 1 ? `s (${imgs.length})` : ""}
           </button>
@@ -308,19 +393,50 @@ function MainCard({
   );
 }
 
-function SidePeek({ achievement }: { achievement: Item }) {
+// ─── Side peek card ────────────────────────────────────────────────────────────
+/*
+  Key changes vs original:
+  1. Fixed height + width so ALL three cards are the same intrinsic size.
+  2. scale-90 at rest → scale-[0.97] on hover (grows toward the active card
+     size, giving the "coming in" feel you described).
+  3. Clicking the side peek jumps to that card (onClick is prev/next).
+  4. cursor-pointer so user knows it's interactive.
+*/
+function SidePeek({
+  achievement,
+  onClick,
+}: {
+  achievement: Item;
+  onClick: () => void;
+}) {
   const a = achievement as any;
   const imgs = getImages(a);
+
   return (
-    <div className="hidden lg:flex w-40 h-44 card overflow-hidden opacity-40 scale-90 shrink-0 flex-col">
-      <div className="relative w-full h-24 bg-[var(--surface)]">
-        {imgs[0] && <Image src={imgs[0]} alt="" fill className="object-cover" />}
+    <div
+      onClick={onClick}
+      className="hidden lg:flex w-40 card overflow-hidden opacity-40
+                 scale-90 hover:scale-[0.97] hover:opacity-60
+                 shrink-0 flex-col cursor-pointer
+                 transition-all duration-300 ease-out"
+      style={{ height: "220px" }}
+    >
+      <div className="relative w-full h-24 bg-[var(--surface)] shrink-0">
+        {imgs[0] && (
+          <Image src={imgs[0]} alt="" fill className="object-cover" />
+        )}
       </div>
-      <div className="p-3">
-        <span className={`tag text-[0.55rem] ${a.type === "Winner" ? "tag-green" : "tag-accent"}`}>
+      <div className="p-3 flex flex-col gap-1.5 flex-1">
+        <span
+          className={`tag text-[0.55rem] self-start ${
+            a.type === "Winner" ? "tag-green" : "tag-accent"
+          }`}
+        >
           {a.type}
         </span>
-        <p className="text-[0.65rem] text-[var(--text-muted)] mt-1 line-clamp-2">{a.title}</p>
+        <p className="text-[0.65rem] text-[var(--text-muted)] line-clamp-3 leading-snug">
+          {a.title}
+        </p>
       </div>
     </div>
   );
