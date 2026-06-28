@@ -93,58 +93,6 @@ export default function Achievements() {
           </p>
         </div>
 
-        {/* ── Achievement summary stats strip ── */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
-          {[
-            {
-              icon: <Trophy size={16} className="text-[var(--amber)]" />,
-              label: "Championship Wins",
-              value: stats.winners,
-              bg: "bg-[var(--amber)]/[0.06]",
-              border: "border-[var(--amber)]/20",
-            },
-            {
-              icon: <Award size={16} className="text-[var(--accent)]" />,
-              label: "Awards & Honours",
-              value: stats.awards,
-              bg: "bg-[var(--accent)]/[0.06]",
-              border: "border-[var(--accent)]/20",
-            },
-            {
-              icon: <Users size={16} className="text-[var(--violet)]" />,
-              label: "Competitions",
-              value: stats.participants,
-              bg: "bg-[var(--violet)]/[0.06]",
-              border: "border-[var(--violet)]/20",
-            },
-            {
-              icon: <Star size={16} className="text-[var(--text-muted)]" />,
-              label: "Total Recognitions",
-              value: stats.total,
-              bg: "bg-[var(--surface)]",
-              border: "border-[var(--border)]",
-            },
-          ].map((s) => (
-            <div
-              key={s.label}
-              className={`flex flex-col gap-2 p-4 rounded-2xl border ${s.bg} ${s.border}`}
-            >
-              <div className="flex items-center gap-2">
-                {s.icon}
-                <span className="font-mono text-[0.55rem] uppercase tracking-widest text-[var(--text-subtle)]">
-                  {s.label}
-                </span>
-              </div>
-              <p
-                className="text-3xl font-extrabold text-[var(--text)]"
-                style={{ fontFamily: "Syne, sans-serif" }}
-              >
-                {s.value}
-              </p>
-            </div>
-          ))}
-        </div>
-
         {/* ── Achievements carousel label ── */}
         <div className="flex items-center gap-2 mb-5">
           <Trophy size={14} className="text-[var(--amber)]" />
