@@ -372,6 +372,75 @@ export const achievements = [
     image: "/images/texhibit certificate.jpg",
   },
 ];
+// ── CERTIFICATIONS ───────────────────────────────────────────
+// Paste this into your lib/data.ts BEFORE the leadership export
+// Make sure your achievements array above ends with ];
+
+export const certifications = [
+  {
+    title:       "AI/ML Engineer - Stage 1",
+    issuer:      "SLIIT",
+    year:        "2026",
+    description: "Machine learning pipelines, supervised and unsupervised learning, neural networks, TensorFlow, Keras, and model evaluation techniques.",
+    image:       "/images/stage1 sliit.jpeg",
+    verifyUrl:   "https://code.sliit.org/certificates/fnjqs05ep8",
+  },
+  {
+    title:       "AI/ML Engineer - Stage 2",
+    issuer:      "SLIIT",
+    year:        "2026",
+    description: "Advanced model deployment, evaluation pipelines, and applied machine learning practices building on Stage 1.",
+    image:       "/images/stage2 sliit.jpeg",
+    verifyUrl:   "https://code.sliit.org/certificates/0qpqgpz2oi",
+  },
+  {
+    title:       "PCB Design Workshop on EAGLE Software",
+    issuer:      "IET / KDU",
+    year:        "2025",
+    description: "Active participation in the PCB Design workshop on EAGLE Software, held at the Faculty of Engineering, General Sir John Kotelawala Defence University, organized by IET On-Campus (KDU) and the Sri Lanka Institute of Robotics.",
+    image:       "/images/IET Certificate.jpg",
+  },
+  {
+    title:       "MATLAB Fundamentals",
+    issuer:      "MATLAB Training Program",
+    year:        "2024",
+    description: "Numerical computing, matrix operations, data visualization, scripting, and engineering simulation techniques.",
+    image:       null,
+  },
+  {
+    title:       "Introduction to GitHub Administrative",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Completed the GitHub Foundations learning path covering GitHub administration.",
+    images: [
+      "/images/introduction to github administrative.jpeg",
+      "/images/introduction to github.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+  },
+  {
+    title:       "Introduction to GitHub Products",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Completed the GitHub Foundations learning path covering an introduction to GitHub products.",
+    images: [
+      "/images/introduction to github products.jpeg",
+      "/images/introduction to github.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/CRHCXFE9?sharingId=4564DD6EAE22D7BC",
+  },
+  {
+    title:       "Introduction to GitHub",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Completed the GitHub Foundations learning path covering GitHub fundamentals.",
+    images: [
+      "/images/introduction to github.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+  },
+];
+
 // ── LEADERSHIP ───────────────────────────────────────────────
 export const leadership = [
   {
