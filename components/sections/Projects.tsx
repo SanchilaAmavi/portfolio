@@ -311,7 +311,7 @@ const projects: Project[] = [
         "At the surface, the gateway decodes the alert, activates a local buzzer, displays hazard details on an OLED screen, dispatches an SMS via SIM800L GSM, and simultaneously uploads the event to Firebase — instantly pushing notifications to the web dashboard and Flutter mobile app used by supervisors anywhere on-site.",
       ],
       highlights: [
-        { icon: "📡", title: "LoRa 433 MHz Mesh",       desc: "Long-range wireless from underground nodes to surface — no WiFi or cellular infrastructure required underground." },
+        { icon: "📡", title: "LoRa 433 MHz ",            desc: "Long-range wireless from underground nodes to surface — no WiFi or cellular infrastructure required underground." },
         { icon: "🔥", title: "Multi-Gas Detection",      desc: "Simultaneous real-time sensing of methane (CH4), carbon monoxide (CO), and water flooding from each node." },
         { icon: "🚨", title: "5-Channel Instant Alerts", desc: "Siren · OLED · Buzzer · SMS · Firebase push — all triggered within seconds of any threshold breach." },
         { icon: "☁️", title: "Firebase Cloud Layer",     desc: "Realtime Database stores all alerts with full timestamps. Cloud Functions auto-dispatch FCM push to all devices." },
