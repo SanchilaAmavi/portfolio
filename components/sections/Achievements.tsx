@@ -9,8 +9,8 @@ import {
   ChevronRight,
   X,
   ImageIcon,
-  Target,
-  Medal,
+  Crosshair,
+  Award,
   Star,
   Users,
 } from "lucide-react";
@@ -104,7 +104,7 @@ export default function Achievements() {
               border: "border-[var(--amber)]/20",
             },
             {
-              icon: <Medal size={16} className="text-[var(--accent)]" />,
+              icon: <Award size={16} className="text-[var(--accent)]" />,
               label: "Awards & Honours",
               value: stats.awards,
               bg: "bg-[var(--accent)]/[0.06]",
@@ -200,7 +200,7 @@ export default function Achievements() {
 
         {/* ── Full achievements list (top to bottom) ── */}
         <div className="flex items-center gap-2 mb-6">
-          <Target size={14} className="text-[var(--amber)]" />
+          <Crosshair size={14} className="text-[var(--amber)]" />
           <h3 className="font-mono text-[0.65rem] text-[var(--amber)] uppercase tracking-widest">
             All Achievements
           </h3>
