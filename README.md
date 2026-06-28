@@ -1,3 +1,4 @@
+
 # Sanchila Amavi — Portfolio
 
 Built with **Next.js 14** · **Tailwind CSS** · **TypeScript**  
@@ -172,3 +173,7 @@ linkedin: "https://linkedin.com/in/YOUR_PROFILE",
 **Build error** → Run `npm run build` to see detailed errors
 
 **Port 3000 in use** → Run `npm run dev -- -p 3001`
+=======
+# portfolio
+Personal portfolio website showcasing projects, skills, and experience in Electronics &amp; Telecommunication Engineering, with a focus on AI, embedded systems and full-stack development.
+
