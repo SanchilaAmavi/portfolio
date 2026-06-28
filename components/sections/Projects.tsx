@@ -272,8 +272,8 @@ const rosco25Gallery: GallerySection[] = [
   },
 ];
 
-// ─── VisiMeasure gallery ──────────────────────────────────────────────────────
-const visiMeasureGallery: GallerySection[] = [
+// ───  FeelFill gallery ──────────────────────────────────────────────────────
+const  FeelFillGallery: GallerySection[] = [
   {
     id: "concept",
     label: "Concept & Design",
@@ -795,14 +795,14 @@ const projects: Project[] = [
     },
   },
 
-  // ── 07 VisiMeasure ────────────────────────────────────────────────────────
+  // ── 07  FeelFill ────────────────────────────────────────────────────────
   {
     id: "smartpour",
     number: "07",
     status: "ongoing",
     year: "2026",
     category: "IoT & Embedded",
-    name: "VisiMeasure",
+    name: " FeelFill",
     tagline: "Smart Measuring Cup for the Visually Impaired",
     shortDesc:
       "An accessible smart measuring cup designed for visually impaired users — combining audio feedback, tactile sensing, and real-time volume detection to enable independent, accurate cooking and baking.",
@@ -813,7 +813,7 @@ const projects: Project[] = [
       headline: "Restoring kitchen independence for 39 million blind individuals — one accurate pour at a time.",
       overview: [
         "Globally, an estimated 285 million people live with visual impairment, of whom 39 million are fully blind. Among the most persistent challenges these individuals face are routine household tasks — such as measuring liquids accurately during cooking, medicine preparation, or beverage making. The absence of a visual reference forces reliance on another person or risking dangerous measurement errors.",
-        "VisiMeasure is a low-cost, non-contact, capacitive liquid-level sensing device that provides real-time multi-modal feedback through voice announcements and haptic vibration to guide a visually impaired user to pour the exact required volume. The device is self-contained, battery-powered, and designed to clip onto any standard cup, making it universally applicable and affordable.",
+        " FeelFill is a low-cost, non-contact, capacitive liquid-level sensing device that provides real-time multi-modal feedback through voice announcements and haptic vibration to guide a visually impaired user to pour the exact required volume. The device is self-contained, battery-powered, and designed to clip onto any standard cup, making it universally applicable and affordable.",
         "Developed through the Design Thinking framework — grounded in a specific persona (Chamari Perera, 34, a fully blind home-maker from Galle) and validated by empathy research — the design satisfies all six stated design criteria: no visual display, non-contact sensing, universal cup fit, battery operation, under 8,000 LKR unit cost, and no smartphone or digital literacy required.",
       ],
       highlights: [
@@ -826,7 +826,7 @@ const projects: Project[] = [
         { icon: "💰", title: "Affordable — Under 8,000 LKR",   desc: "Full BOM cost estimated at 5,100–7,800 LKR per unit. Target batch production cost drops to ~2,500 LKR at 500 units." },
         { icon: "♿", title: "Inclusive Design",                desc: "No screen, no smartphone, no literacy required. Single Start button operation. Non-stigmatising neutral clip-on form for public and home use." },
       ],
-      gallerySections: visiMeasureGallery,
+      gallerySections:  FeelFillGallery,
       stats: [
         { label: "Fill Levels",   value: "4" },
         { label: "Resolution",    value: "~5 mL" },
@@ -838,7 +838,7 @@ const projects: Project[] = [
       sections: [
         {
           title: "Problem & Design Thinking",
-          body: "Standard measuring cups provide only visual graduation marks — useless for blind users. Existing assistive solutions (talking scales, Braille labels) do not solve dynamic pouring in real time. Finger dipping — the most common workaround — is unhygienic and dangerous with hot liquids. The VisiMeasure design was developed through a structured Design Thinking process: Empathize (persona interviews with Chamari Perera), Define (problem statement focused on real-time non-contact measurement), Ideate (three concepts evaluated), and Prototype (capacitive clip-on selected as the only concept satisfying all six criteria simultaneously).",
+          body: "Standard measuring cups provide only visual graduation marks - useless for blind users. Existing assistive solutions (talking scales, Braille labels) do not solve dynamic pouring in real time. Finger dipping - the most common workaround - is unhygienic and dangerous with hot liquids. The  FeelFill design was developed through a structured Design Thinking process: Empathize (persona interviews with Chamari Perera), Define (problem statement focused on real-time non-contact measurement), Ideate (three concepts evaluated), and Prototype (capacitive clip-on selected as the only concept satisfying all six criteria simultaneously).",
         },
         {
           title: "System Architecture",
@@ -850,7 +850,7 @@ const projects: Project[] = [
         },
         {
           title: "DfX & Sustainability",
-          body: "Design for Manufacturability: single two-layer PCB (100mm × 60mm), SMD components, copper tape electrode — no specialist tooling. Design for Assembly: snap-fit ABS shell with no screws; adjustable silicone band fits any cup in under 3 minutes. Design for Cost: first prototype 5,100–7,800 LKR; batch of 500 units targets ~2,500 LKR unit cost. Design for Reliability: non-contact sensing eliminates corrosion; MTBF >100,000 cycles; firmware updatable via USB. Sustainability: ABS/recycled PLA enclosure, RoHS-compliant PCB, modular component replacement, deep-sleep idle mode.",
+          body: "Design for Manufacturability: single two-layer PCB (100mm × 60mm), SMD components, copper tape electrode - no specialist tooling. Design for Assembly: snap-fit ABS shell with no screws; adjustable silicone band fits any cup in under 3 minutes. Design for Cost: first prototype 5,100–7,800 LKR; batch of 500 units targets ~2,500 LKR unit cost. Design for Reliability: non-contact sensing eliminates corrosion; MTBF >100,000 cycles; firmware updatable via USB. Sustainability: ABS/recycled PLA enclosure, RoHS-compliant PCB, modular component replacement, deep-sleep idle mode.",
         },
       ],
       archDiagram: `  18650 Li-ion → TP4056 → 5V Boost → 3.3V LDO
