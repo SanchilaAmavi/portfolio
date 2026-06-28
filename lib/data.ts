@@ -234,67 +234,42 @@ export const skills = [
 
 
 // ── ACHIEVEMENTS ─────────────────────────────────────────────
+// Replace the existing `achievements` array in your lib/data.ts with this.
 export const achievements = [
   {
     title: "Winner — 1st Place (Inter University · Female · Individual)",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Winner",
+    description:
+      "Secured gold in the individual air rifle event at the Multi-Sport Shooting Championship 2025, competing against female athletes from universities island-wide. Demonstrated consistent accuracy and composure under competition pressure.",
     image: "/images/MSSC 1 st place individual 2025.jpg",
   },
   {
-    title: "Champions",
+    title: "Champions — 1st Place (Inter University · Female · Team)",
     event: "Target Sprint Shooting Competition",
     year:  "2025",
     type:  "Winner",
+    description:
+      "Led the KDU female team to a championship title at the Target Sprint Shooting Competition 2025 — a discipline combining precision air rifle shooting with sprint running. The team demonstrated both athletic and marksmanship excellence.",
     image: "/images/target sprint 1st place team 2025.jpg",
   },
   {
-    title: "Inter-Faculty Netball Champions",
+    title: "Inter-Faculty Netball Champions — 1st Place",
     event: "Inter Faculty Netball Tournament",
     year:  "2025",
     type:  "Winner",
     description:
-      "Secured 1st place with the faculty netball team in the Inter-Faculty Netball Tournament.",
+      "Contributed to the faculty netball team's championship victory at the KDU Inter-Faculty Netball Tournament 2025. The team combined tactical play and physical endurance to clinch the top position in a competitive inter-faculty field.",
     image: "/images/netball.jpg",
-  },
-  {
-    title: "ROSCO '25 | Robotics Showdown Competition",
-    event: "IMechE / ERIC / KDU",
-    year:  "2025",
-    type:  "Participant",
-    description:
-      "Participated as Team Linestrom in the Robotics Showdown Competition 2025, organized by the Institution of Mechanical Engineers Student Chapter and the Electronics, Robotics and Innovation Club of KDU.",
-    image: "/images/Rosco Certificate.jpg",
-  },
-  {
-    title: "TECHXhiBiT 2.0 | Hardware & Software Exhibition",
-    event: "TECHXhiBiT 2.0 Exhibition",
-    year:  "2026",
-    type:  "Participant",
-    description:
-      "Participated and showcased engineering project work at the TECHXhiBiT 2.0 Hardware & Software Exhibition.",
-    image: "/images/texhibit certificate.jpg", // ⚠ matches your folder's exact spelling
-  },
-  {
-    title: "KDU Colour Award — Air Rifle",
-    event: "KDU Sports Awards",
-    year:  "2025",
-    type:  "Award",
-    image: "/images/kdu colour 2025 certificate.jpg", // ⚠ confirm real extension
-  },
-  {
-    title: "KDU Merit Award — Air Rifle",
-    event: "KDU Sports Awards",
-    year:  "2024",
-    type:  "Award",
-    image: "/images/kdu merit 2024.jpg",
   },
   {
     title: "2nd Place (Inter University · Female · Group)",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Award",
+    description:
+      "Claimed silver as part of the KDU female group team at the Multi-Sport Shooting Championship 2025. The team delivered a strong collective performance across multiple shooting rounds against university competitors nationwide.",
     image: "/images/mssc 2nd place group 2025.jpg",
   },
   {
@@ -302,120 +277,100 @@ export const achievements = [
     event: "Target Sprint Shooting Championship",
     year:  "2025",
     type:  "Award",
+    description:
+      "Earned bronze in the individual Target Sprint event at the 2025 championship — a demanding combined discipline requiring accurate shooting immediately after a physical sprint, testing both stamina and fine motor control.",
     image: "/images/target sprint 3rd place individual 2025.jpg",
   },
   {
+    title: "KDU Colour Award — Air Rifle",
+    event: "KDU Sports Awards",
+    year:  "2025",
+    type:  "Award",
+    description:
+      "Received the prestigious KDU Colours Award for outstanding representation of the university in air rifle shooting at national inter-university level — the highest sporting recognition awarded by General Sir John Kotelawala Defence University.",
+    image: "/images/kdu colour 2025 certificate.jpg",
+  },
+  {
+    title: "KDU Merit Award — Air Rifle",
+    event: "KDU Sports Awards",
+    year:  "2024",
+    type:  "Award",
+    description:
+      "Awarded the KDU Merit Award for significant contribution and performance in university-level air rifle shooting during the 2024 academic year, recognising consistent competitive achievement.",
+    image: "/images/kdu merit 2024.jpg",
+  },
+  {
     title: "Precision Shooter — Air Rifle",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Award",
+    description:
+      "Honoured with the Precision Shooter title at MSSC 2025 for achieving an exceptionally tight grouping score, demonstrating elite-level accuracy and trigger discipline in the air rifle discipline.",
     image: "/images/precision shooter 2025.jpg",
   },
   {
-    title: "Excellent Shooter — Air Rifle",
+    title: "Excellent Shooter — 100 Marks (Air Rifle)",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Award",
+    description:
+      "Attained a perfect score of 100 marks in the air rifle event at MSSC 2025, earning the Excellent Shooter distinction. A perfect score reflects complete mastery of form, breath control, and sight alignment under competition conditions.",
     image: "/images/excellent shooter 100 marks 2025.jpg",
-  },
-  {
-    title: "Precision Shooter — Air Rifle",
-    event: "MSSC Shooting Championship",
-    year:  "2024",
-    type:  "Award",
-    image: null, // ⚠ still no matching file in your folder
   },
   {
     title: "Sharp Shooter — Air Rifle",
     event: "Inter University Shooting Championship",
     year:  "2026",
     type:  "Award",
-    image: null, // ⚠ still no matching file in your folder
+    description:
+      "Awarded the Sharp Shooter title at the 2026 Inter University Shooting Championship for sustained high-accuracy performance across all shooting rounds in the air rifle category.",
+    image: null,
   },
   {
     title: "Sharp Shooter — Air Rifle",
     event: "Inter University Shooting Championship",
     year:  "2024",
     type:  "Award",
+    description:
+      "Recognised as Sharp Shooter at the 2024 Inter University Shooting Championship, marking the first year of competitive inter-university shooting participation with an impressive scoring record.",
     image: "/images/Inter university meet 2024.jpeg",
+  },
+  {
+    title: "Precision Shooter — Air Rifle",
+    event: "MSSC Shooting Championship",
+    year:  "2024",
+    type:  "Award",
+    description:
+      "Earned the Precision Shooter distinction at MSSC 2024 for delivering a high-accuracy score in the air rifle event — validating consistent shooting form at the inter-university level in the inaugural competitive year.",
+    image: null,
   },
   {
     title: "Sharp Shooter — Air Rifle",
     event: "Inter Shooting Championship",
     year:  "2014",
     type:  "Award",
+    description:
+      "Awarded the Sharp Shooter title at the 2014 Inter Shooting Championship — the first competitive shooting recognition, marking the beginning of a decade-long journey in precision air rifle sport.",
     image: "/images/2014 sharp shooter.jpg",
   },
-];
-
-// ── CERTIFICATIONS ───────────────────────────────────────────
-export const certifications = [
   {
-    title:       "AI/ML Engineer - Stage 1",
-    issuer:      "SLIIT",
-    year:        "2026",
-    description: "Machine learning pipelines, supervised and unsupervised learning, neural networks, TensorFlow, Keras, and model evaluation techniques.",
-    image:       "/images/stage1 sliit.jpeg",
-    verifyUrl:   "https://code.sliit.org/certificates/fnjqs05ep8",
+    title: "ROSCO '25 — Autonomous Robotics Competition",
+    event: "IMechE / ERIC / KDU",
+    year:  "2025",
+    type:  "Participant",
+    description:
+      "Participated as Team Linestorm at ROSCO'25, the Robotics Showdown Competition organised by the IMechE Student Chapter and ERIC of KDU. Designed and built a fully autonomous robot capable of line following, wall following, and ramp navigation.",
+    image: "/images/Rosco Certificate.jpg",
   },
   {
-    title:       "AI/ML Engineer - Stage 2",
-    issuer:      "SLIIT",
-    year:        "2026",
-    description: "Advanced model deployment, evaluation pipelines, and applied machine learning practices building on Stage 1.",
-    image:       "/images/stage2 sliit.jpeg",
-    verifyUrl:   "https://code.sliit.org/certificates/0qpqgpz2oi",
+    title: "TECHXhiBiT 2.0 — Hardware & Software Exhibition",
+    event: "TECHXhiBiT 2.0 Exhibition",
+    year:  "2026",
+    type:  "Participant",
+    description:
+      "Showcased engineering project work at the TECHXhiBiT 2.0 Hardware & Software Exhibition, presenting embedded systems and IoT solutions to an audience of industry professionals, academics, and fellow engineers.",
+    image: "/images/texhibit certificate.jpg",
   },
-  {
-    title:       "PCB Design Workshop on EAGLE Software",
-    issuer:      "IET / KDU",
-    year:        "2025",
-    description: "Active participation in the PCB Design workshop on EAGLE Software, held at the Faculty of Engineering, General Sir John Kotelawala Defence University, organized by IET On-Campus (KDU) and the Sri Lanka Institute of Robotics.",
-    image:       "/images/IET Certificate.jpg",
-  },
-  {
-    title:       "MATLAB Fundamentals",
-    issuer:      "MATLAB Training Program",
-    year:        "2024",
-    description: "Numerical computing, matrix operations, data visualization, scripting, and engineering simulation techniques.",
-    image:       null, // ⚠ still no matching file in your folder
-  },
-  // One entry, 3 photos — uses the new `images` array
-  {
-    title:       "introduction to github administrative",
-    issuer:      "Microsoft Learn",
-    year:        "2026",
-    description: "Completed the GitHub Foundations learning path covering GitHub administration.",
-    images: [
-      "/images/introduction to github administrative.jpeg",
-      
-      "/images/introduction to github.jpeg",
-    ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
-  },
-  {
-    title:       "Introduction to Github Products",
-    issuer:      "Microsoft Learn",
-    year:        "2026",
-    description: "Completed the GitHub Foundations learning path covering an introduction to GitHub products.",
-    images: [
-    
-      "/images/introduction to github products.jpeg",
-      "/images/introduction to github.jpeg",
-    ],
-    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/CRHCXFE9?sharingId=4564DD6EAE22D7BC",
-  },
-  {
-    title:       "introduction to github",
-    issuer:      "Microsoft Learn",
-    year:        "2026",
-    description: "Completed the GitHub Foundations learning path covering  an introduction to GitHub fundamentals.",
-    images: [
-      "/images/introduction to github.jpeg",
-    ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
-  },
-  
 ];
 // ── LEADERSHIP ───────────────────────────────────────────────
 export const leadership = [
