@@ -270,3 +270,26 @@ body::after {
     transition: none !important;
   }
 }
+/* ─── FIX: REMOVE BLACK BLOCKS AROUND TEXT / CHAR SPANS ─── */
+h1 span,
+h2 span,
+h3 span,
+p span {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* If you're using text split animation libraries */
+.char,
+.word,
+.split-char {
+  background: transparent !important;
+  display: inline;
+  box-shadow: none !important;
+}
+
+/* Safety override for any accidental inline blocks */
+h1 *, h2 *, .gradient-text * {
+  background: transparent !important;
+}
