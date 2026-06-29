@@ -152,16 +152,17 @@ const lankameshGallery: GallerySection[] = [
     accent: "#fdf4ff",
     images: [
       { src: "/images/lankamesh-mobile.jpg", caption: "Flutter app — SOS, map & message panel" },
+       { src: "/images/lankamesh-sos.jpg",       caption: "SOS broadcast on app — emergency alert" },
     ],
   },
   {
     id: "diagram",
-    label: "Architecture & SOS",
+    label: "Architecture",
     icon: "📡",
     accent: "#eff6ff",
     images: [
       { src: "/images/lankamesh_flowchart.jpg", caption: "Node operation flowchart — mesh relay logic", span: "wide" },
-      { src: "/images/lankamesh-sos.jpg",       caption: "SOS broadcast on app — emergency alert" },
+     
     ],
   },
 ];
