@@ -62,6 +62,10 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen overflow-hidden flex items-center pt-20 pb-10">
 
+      {/* ── Ambient background orbs ── */}
+      <div className="blob w-[520px] h-[520px] bg-[var(--accent)]/[0.055] -top-40 -left-40 pointer-events-none" />
+      <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] top-32 right-24 pointer-events-none" />
+      <div className="blob w-48 h-48 bg-[var(--green)]/[0.05] bottom-20 left-1/3 pointer-events-none" />
       
       {/* ── Grid texture overlay ── */}
       <div className="absolute inset-0 pointer-events-none z-[1]"
