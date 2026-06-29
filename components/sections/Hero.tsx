@@ -93,6 +93,7 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-[var(--bg)] to-transparent" />
         {/* Mobile solid cover */}
         <div className="absolute inset-0 bg-[var(--bg)]/82 lg:hidden" />
+        {/* Decorative corner accent */}
         
       </div>
 
