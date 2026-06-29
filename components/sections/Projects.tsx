@@ -1,12 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // ─── GitHub SVG Icon ──────────────────────────────────────────────────────────
 function GitHubIcon({ size = 16 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+    </svg>
+  );
+}
+
+// ─── External Link Icon ───────────────────────────────────────────────────────
+function ExternalIcon({ size = 12 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
     </svg>
   );
 }
@@ -22,6 +31,7 @@ interface GallerySection {
 
 interface ProjectDetail {
   headline: string;
+  subline?: string;                           // ← NEW: short field descriptor
   overview: string[];
   creatorImage?: string;
   teamImage?: string;
@@ -41,6 +51,7 @@ interface Project {
   name: string;
   tagline: string;
   shortDesc: string;
+  fieldLine?: string;                        // ← NEW: short line for related fields
   tags: string[];
   coverImage?: string;
   githubUrl?: string;
@@ -60,7 +71,6 @@ const minepulseGallery: GallerySection[] = [
       { src: "/images/prototype mine pulse.jpg",         caption: "Early prototype — development phase" },
       { src: "/images/working mine pulse.jpg",           caption: "System running live during field testing" },
       { src: "/images/assembled pcb mine pulse.jpg",     caption: "Underground node PCB — assembled & wired" },
-      
     ],
   },
   {
@@ -109,7 +119,6 @@ const minepulseGallery: GallerySection[] = [
     images: [
       { src: "/images/webapp minepulse.jpg",      caption: "Supervisor web dashboard — live mine status", span: "wide" },
       { src: "/images/web app mine pulse 1.jpg",  caption: "Alert frequency analytics" },
-      { src: "/images/webapp minepulse.jpg",      caption: "Web dashboard — full overview panel" },
       { src: "/images/minepulse sms.jpg",         caption: "SMS alert delivered to supervisor mobile" },
     ],
   },
@@ -255,7 +264,6 @@ const rosco25Gallery: GallerySection[] = [
       { src: "/images/Rosco Competition.jpg",  caption: "ROSCO'25 — Team Botrix at the competition arena", span: "wide" },
       { src: "/images/Rosco robot.jpg",        caption: "Autonomous robot — fully assembled & ready" },
       { src: "/images/Rosco Arena.jpg",        caption: "Competition arena — line & wall following track" },
-      
     ],
   },
   {
@@ -264,31 +272,29 @@ const rosco25Gallery: GallerySection[] = [
     icon: "🖥️",
     accent: "#fdf4ff",
     images: [
-      { src: "/images/Rosco solidwork design.jpg",        caption: "SolidWorks chassis layout — component placement", span: "wide" },
+      { src: "/images/Rosco solidwork design.jpg",            caption: "SolidWorks chassis layout — component placement", span: "wide" },
       { src: "/images/Rosco Solid work design chassie 2.jpg", caption: "SolidWorks chassis — second view" },
-      { src: "/images/Rosco design.jpg",                  caption: "Chassis design overview" },
-      { src: "/images/Rosco bracket design.jpg",          caption: "3D-printed motor & sensor brackets" },
+      { src: "/images/Rosco design.jpg",                      caption: "Chassis design overview" },
+      { src: "/images/Rosco bracket design.jpg",              caption: "3D-printed motor & sensor brackets" },
     ],
   },
 ];
 
-// ───  FeelFill gallery ──────────────────────────────────────────────────────
-const  FeelFillGallery: GallerySection[] = [
+// ─── FeelFill gallery ─────────────────────────────────────────────────────────
+const FeelFillGallery: GallerySection[] = [
   {
     id: "concept",
     label: "Concept & Design",
     icon: "💡",
     accent: "#fff7ed",
-    images: [
-      
-    ],
+    images: [],
   },
 ];
 
 // ─── Projects data ────────────────────────────────────────────────────────────
 const projects: Project[] = [
 
-  // ── 01 MinePulse ──────────────────────────────────────────────────────────
+  // ── 01 MinePulse ─────────────────────────────────────────────────────────
   {
     id: "minepulse",
     number: "01",
@@ -297,6 +303,7 @@ const projects: Project[] = [
     category: "IoT & Embedded",
     name: "MinePulse",
     tagline: "Smart Underground Mine Safety System",
+    fieldLine: "IoT · Embedded Systems · Cloud · Mobile",
     shortDesc:
       "Multi-node IoT safety system for real-time underground hazard detection covering methane, carbon monoxide, and flooding. Custom PCBs, LoRa mesh, Firebase cloud, Flutter app.",
     coverImage: "/images/assembled mine pulse.jpg",
@@ -304,6 +311,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/SanchilaAmavi/mine-safety-system",
     detail: {
       headline: "Saving miners with intelligent underground hazard alerts and cloud monitoring.",
+      subline: "IoT · Embedded Systems · Cloud Backend · Mobile App",
       creatorImage: "/images/me minepulse.jpg",
       overview: [
         "MinePulse is a professional end-to-end mine safety solution engineered to protect miners with fast multi-gas hazard detection, immediate local and cloud alerts, and polished cross-platform monitoring applications.",
@@ -311,14 +319,14 @@ const projects: Project[] = [
         "At the surface, the gateway decodes the alert, activates a local buzzer, displays hazard details on an OLED screen, dispatches an SMS via SIM800L GSM, and simultaneously uploads the event to Firebase — instantly pushing notifications to the web dashboard and Flutter mobile app used by supervisors anywhere on-site.",
       ],
       highlights: [
-        { icon: "📡", title: "LoRa 433 MHz ",            desc: "Long-range wireless from underground nodes to surface — no WiFi or cellular infrastructure required underground." },
-        { icon: "🔥", title: "Multi-Gas Detection",      desc: "Simultaneous real-time sensing of methane (CH4), carbon monoxide (CO), and water flooding from each node." },
-        { icon: "🚨", title: "5-Channel Instant Alerts", desc: "Siren · OLED · Buzzer · SMS · Firebase push — all triggered within seconds of any threshold breach." },
-        { icon: "☁️", title: "Firebase Cloud Layer",     desc: "Realtime Database stores all alerts with full timestamps. Cloud Functions auto-dispatch FCM push to all devices." },
-        { icon: "📱", title: "Flutter Mobile App",       desc: "Android/iOS app with live mine status, real-time telemetry, alert history, and Firebase Cloud Messaging notifications." },
-        { icon: "🌐", title: "Web Dashboard",            desc: "Supervisor browser dashboard showing live mine status, alert history, analytics, and event timeline." },
-        { icon: "🔌", title: "Custom PCB Design",        desc: "Professionally designed compact PCBs for both underground nodes and surface gateway — robust and field-deployable." },
-        { icon: "🏗️", title: "Multi-Node Scalability",  desc: "One surface gateway monitors multiple underground nodes simultaneously. Built to expand across adjacent mine shafts." },
+        { icon: "📡", title: "LoRa 433 MHz",             desc: "Long-range wireless from underground nodes to surface — no WiFi or cellular infrastructure required underground." },
+        { icon: "🔥", title: "Multi-Gas Detection",       desc: "Simultaneous real-time sensing of methane (CH4), carbon monoxide (CO), and water flooding from each node." },
+        { icon: "🚨", title: "5-Channel Instant Alerts",  desc: "Siren · OLED · Buzzer · SMS · Firebase push — all triggered within seconds of any threshold breach." },
+        { icon: "☁️", title: "Firebase Cloud Layer",      desc: "Realtime Database stores all alerts with full timestamps. Cloud Functions auto-dispatch FCM push to all devices." },
+        { icon: "📱", title: "Flutter Mobile App",        desc: "Android/iOS app with live mine status, real-time telemetry, alert history, and Firebase Cloud Messaging notifications." },
+        { icon: "🌐", title: "Web Dashboard",             desc: "Supervisor browser dashboard showing live mine status, alert history, analytics, and event timeline." },
+        { icon: "🔌", title: "Custom PCB Design",         desc: "Professionally designed compact PCBs for both underground nodes and surface gateway — robust and field-deployable." },
+        { icon: "🏗️", title: "Multi-Node Scalability",   desc: "One surface gateway monitors multiple underground nodes simultaneously. Built to expand across adjacent mine shafts." },
       ],
       gallerySections: minepulseGallery,
       stats: [
@@ -336,11 +344,11 @@ const projects: Project[] = [
         },
         {
           title: "Hardware Design",
-          body: "Both underground nodes and surface gateway use custom-designed PCBs on ESP32-S3-N16R8 microcontrollers paired with LoRa Ra-02 SX1278 433 MHz radio modules. Underground nodes carry MQ-4 methane, MQ-7 CO, and water level sensors, plus a 12V siren driven through a transistor-MOSFET switching circuit with voltage adjustment via B10K potentiometer. The surface gateway adds SIM800L GSM, 1.3\" SH1106 OLED, and active buzzer — powered by LM2596/XL4015 buck converters from a 12V supply with a dedicated SIM800L rail for stability.",
+          body: "Both underground nodes and surface gateway use custom-designed PCBs on ESP32-S3-N16R8 microcontrollers paired with LoRa Ra-02 SX1278 433 MHz radio modules. Underground nodes carry MQ-4 methane, MQ-7 CO, and water level sensors, plus a 12V siren driven through a transistor-MOSFET switching circuit. The surface gateway adds SIM800L GSM, 1.3\" SH1106 OLED, and active buzzer — powered by LM2596/XL4015 buck converters from a 12V supply.",
         },
         {
           title: "Cloud & Software Stack",
-          body: "Firebase Realtime Database organises data under /status/mine1, /status/mine2, /alerts/mine1/history, and /alerts/mine2/history. Firebase Cloud Functions automatically dispatch FCM topic notifications whenever a new alert record is created. The Flutter mobile app subscribes to the mine_alerts topic for instant push alerts. The web dashboard uses the Firebase JS SDK for live real-time updates and is deployed on Firebase Hosting for zero-infrastructure access by supervisors from any browser.",
+          body: "Firebase Realtime Database organises data under /status/mine1, /status/mine2, /alerts/mine1/history, and /alerts/mine2/history. Firebase Cloud Functions automatically dispatch FCM topic notifications whenever a new alert record is created. The Flutter mobile app subscribes to the mine_alerts topic for instant push alerts. The web dashboard uses the Firebase JS SDK for live real-time updates and is deployed on Firebase Hosting for zero-infrastructure access.",
         },
       ],
       archDiagram: `Underground Node 1 (Mine 1)          Underground Node 2 (Mine 2)
@@ -372,7 +380,7 @@ const projects: Project[] = [
     },
   },
 
-  // ── 02 LankaMesh ──────────────────────────────────────────────────────────
+  // ── 02 LankaMesh ─────────────────────────────────────────────────────────
   {
     id: "lankamesh",
     number: "02",
@@ -380,7 +388,8 @@ const projects: Project[] = [
     year: "2026",
     category: "IoT & Embedded",
     name: "LankaMesh",
-    tagline: "LoRa Based Disaster Mesh Communication Network",
+    tagline: "LoRa-Based Disaster Mesh Communication Network",
+    fieldLine: "IoT · Wireless Communication · Embedded · Mobile",
     shortDesc:
       "Decentralised wireless mesh communication network using LoRa for emergency and low-connectivity environments. Peer-to-peer SOS messaging, GPS tracking, and Flutter app.",
     coverImage: "/images/lankamesh.jpg",
@@ -388,6 +397,7 @@ const projects: Project[] = [
     githubUrl: "https://github.com/SanchilaAmavi",
     detail: {
       headline: "Keeping communities connected when all infrastructure fails — zero internet, zero cellular.",
+      subline: "IoT · LoRa Mesh · GPS · Flutter Mobile",
       creatorImage: "/images/lankamesh-detail.jpg",
       teamImage: "/images/lankamesh team.jpg",
       overview: [
@@ -400,7 +410,7 @@ const projects: Project[] = [
         { icon: "🆘", title: "One-Button SOS Broadcast",         desc: "GPIO button fires an immediate LoRa SOS packet containing the node's GPS coordinates, broadcast to all nodes in range. Auto-relayed by every intermediate node." },
         { icon: "🗺️", title: "Real-Time GPS Coordinate Share",   desc: "Every node broadcasts its GPS position (NEO-4M) every 15 seconds. The Flutter app plots all nodes on an OpenStreetMap view in real time." },
         { icon: "📋", title: "Structured Emergency Categories",   desc: "Messages are tagged as Medical, Flood, Landslide, Fire, Evacuation, Supply Request, or Other — letting rescuers triage incoming alerts by type." },
-        { icon: "🔋", title: "Battery-Backed Multi-Day Field Op", desc: "ESP32-S3 sleeps between transmissions to minimise current draw. DHT22 and GPS duty-cycled, targeting 48+ hours on a standard 18650 cell." },
+        { icon: "🔋", title: "Battery-Backed Multi-Day Field Op", desc: "ESP32-S3 sleeps between transmissions. DHT22 and GPS duty-cycled, targeting 48+ hours on a standard 18650 cell." },
         { icon: "📱", title: "Flutter App via USB CDC",          desc: "No Bluetooth needed. The app receives incoming messages, allows sending categorised text, triggers SOS, displays the map, and reads node sensor data." },
         { icon: "🌐", title: "Zero Infrastructure",              desc: "No servers, no SIM cards, no Wi-Fi access points. The system works the instant cellular fails — built for disaster, not convenience." },
         { icon: "🔌", title: "Custom PCB in ABS Enclosure",     desc: "ESP32-S3 + LoRa RA-02 + GPS NEO-4M + SSD1306 OLED + DHT22 on a custom PCB inside a waterproof ABS enclosure for field deployment." },
@@ -428,8 +438,8 @@ const projects: Project[] = [
           body: "The Flutter mobile app connects to the node over USB CDC Serial at 115200 baud — no Bluetooth pairing required. The app parses incoming JSON frames from the node to display all online nodes on an OpenStreetMap tile view (flutter_map), show incoming messages with category and timestamp, allow the user to compose and send categorised text messages, and trigger an SOS directly from the app UI.",
         },
         {
-          title: "Problems Encountered & Solutions",
-          body: "Limited range in dense terrain was addressed by optimising to SF10+128 kHz with 9 dBi higher-gain antennas. Power constraints were solved by duty-cycling DHT22 and GPS transmissions, targeting 48+ hours on a single 18650. Simultaneous retransmit collisions in the mesh relay were eliminated with random 100–400 ms backoff before relay.",
+          title: "Challenges & Solutions",
+          body: "Limited range in dense terrain was addressed by optimising to SF10 + 128 kHz with 9 dBi higher-gain antennas. Power constraints were solved by duty-cycling DHT22 and GPS transmissions, targeting 48+ hours on a single 18650. Simultaneous retransmit collisions in the mesh relay were eliminated with random 100–400 ms backoff before relay.",
         },
       ],
       archDiagram: `  Field Node A                Field Node B              Field Node C
@@ -450,7 +460,8 @@ const projects: Project[] = [
     },
   },
 
-  // ── 03 NexDrive ───────────────────────────────────────────────────────────
+  // ── 03 NexDrive ──────────────────────────────────────────────────────────
+  // FIX: removed "Elevision |" from tagline, removed all WSO2 references
   {
     id: "nexdrive",
     number: "03",
@@ -458,28 +469,30 @@ const projects: Project[] = [
     year: "2026",
     category: "AI & ML",
     name: "NexDrive",
-    tagline: "Elevision | AI Based Driver Fatigue & Safety Detection Platform",
+    tagline: "AI-Based Driver Fatigue & Safety Detection Platform",
+    fieldLine: "Computer Vision · Deep Learning · Mobile App · FastAPI",
     shortDesc:
-      "Full-stack driver safety platform combining deep learning fatigue detection (EfficientNet-B0, 93.24% accuracy), real-time face tracking, PERCLOS scoring, voice alerts, emergency SOS, GPS tracking, and trip analytics — built with PyTorch, FastAPI, Flutter and WSO2.",
+      "Full-stack driver safety platform combining deep learning fatigue detection (EfficientNet-B0, 93.24% accuracy), real-time face tracking, PERCLOS scoring, voice alerts, emergency SOS, and GPS tracking — built with PyTorch, FastAPI, and Flutter.",
     coverImage: "/images/NexDrive dashboard.jpg",
-    tags: ["PyTorch", "EfficientNet-B0", "FastAPI", "Flutter", "ML Kit", "WSO2", "+4"],
+    tags: ["PyTorch", "EfficientNet-B0", "FastAPI", "Flutter", "ML Kit", "OpenCV", "+3"],
     githubUrl: "#",
     detail: {
       headline: "Preventing road fatalities by detecting driver drowsiness in real time — before the accident happens.",
+      subline: "Computer Vision · Deep Learning · Mobile · FastAPI",
       overview: [
         "Every year over 1.35 million people die in road accidents globally, with 20% of all fatal crashes directly caused by driver fatigue and drowsiness. NexDrive is a complete AI-powered driver safety platform engineered to detect fatigue in real time and alert drivers before a dangerous situation occurs.",
-        "The system is built on a custom-trained EfficientNet-B0 deep learning model achieving 93.24% test accuracy across four detection classes — eye closure, yawning, no yawn, and eyes open. The model was trained on 50,000+ images from the CEW and Yawn datasets using nine anti-overfitting techniques including transfer learning, dropout, batch normalisation, label smoothing, cosine annealing LR, early stopping, gradient clipping, L2 regularisation, and nine Albumentations augmentation transforms.",
-        "A Flutter mobile app named NexDrive connects to a FastAPI ML backend secured through WSO2 API Manager and WSO2 Identity Server. The app uses Google ML Kit face detection for on-device facial landmark analysis — tracking eye open probability, mouth contour ratio, and head pose in real time to feed the PERCLOS drowsiness scoring engine. When fatigue is detected, the system triggers voice alerts via text-to-speech, haptic feedback, push notifications, emergency SMS to contacts, and logs every event to the backend for post-trip analysis.",
+        "The system is built on a custom-trained EfficientNet-B0 deep learning model achieving 93.24% test accuracy across four detection classes — eye closure, yawning, no yawn, and eyes open. The model was trained on 50,000+ images from the CEW and Yawn datasets using nine anti-overfitting techniques including transfer learning, dropout, batch normalisation, label smoothing, cosine annealing LR, early stopping, gradient clipping, and L2 regularisation.",
+        "A Flutter mobile app named NexDrive connects to a FastAPI ML backend. The app uses Google ML Kit face detection for on-device facial landmark analysis — tracking eye open probability, mouth contour ratio, and head pose in real time to feed the PERCLOS drowsiness scoring engine. When fatigue is detected, the system triggers voice alerts, haptic feedback, push notifications, emergency SMS to contacts, and logs every event to the backend for post-trip analysis.",
       ],
       highlights: [
         { icon: "🧠", title: "EfficientNet-B0 — 93.24% Accuracy", desc: "Custom-trained deep learning model on 50,000+ images. 4-class detection: eye closed, open, yawn, no yawn. 9 anti-overfitting techniques. Trained with PyTorch in Google Colab." },
         { icon: "👁️", title: "PERCLOS Drowsiness Engine",          desc: "Industry-standard metric used by Bosch, Mobileye, and Tesla. 30-frame sliding window: PERCLOS × 0.7 + Yawn Rate × 0.3. Four alert levels: Normal → Warning → Danger → Critical." },
         { icon: "📱", title: "Flutter Cross-Platform App",         desc: "Android/iOS app with real-time camera feed, live fatigue score overlay, PERCLOS gauge, trip history charts, emergency SOS, GPS map view, and AI voice assistant." },
-        { icon: "🔊", title: "Multi-Channel Alert System",         desc: "Voice TTS alerts (flutter_tts), haptic vibration, push notifications, red screen overlay, and automatic emergency SMS — triggered progressively as drowsiness level escalates." },
+        { icon: "🔊", title: "Multi-Channel Alert System",         desc: "Voice TTS alerts, haptic vibration, push notifications, red screen overlay, and automatic emergency SMS — triggered progressively as drowsiness level escalates." },
         { icon: "🆘", title: "Emergency SOS & Contact Alerts",     desc: "One-tap SOS broadcasts the driver's GPS coordinates to pre-configured emergency contacts via SMS. Auto-triggered when CRITICAL fatigue level is sustained for >3 seconds." },
-        { icon: "🗺️", title: "Live GPS Tracking",                  desc: "Real-time driver location on OpenStreetMap. GPS coordinates logged with every fatigue event for post-trip safety review and fleet monitoring." },
-        { icon: "⚡", title: "FastAPI ML Backend",                 desc: "REST API serving EfficientNet-B0 with OpenCV face/eye cropping, PERCLOS session state management, trip recording (/trips/record), and safety statistics (/stats) endpoints." },
-        { icon: "🔐", title: "WSO2 Enterprise Security",           desc: "WSO2 API Manager as API gateway with rate limiting and analytics. WSO2 Identity Server for OAuth2/JWT authentication — enterprise-grade security matching production fleet systems." },
+        { icon: "🗺️", title: "Live GPS Tracking",                  desc: "Real-time driver location on OpenStreetMap. GPS coordinates logged with every fatigue event for post-trip safety review." },
+        { icon: "⚡", title: "FastAPI ML Backend",                 desc: "REST API serving EfficientNet-B0 with OpenCV face/eye cropping, PERCLOS session state management, trip recording, and safety statistics endpoints." },
+        { icon: "📊", title: "Trip Analytics Dashboard",           desc: "Post-trip safety score breakdown, alert frequency charts, and session history — all accessible from the app's analytics screen." },
       ],
       gallerySections: nexdriveGallery,
       stats: [
@@ -493,7 +506,7 @@ const projects: Project[] = [
       sections: [
         {
           title: "Machine Learning Pipeline",
-          body: "The EfficientNet-B0 model was trained in Google Colab on PyTorch using two Kaggle datasets — CEW Eye Dataset (48,000 images) and Yawn Eye Dataset (5,000+ images across yawn/no_yawn/open/closed classes). Images were preprocessed to 64×64 grayscale and augmented with nine Albumentations techniques: horizontal flip, random brightness/contrast, Gaussian noise, rotation, blur, CLAHE, shift-scale-rotate, grid distortion, and coarse dropout. Nine anti-overfitting techniques were applied simultaneously: transfer learning with frozen backbone layers, dropout (50% + 25%), batch normalisation, L2 weight decay, label smoothing (0.1), cosine annealing LR scheduler, early stopping (patience=8), gradient clipping (max_norm=1.0), and data augmentation. The model achieved 93.24% test accuracy with validation loss lower than training loss — a strong indicator of healthy generalisation with no overfitting.",
+          body: "The EfficientNet-B0 model was trained in Google Colab on PyTorch using two Kaggle datasets — CEW Eye Dataset (48,000 images) and Yawn Eye Dataset (5,000+ images across yawn/no_yawn/open/closed classes). Images were preprocessed to 64×64 grayscale and augmented with nine Albumentations techniques: horizontal flip, random brightness/contrast, Gaussian noise, rotation, blur, CLAHE, shift-scale-rotate, grid distortion, and coarse dropout. Nine anti-overfitting techniques were applied simultaneously — including transfer learning with frozen backbone layers, dropout (50% + 25%), batch normalisation, L2 weight decay, label smoothing (0.1), cosine annealing LR scheduler, early stopping (patience=8), and gradient clipping. The model achieved 93.24% test accuracy with validation loss lower than training loss — a strong indicator of healthy generalisation.",
         },
         {
           title: "Real-Time Detection Architecture",
@@ -501,11 +514,11 @@ const projects: Project[] = [
         },
         {
           title: "Flutter Mobile App — NexDrive Features",
-          body: "The NexDrive Flutter app targets Android and iOS with a dark-themed professional UI. Key screens include: Home Dashboard with real-time safety score, trip count, alert count, and quick-start buttons; Camera Monitor with live face feed, animated PERCLOS gauge, fatigue score progress bar, colour-coded alert overlay (green/yellow/orange/red), and Start/Stop controls; Trip History with session logs, per-trip safety scores, and alert counts connected to the FastAPI /trips endpoint; GPS Map View using geolocator showing live driver position; Emergency SOS screen with one-tap broadcast to configured contacts; Break Recommendations based on current fatigue level; and AI Voice Assistant (flutter_tts) delivering spoken safety guidance.",
+          body: "The NexDrive Flutter app targets Android and iOS with a dark-themed professional UI. Key screens include: Home Dashboard with real-time safety score, trip count, alert count, and quick-start buttons; Camera Monitor with live face feed, animated PERCLOS gauge, fatigue score progress bar, colour-coded alert overlay, and Start/Stop controls; Trip History with session logs, per-trip safety scores, and alert counts; GPS Map View using geolocator showing live driver position; Emergency SOS screen with one-tap broadcast to configured contacts; Break Recommendations based on current fatigue level; and AI Voice Assistant (flutter_tts) delivering spoken safety guidance.",
         },
         {
-          title: "FastAPI Backend + WSO2 Integration",
-          body: "The FastAPI backend exposes five endpoints: GET /health (system status and model info), POST /predict (face image → class + confidence + PERCLOS alert level), POST /trips/record (log completed trip with duration, alerts, safe score), GET /trips (retrieve last 50 trips), GET /stats (aggregated statistics including average score, total alerts, best/worst scores). WSO2 API Manager acts as the API gateway enforcing rate limits, API key authentication, and usage analytics. WSO2 Identity Server handles OAuth2 token issuance and JWT validation — matching the security architecture used in enterprise fleet management systems deployed by automotive companies.",
+          title: "FastAPI Backend",
+          body: "The FastAPI backend exposes five endpoints: GET /health (system status and model info), POST /predict (face image → class + confidence + PERCLOS alert level), POST /trips/record (log completed trip with duration, alerts, safe score), GET /trips (retrieve last 50 trips), GET /stats (aggregated statistics including average score, total alerts, best/worst scores). The backend applies JWT-based authentication for all endpoints, ensuring only authenticated app users can access their trip data.",
         },
       ],
       archDiagram: `  Flutter Mobile App — NexDrive (Android / iOS)
@@ -519,12 +532,6 @@ const projects: Project[] = [
                      │ REST API + JWT Token
                      ▼
   ┌──────────────────────────────────────────┐
-  │       WSO2 API Manager (Gateway)         │
-  │  Rate Limiting · API Key Auth            │
-  │  Analytics · Developer Portal            │
-  └──────────────────┬───────────────────────┘
-                     │
-  ┌──────────────────▼───────────────────────┐
   │         FastAPI ML Backend               │
   │  POST /predict                           │
   │   ├─ OpenCV Haar cascade crop            │
@@ -532,23 +539,17 @@ const projects: Project[] = [
   │   └─ PERCLOS session state               │
   │  POST /trips/record · GET /trips         │
   │  GET  /stats · GET /health               │
-  └──────────────────┬───────────────────────┘
-                     │
-  ┌──────────────────▼───────────────────────┐
-  │      WSO2 Identity Server                │
-  │  OAuth2 · JWT Tokens · Role-Based Access │
-  │  Driver · Fleet Manager · Admin          │
   └──────────────────────────────────────────┘
 
   Alert Escalation:
-  Score < 0.20  → ✅ NORMAL    (no action)
+  Score < 0.20    → ✅ NORMAL    (no action)
   Score 0.20–0.40 → ⚠️  WARNING  (voice + haptic)
   Score 0.40–0.60 → 🔴 DANGER   (notification + overlay)
-  Score > 0.60  → 🚨 CRITICAL  (SOS SMS + all channels)`,
+  Score > 0.60    → 🚨 CRITICAL  (SOS SMS + all channels)`,
     },
   },
 
-  // ── 04 AI Proctoring ──────────────────────────────────────────────────────
+  // ── 04 AI Proctoring ─────────────────────────────────────────────────────
   {
     id: "aiproctor",
     number: "04",
@@ -557,6 +558,7 @@ const projects: Project[] = [
     category: "AI & ML",
     name: "AI Proctoring System",
     tagline: "Intelligent Real-Time Examination Monitoring Platform",
+    fieldLine: "Computer Vision · Object Detection · Python · Analytics",
     shortDesc:
       "Real-time exam proctoring combining MediaPipe face detection and YOLOv8 object detection. Dynamic risk scoring, audio alerts, live analytics dashboard, and comprehensive session logging.",
     coverImage: "/images/proctoring1.jpg",
@@ -564,20 +566,21 @@ const projects: Project[] = [
     githubUrl: "https://github.com/SanchilaAmavi/AI-Proctoring-System",
     detail: {
       headline: "Automated, unbiased exam surveillance — detecting academic dishonesty in real time without human intervention.",
+      subline: "Computer Vision · YOLOv8 · MediaPipe · Python",
       overview: [
         "The AI Proctoring System is a comprehensive solution designed to monitor examination sessions in real-time using advanced computer vision and deep learning technologies. It analyzes live webcam feeds to monitor candidate behavior and detect potential academic dishonesty — including face absence, multiple persons, unauthorized device usage, and gaze deviation.",
         "The system focuses on automated surveillance during online examinations by identifying suspicious activities and enabling continuous, unbiased monitoring without requiring a human proctor. MediaPipe provides real-time face detection and multi-face identification at ~95% accuracy, while YOLOv8-nano efficiently detects mobile phones, tablets, and wireless devices at ~88% accuracy — all within a 40–60ms combined latency per frame.",
         "A Tkinter GUI dashboard presents a live video feed with detection overlays, a running total risk score, a Risk Score Over Time line graph, and an Event Type Distribution pie chart — all auto-updating during active monitoring. All events are logged to CSV with timestamps for post-examination audit and review.",
       ],
       highlights: [
-        { icon: "🎯", title: "MediaPipe Face Detection",    desc: "Real-time face detection and tracking at ~95% accuracy. Detects missing faces, multiple persons, and zero-angle presence for natural monitoring." },
+        { icon: "🎯", title: "MediaPipe Face Detection",    desc: "Real-time face detection and tracking at ~95% accuracy. Detects missing faces, multiple persons, and off-angle presence for natural monitoring." },
         { icon: "📱", title: "YOLOv8 Device Detection",     desc: "59 MB YOLOv8-nano model detects mobile phones, tablets, and wireless devices with ~88% accuracy and 30–50ms inference time." },
         { icon: "⚡", title: "Dynamic Risk Scoring",        desc: "Configurable risk multipliers per event type (No Face: 5pts, Phone: 10pts, Multiple Faces: 8pts). Audio alert triggers when threshold exceeded." },
-        { icon: "📊", title: "Live Analytics Dashboard",    desc: "Tkinter GUI with real-time video feed, color-coded detection overlays, Risk Score Over Time graph, and Event Distribution pie chart." },
-        { icon: "🔊", title: "Multi-Channel Alerts",        desc: "Immediate audio beep via Windows winsound on suspicious detection. Red text overlays provide simultaneous visual warnings." },
+        { icon: "📊", title: "Live Analytics Dashboard",    desc: "Tkinter GUI with real-time video feed, colour-coded detection overlays, Risk Score Over Time graph, and Event Distribution pie chart." },
+        { icon: "🔊", title: "Multi-Channel Alerts",        desc: "Immediate audio beep on suspicious detection with simultaneous red text overlays providing visual warnings." },
         { icon: "💾", title: "CSV Session Logging",         desc: "All events logged to proctoring_log.csv with timestamp, event type, and risk score. Multi-session support with separate log files." },
-        { icon: "🌐", title: "Multi-Platform Architecture", desc: "Python AI core + FastAPI web backend + Flutter mobile app + native C++ stubs. Web dashboard accessible from any browser." },
-        { icon: "🔄", title: "Full Session Lifecycle",      desc: "Start, Pause/Resume, Reset (clear without saving), and Exit & Save Logs controls. Prevents data loss with auto-save on exit." },
+        { icon: "🌐", title: "Multi-Platform Architecture", desc: "Python AI core + FastAPI web backend + Flutter mobile app. Web dashboard accessible from any browser." },
+        { icon: "🔄", title: "Full Session Lifecycle",      desc: "Start, Pause/Resume, Reset, and Exit & Save Logs controls. Prevents data loss with auto-save on exit." },
       ],
       gallerySections: aiproctoringGallery,
       stats: [
@@ -595,11 +598,11 @@ const projects: Project[] = [
         },
         {
           title: "Dashboard & Analytics",
-          body: "The Tkinter GUI window (1000×800) presents the live OpenCV video feed with real-time detection bounding boxes and label overlays. A prominently displayed Total Risk Score accumulates across the session. Two auto-updating Matplotlib charts provide analytics: a Risk Score Over Time line graph showing escalation patterns frame by frame, and an Event Type Distribution pie chart breaking down event categories. Charts refresh every frame so supervisors see risk trends as they develop.",
+          body: "The Tkinter GUI window (1000×800) presents the live OpenCV video feed with real-time detection bounding boxes and label overlays. A prominently displayed Total Risk Score accumulates across the session. Two auto-updating Matplotlib charts provide analytics: a Risk Score Over Time line graph showing escalation patterns frame by frame, and an Event Type Distribution pie chart breaking down event categories by frequency.",
         },
         {
           title: "Multi-Platform Expansion",
-          body: "The repository includes a full multi-platform architecture beyond the original Python desktop app: a FastAPI web backend serving a browser-based dashboard; a Flutter mobile prototype for Android/iOS remote monitoring with live session status, risk metrics, and session lifecycle controls; and native C++ and Java performance stubs for on-device camera access and GPU acceleration.",
+          body: "The repository includes a full multi-platform architecture beyond the original Python desktop app: a FastAPI web backend serving a browser-based dashboard; a Flutter mobile prototype for Android/iOS remote monitoring with live session status, risk metrics, and session lifecycle controls; and native performance stubs for on-device camera access.",
         },
         {
           title: "Logging & Data Privacy",
@@ -631,7 +634,8 @@ const projects: Project[] = [
     },
   },
 
-  // ── 05 Mars Robot ─────────────────────────────────────────────────────────
+  // ── 05 Mars Robot ────────────────────────────────────────────────────────
+  // FIX: removed redundant "Mars Robot |" prefix from tagline
   {
     id: "marsrobot",
     number: "05",
@@ -639,7 +643,8 @@ const projects: Project[] = [
     year: "2025",
     category: "Robotics",
     name: "Mars Robot",
-    tagline: "Mars Robot | Embedded System Competition Robot",
+    tagline: "Autonomous Competition Robot — SLRC-Inspired Challenge",
+    fieldLine: "Robotics · Embedded Systems · Sensor Fusion · Mechanical Design",
     shortDesc:
       "Autonomous robot for SLRC-inspired competition tasks: grid navigation, obstacle avoidance, ramp climbing, barcode scanning and intelligent potato sorting. ESP32-S3, sensor fusion, SolidWorks chassis, 3D-printed arm.",
     coverImage: "/images/marsrobot.jpg",
@@ -647,6 +652,7 @@ const projects: Project[] = [
     githubUrl: "#",
     detail: {
       headline: "A fully autonomous robot tackling grid navigation, ramp climbing, and barcode-guided sorting — zero human input from start to finish.",
+      subline: "Robotics · Embedded C++ · Sensor Fusion · Mechanical Design",
       teamImage: "/images/marsrobot team.jpg",
       overview: [
         "As part of the Microprocessors, Microcontrollers and Embedded Systems (ET2223) module, our team designed and built a fully autonomous mobile robot for a competitive challenge inspired by the Sri Lankan Robotics Challenge (SLRC 2025 – University Category), organised by the University of Moratuwa.",
@@ -709,11 +715,12 @@ const projects: Project[] = [
    │   │ MPU6050  │  │ ×4 MG90S Servo │   │
    │   │ TCS34725 │  │  (arm + gate)  │   │
    │   └──────────┘  └────────────────┘   │
-   └─────────────────────────────────────-─┘`,
+   └────────────────────────────────────────┘`,
     },
   },
 
-  // ── 06 ROSCO'25 ───────────────────────────────────────────────────────────
+  // ── 06 ROSCO'25 ──────────────────────────────────────────────────────────
+  // FIX: removed "Lankamesh | LoRa Based" prefix — completely wrong tagline
   {
     id: "rosco25",
     number: "06",
@@ -721,7 +728,8 @@ const projects: Project[] = [
     year: "2025",
     category: "Robotics",
     name: "ROSCO'25 Robot",
-    tagline: "Lankamesh | LoRa Based Autonomous Competition Robot",
+    tagline: "Autonomous Line, Wall Following & Ramp Navigation Robot",
+    fieldLine: "Robotics · PID Control · Sensor Fusion · Mechanical Design",
     shortDesc:
       "Autonomous robot for ROSCO'25 supporting line following, wall following, obstacle avoidance, and ramp navigation. Modular state-machine architecture with PID control and custom laser-cut acrylic chassis.",
     coverImage: "/images/Rosco robot.jpg",
@@ -729,6 +737,7 @@ const projects: Project[] = [
     githubUrl: "#",
     detail: {
       headline: "Team Botrix at ROSCO'25 — autonomous line, wall following and ramp navigation built with IMechE KDU.",
+      subline: "Robotics · Embedded C++ · PID Control · SolidWorks",
       teamImage: "/images/Rosco Competition.jpg",
       overview: [
         "ROSCO'25 is a robotics competition organised by the Institution of Mechanical Engineers (IMechE) Student Chapter of KDU in collaboration with the Electronics, Robotics and Innovations Club (ERIC) of KDU. As Team Botrix, we designed and built a fully autonomous mobile robot to complete a series of progressive challenges.",
@@ -736,14 +745,14 @@ const projects: Project[] = [
         "The mechanical and electronic system was designed end-to-end — from SolidWorks chassis layout to custom 3D-printed brackets, laser-cut acrylic structure, and a tuned PID firmware stack running on ESP32-S3.",
       ],
       highlights: [
-        { icon: "🤖", title: "Fully Autonomous — Four Tasks",     desc: "Line following, wall following, advanced line following with intersections, and ramp riding — all completed in a single uninterrupted autonomous run." },
-        { icon: "📡", title: "VL53L0X ToF Wall Detection",        desc: "Time-of-flight distance sensors provide precise wall clearance measurement for wall-following mode — far more accurate than ultrasonic at close range." },
-        { icon: "📏", title: "8-Bit IR Array Line Following",     desc: "8-channel reflective IR sensor array feeds the PID controller for accurate centre-line tracking across straight runs and intersections." },
-        { icon: "🔄", title: "MPU6050 Ramp Stabilisation",       desc: "Gyroscope feedback detects incline and adjusts motor power to maintain stable ramp ascent and controlled descent." },
-        { icon: "⚙️", title: "TB6612FNG Dual Motor Driver",      desc: "PWM-controlled dual H-bridge drives two 6V 600 RPM N20 DC gear motors with smooth speed transitions for precise manoeuvring." },
-        { icon: "🏗️", title: "SolidWorks + Laser-Cut Chassis",  desc: "Chassis layout designed in SolidWorks, fabricated as laser-cut acrylic for structural rigidity and weight efficiency." },
-        { icon: "🖨️", title: "Custom 3D-Printed Brackets",      desc: "All motor mounts, sensor holders, and structural brackets 3D-printed in PLA for fast iteration and precise component alignment." },
-        { icon: "🔋", title: "12V LiPo Power System",           desc: "12V LiPo battery with regulated power distribution supplies stable voltage to all subsystems through dedicated voltage rails." },
+        { icon: "🤖", title: "Fully Autonomous — Four Tasks",    desc: "Line following, wall following, advanced line following with intersections, and ramp riding — all completed in a single uninterrupted autonomous run." },
+        { icon: "📡", title: "VL53L0X ToF Wall Detection",       desc: "Time-of-flight distance sensors provide precise wall clearance measurement for wall-following mode — far more accurate than ultrasonic at close range." },
+        { icon: "📏", title: "8-Bit IR Array Line Following",    desc: "8-channel reflective IR sensor array feeds the PID controller for accurate centre-line tracking across straight runs and intersections." },
+        { icon: "🔄", title: "MPU6050 Ramp Stabilisation",      desc: "Gyroscope feedback detects incline and adjusts motor power to maintain stable ramp ascent and controlled descent." },
+        { icon: "⚙️", title: "TB6612FNG Dual Motor Driver",     desc: "PWM-controlled dual H-bridge drives two 6V 600 RPM N20 DC gear motors with smooth speed transitions for precise manoeuvring." },
+        { icon: "🏗️", title: "SolidWorks + Laser-Cut Chassis", desc: "Chassis layout designed in SolidWorks, fabricated as laser-cut acrylic for structural rigidity and weight efficiency." },
+        { icon: "🖨️", title: "Custom 3D-Printed Brackets",     desc: "All motor mounts, sensor holders, and structural brackets 3D-printed in PLA for fast iteration and precise component alignment." },
+        { icon: "🔋", title: "12V LiPo Power System",          desc: "12V LiPo battery with regulated power distribution supplies stable voltage to all subsystems through dedicated voltage rails." },
       ],
       gallerySections: rosco25Gallery,
       stats: [
@@ -765,7 +774,7 @@ const projects: Project[] = [
         },
         {
           title: "Mechanical Design & Fabrication",
-          body: "The mechanical layout and component placement were designed in SolidWorks before fabrication. The chassis was laser-cut from acrylic sheet for structural strength and dimensional precision. Custom 3D-printed PLA brackets were produced for motor mounts and sensor holders. Final assembly integrated all electronic components with carefully routed wiring for minimal interference.",
+          body: "The mechanical layout and component placement were designed in SolidWorks before fabrication. The chassis was laser-cut from acrylic sheet for structural strength and dimensional precision. Custom 3D-printed PLA brackets were produced for motor mounts and sensor holders. Final assembly integrated all electronic components with carefully routed wiring.",
         },
         {
           title: "Software & Control Architecture",
@@ -791,19 +800,20 @@ const projects: Project[] = [
    │   │ VL53L0X  │  │ → N20 Motors   │   │
    │   │ MPU6050  │  │                │   │
    │   └──────────┘  └────────────────┘   │
-   └─────────────────────────────────────-─┘`,
+   └────────────────────────────────────────┘`,
     },
   },
 
-  // ── 07  FeelFill ────────────────────────────────────────────────────────
+  // ── 07 FeelFill ──────────────────────────────────────────────────────────
   {
     id: "smartpour",
     number: "07",
     status: "ongoing",
     year: "2026",
     category: "IoT & Embedded",
-    name: " FeelFill",
+    name: "FeelFill",
     tagline: "Smart Measuring Cup for the Visually Impaired",
+    fieldLine: "Assistive Tech · IoT · Embedded Systems · Inclusive Design",
     shortDesc:
       "An accessible smart measuring cup designed for visually impaired users — combining audio feedback, tactile sensing, and real-time volume detection to enable independent, accurate cooking and baking.",
     coverImage: "",
@@ -811,9 +821,10 @@ const projects: Project[] = [
     githubUrl: "#",
     detail: {
       headline: "Restoring kitchen independence for 39 million blind individuals — one accurate pour at a time.",
+      subline: "Assistive Technology · IoT · Embedded Systems · Inclusive Design",
       overview: [
         "Globally, an estimated 285 million people live with visual impairment, of whom 39 million are fully blind. Among the most persistent challenges these individuals face are routine household tasks — such as measuring liquids accurately during cooking, medicine preparation, or beverage making. The absence of a visual reference forces reliance on another person or risking dangerous measurement errors.",
-        " FeelFill is a low-cost, non-contact, capacitive liquid-level sensing device that provides real-time multi-modal feedback through voice announcements and haptic vibration to guide a visually impaired user to pour the exact required volume. The device is self-contained, battery-powered, and designed to clip onto any standard cup, making it universally applicable and affordable.",
+        "FeelFill is a low-cost, non-contact, capacitive liquid-level sensing device that provides real-time multi-modal feedback through voice announcements and haptic vibration to guide a visually impaired user to pour the exact required volume. The device is self-contained, battery-powered, and designed to clip onto any standard cup, making it universally applicable and affordable.",
         "Developed through the Design Thinking framework — grounded in a specific persona (Chamari Perera, 34, a fully blind home-maker from Galle) and validated by empathy research — the design satisfies all six stated design criteria: no visual display, non-contact sensing, universal cup fit, battery operation, under 8,000 LKR unit cost, and no smartphone or digital literacy required.",
       ],
       highlights: [
@@ -826,7 +837,7 @@ const projects: Project[] = [
         { icon: "💰", title: "Affordable — Under 8,000 LKR",   desc: "Full BOM cost estimated at 5,100–7,800 LKR per unit. Target batch production cost drops to ~2,500 LKR at 500 units." },
         { icon: "♿", title: "Inclusive Design",                desc: "No screen, no smartphone, no literacy required. Single Start button operation. Non-stigmatising neutral clip-on form for public and home use." },
       ],
-      gallerySections:  FeelFillGallery,
+      gallerySections: FeelFillGallery,
       stats: [
         { label: "Fill Levels",   value: "4" },
         { label: "Resolution",    value: "~5 mL" },
@@ -838,19 +849,19 @@ const projects: Project[] = [
       sections: [
         {
           title: "Problem & Design Thinking",
-          body: "Standard measuring cups provide only visual graduation marks - useless for blind users. Existing assistive solutions (talking scales, Braille labels) do not solve dynamic pouring in real time. Finger dipping - the most common workaround - is unhygienic and dangerous with hot liquids. The  FeelFill design was developed through a structured Design Thinking process: Empathize (persona interviews with Chamari Perera), Define (problem statement focused on real-time non-contact measurement), Ideate (three concepts evaluated), and Prototype (capacitive clip-on selected as the only concept satisfying all six criteria simultaneously).",
+          body: "Standard measuring cups provide only visual graduation marks — useless for blind users. Existing assistive solutions (talking scales, Braille labels) do not solve dynamic pouring in real time. Finger dipping — the most common workaround — is unhygienic and dangerous with hot liquids. The FeelFill design was developed through a structured Design Thinking process: Empathize (persona interviews with Chamari Perera), Define (problem statement focused on real-time non-contact measurement), Ideate (three concepts evaluated), and Prototype (capacitive clip-on selected as the only concept satisfying all six criteria simultaneously).",
         },
         {
           title: "System Architecture",
-          body: "Liquid rises inside the cup → dielectric field changes around the external copper-tape electrode → capacitive sensor output voltage rises → ESP32 ADC reads voltage → firmware maps voltage to fill percentage → DFPlayer Mini plays pre-recorded voice clip and/or vibration motor activates. Key specifications: sensing method is non-contact capacitive (external copper-tape electrode), microcontroller is ESP32 (Xtensa LX6 240 MHz, 12-bit ADC), voice output is DFPlayer Mini + 8Ω/1W speaker at ≥65 dB SPL at 0.5m, feedback at 25/50/75/95/100%, battery life ≥8 hours, USB-C charging.",
+          body: "Liquid rises inside the cup → dielectric field changes around the external copper-tape electrode → capacitive sensor output voltage rises → ESP32 ADC reads voltage → firmware maps voltage to fill percentage → DFPlayer Mini plays pre-recorded voice clip and/or vibration motor activates. Key specifications: sensing method is non-contact capacitive (external copper-tape electrode), microcontroller is ESP32 (Xtensa LX6 240 MHz, 12-bit ADC), voice output is DFPlayer Mini + 8Ω/1W speaker at ≥65 dB SPL at 0.5 m, feedback at 25/50/75/95/100%, battery life ≥8 hours, USB-C charging.",
         },
         {
           title: "Circuit Design",
-          body: "Capacitive sensor: OUT → GPIO 34 (ADC1_CH6), VCC → 3.3V, GND. DFPlayer Mini: TX/RX ↔ GPIO 25/26 (UART2), 5V supply. Vibration motor: GPIO 27 → 1kΩ base resistor → 2N2222 NPN transistor → motor. Push buttons (Start/Reset/Mode): GPIO 32, 33, 35 with internal pull-ups. Power rail: 18650 → TP4056 → 5V boost converter → LDO 3.3V for ESP32. The sealed ABS enclosure provides IPX4 splash resistance. Firmware includes watchdog timer recovery and sensor fault detection with an audio error alert.",
+          body: "Capacitive sensor: OUT → GPIO 34 (ADC1_CH6), VCC → 3.3V. DFPlayer Mini: TX/RX ↔ GPIO 25/26 (UART2), 5V supply. Vibration motor: GPIO 27 → 1kΩ base resistor → 2N2222 NPN transistor → motor. Push buttons (Start/Reset/Mode): GPIO 32, 33, 35 with internal pull-ups. Power rail: 18650 → TP4056 → 5V boost converter → LDO 3.3V for ESP32. The sealed ABS enclosure provides IPX4 splash resistance. Firmware includes watchdog timer recovery and sensor fault detection with an audio error alert.",
         },
         {
-          title: "DfX & Sustainability",
-          body: "Design for Manufacturability: single two-layer PCB (100mm × 60mm), SMD components, copper tape electrode - no specialist tooling. Design for Assembly: snap-fit ABS shell with no screws; adjustable silicone band fits any cup in under 3 minutes. Design for Cost: first prototype 5,100–7,800 LKR; batch of 500 units targets ~2,500 LKR unit cost. Design for Reliability: non-contact sensing eliminates corrosion; MTBF >100,000 cycles; firmware updatable via USB. Sustainability: ABS/recycled PLA enclosure, RoHS-compliant PCB, modular component replacement, deep-sleep idle mode.",
+          title: "Design for Manufacture & Sustainability",
+          body: "Design for Manufacturability: single two-layer PCB (100 mm × 60 mm), SMD components, copper tape electrode — no specialist tooling. Design for Assembly: snap-fit ABS shell with no screws; adjustable silicone band fits any cup in under 3 minutes. Design for Cost: first prototype 5,100–7,800 LKR; batch of 500 units targets ~2,500 LKR unit cost. Design for Reliability: non-contact sensing eliminates corrosion; MTBF >100,000 cycles; firmware updatable via USB. Sustainability: ABS/recycled PLA enclosure, RoHS-compliant PCB, modular component replacement, deep-sleep idle mode.",
         },
       ],
       archDiagram: `  18650 Li-ion → TP4056 → 5V Boost → 3.3V LDO
@@ -872,7 +883,7 @@ const projects: Project[] = [
    │   │(external │  │(voice │  │(haptic│     │
    │   │ strip)   │  │ alert)│  │ warn) │     │
    │   └──────────┘  └───────┘  └───────┘     │
-   └─────────────────────────────────────────-──┘
+   └─────────────────────────────────────────────┘
 
   Fill Feedback:
   25%  → ✅ Voice: "Quarter full"
@@ -886,28 +897,47 @@ const projects: Project[] = [
 
 const CATEGORIES = ["All Projects", "AI & ML", "IoT & Embedded", "Robotics"];
 
-// ─── Sectioned Gallery ────────────────────────────────────────────────────────
+// ─── Sectioned Gallery (improved: larger images, captions always visible) ─────
 function SectionedGallery({ sections }: { sections: GallerySection[] }) {
   const [activeSection, setActiveSection] = useState(sections[0].id);
-  const [lightbox, setLightbox] = useState<{ src: string; caption: string; isVideo?: boolean } | null>(null);
+  const [lightbox, setLightbox] = useState<{ src: string; caption: string; isVideo?: boolean; allImages: { src: string; caption: string; isVideo?: boolean }[]; idx: number } | null>(null);
+
   const current = sections.find(s => s.id === activeSection)!;
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setLightbox(null); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightbox(null);
+      if (e.key === "ArrowRight" && lightbox) {
+        const next = (lightbox.idx + 1) % lightbox.allImages.length;
+        setLightbox({ ...lightbox, ...lightbox.allImages[next], idx: next });
+      }
+      if (e.key === "ArrowLeft" && lightbox) {
+        const prev = (lightbox.idx - 1 + lightbox.allImages.length) % lightbox.allImages.length;
+        setLightbox({ ...lightbox, ...lightbox.allImages[prev], idx: prev });
+      }
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [lightbox]);
+
+  const openLightbox = (img: { src: string; caption: string; isVideo?: boolean }, idx: number) => {
+    setLightbox({ ...img, allImages: current.images, idx });
+  };
+
+  // Filter empty gallery sections gracefully
+  const hasImages = current.images.length > 0;
 
   return (
     <div>
+      {/* Section tabs */}
       <div className="flex flex-wrap gap-2 mb-5">
         {sections.map((s) => (
           <button
             key={s.id}
             onClick={() => setActiveSection(s.id)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200"
             style={activeSection === s.id
-              ? { background: "#111", color: "#fff", borderColor: "#111" }
+              ? { background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", borderColor: "transparent" }
               : { background: "#fff", color: "#374151", borderColor: "#d1d5db" }}
           >
             <span>{s.icon}</span>
@@ -920,73 +950,105 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
         ))}
       </div>
 
+      {/* Section label bar */}
       <div className="flex items-center gap-2 px-3 py-2 rounded-xl mb-4 border" style={{ background: current.accent, borderColor: "#e5e7eb" }}>
         <span className="text-base">{current.icon}</span>
         <span className="text-xs font-bold" style={{ color: "#111" }}>{current.label}</span>
         <span className="text-[0.6rem] font-mono ml-1" style={{ color: "#6b7280" }}>{current.images.length} items</span>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-        {current.images.map((img, i) => {
-          const isWide = img.span === "wide";
-          const isTall = img.span === "tall";
-          const isVid  = img.isVideo;
-          return (
-            <div
-              key={i}
-              className={`group relative rounded-xl overflow-hidden cursor-zoom-in border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-[1.01] ${isWide ? "col-span-2" : isTall ? "row-span-2" : ""}`}
-              style={{ aspectRatio: isWide ? "16/7" : isTall ? "4/7" : "4/3", background: "#0f172a" }}
-              onClick={() => setLightbox(img)}
-            >
-              {isVid ? (
-                <video
-                  src={img.src}
-                  className="w-full h-full object-cover"
-                  muted
-                  loop
-                  playsInline
-                  onMouseEnter={e => (e.target as HTMLVideoElement).play()}
-                  onMouseLeave={e => { const v = e.target as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
-                />
-              ) : (
-                <img src={img.src} alt={img.caption} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                  onError={(e) => {
-                    const el = e.target as HTMLImageElement;
-                    el.style.display = "none";
-                    el.parentElement!.style.background = "#1e293b";
-                    const ph = document.createElement("div");
-                    ph.style.cssText = "display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#475569;font-size:2rem;position:absolute;inset:0;";
-                    ph.textContent = "◈";
-                    el.parentElement!.appendChild(ph);
-                  }}
-                />
-              )}
-              {isVid && (
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-12 h-12 rounded-full bg-black/50 flex items-center justify-center text-white text-xl opacity-80 group-hover:opacity-0 transition-opacity">▶</div>
-                </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-end">
-                <p className="px-3 py-2.5 text-white text-[0.65rem] leading-snug font-medium">{img.caption}</p>
-              </div>
-              <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/40 text-white flex items-center justify-center text-[0.6rem] opacity-0 group-hover:opacity-100 transition-opacity duration-200">{isVid ? "▶" : "⤢"}</div>
-            </div>
-          );
-        })}
-      </div>
+      {/* Empty state */}
+      {!hasImages && (
+        <div className="flex flex-col items-center justify-center py-12 text-center rounded-2xl border border-dashed border-gray-200">
+          <span className="text-4xl mb-3">🚧</span>
+          <p className="text-sm font-semibold text-gray-500">Gallery coming soon</p>
+          <p className="text-xs text-gray-400 mt-1">Images will be added as the project progresses</p>
+        </div>
+      )}
 
+      {/* Image grid — larger cells, caption always visible */}
+      {hasImages && (
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+          {current.images.map((img, i) => {
+            const isWide = img.span === "wide";
+            const isTall = img.span === "tall";
+            const isVid  = img.isVideo;
+            return (
+              <div
+                key={i}
+                className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.015] hover:border-indigo-300
+                  ${isWide ? "col-span-2" : isTall ? "row-span-2" : ""}`}
+                style={{ aspectRatio: isWide ? "16/7" : isTall ? "4/7" : "4/3", background: "#0f172a" }}
+                onClick={() => openLightbox(img, i)}
+              >
+                {isVid ? (
+                  <video
+                    src={img.src}
+                    className="w-full h-full object-cover"
+                    muted loop playsInline
+                    onMouseEnter={e => (e.target as HTMLVideoElement).play()}
+                    onMouseLeave={e => { const v = e.target as HTMLVideoElement; v.pause(); v.currentTime = 0; }}
+                  />
+                ) : (
+                  <img
+                    src={img.src}
+                    alt={img.caption}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+                    onError={(e) => {
+                      const el = e.target as HTMLImageElement;
+                      el.style.display = "none";
+                      el.parentElement!.style.background = "#1e293b";
+                    }}
+                  />
+                )}
+                {/* Play indicator for videos */}
+                {isVid && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">▶</div>
+                  </div>
+                )}
+                {/* Caption — always visible at bottom, stronger gradient */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pt-8 pb-2.5 px-3">
+                  <p className="text-white text-[0.65rem] leading-snug font-medium drop-shadow-sm">{img.caption}</p>
+                </div>
+                {/* Expand icon on hover */}
+                <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm text-white flex items-center justify-center text-[0.65rem] opacity-0 group-hover:opacity-100 transition-all duration-200 shadow">⤢</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Lightbox */}
       {lightbox && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6"
-          style={{ background: "rgba(0,0,0,0.95)", backdropFilter: "blur(16px)" }}
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
+          style={{ background: "rgba(0,0,0,0.96)", backdropFilter: "blur(20px)" }}
           onClick={() => setLightbox(null)}>
-          <div className="relative max-w-5xl w-full" onClick={e => e.stopPropagation()}>
-            <button onClick={() => setLightbox(null)} className="absolute -top-10 right-0 text-white/70 hover:text-white text-sm font-mono tracking-wide">ESC to close ✕</button>
+          <div className="relative max-w-5xl w-full flex flex-col items-center" onClick={e => e.stopPropagation()}>
+            {/* Close */}
+            <button onClick={() => setLightbox(null)} className="absolute -top-10 right-0 text-white/60 hover:text-white text-sm font-mono">ESC ✕</button>
+
+            {/* Nav arrows */}
+            {lightbox.allImages.length > 1 && (
+              <>
+                <button onClick={() => { const p=(lightbox.idx-1+lightbox.allImages.length)%lightbox.allImages.length; setLightbox({...lightbox,...lightbox.allImages[p],idx:p}); }}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all">‹</button>
+                <button onClick={() => { const n=(lightbox.idx+1)%lightbox.allImages.length; setLightbox({...lightbox,...lightbox.allImages[n],idx:n}); }}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition-all">›</button>
+              </>
+            )}
+
             {lightbox.isVideo ? (
               <video src={lightbox.src} className="w-full max-h-[80vh] rounded-2xl shadow-2xl" controls autoPlay />
             ) : (
               <img src={lightbox.src} alt={lightbox.caption} className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl" />
             )}
-            <p className="text-center text-white/70 text-xs mt-3 font-mono">{lightbox.caption}</p>
+            <div className="mt-4 text-center">
+              <p className="text-white/80 text-sm font-medium">{lightbox.caption}</p>
+              {lightbox.allImages.length > 1 && (
+                <p className="text-white/40 text-xs font-mono mt-1">{lightbox.idx + 1} / {lightbox.allImages.length}</p>
+              )}
+            </div>
           </div>
         </div>
       )}
@@ -998,6 +1060,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   const d = project.detail!;
   const [tab, setTab] = useState<"overview" | "gallery" | "tech">("overview");
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -1005,6 +1068,11 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
     document.body.style.overflow = "hidden";
     return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
   }, [onClose]);
+
+  // Scroll modal content to top when tab changes
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  }, [tab]);
 
   const statusColor: Record<string, { bg: string; text: string }> = {
     completed: { bg: "#dcfce7", text: "#15803d" },
@@ -1014,39 +1082,53 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
   const sc = statusColor[project.status];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center p-3 md:p-8 overflow-y-auto"
-      style={{ background: "rgba(0,0,0,0.80)", backdropFilter: "blur(10px)" }}
+    <div className="fixed inset-0 z-50 flex items-start justify-center p-3 md:p-6 overflow-y-auto"
+      style={{ background: "rgba(0,0,0,0.82)", backdropFilter: "blur(12px)" }}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="relative w-full max-w-5xl my-4 rounded-3xl overflow-hidden shadow-2xl" style={{ background: "#f8f9fb", color: "#111" }}>
 
         {/* Hero */}
-        <div className="relative h-52 md:h-64 overflow-hidden" style={{ background: "#0f172a" }}>
+        <div className="relative h-56 md:h-72 overflow-hidden" style={{ background: "#0f172a" }}>
           {project.coverImage && (
-            <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover opacity-60"
+            <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover opacity-55"
               onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 text-white/80 hover:text-white hover:bg-black/60 flex items-center justify-center text-sm font-bold transition-all">✕</button>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+          {/* Decorative grid */}
+          <div className="absolute inset-0 pointer-events-none opacity-10" style={{
+            backgroundImage: "linear-gradient(rgba(99,102,241,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.6) 1px, transparent 1px)",
+            backgroundSize: "40px 40px"
+          }} />
+          <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/60 flex items-center justify-center text-sm font-bold transition-all">✕</button>
           <div className="absolute bottom-0 left-0 p-6 md:p-8">
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-3">
               <span className="text-[0.58rem] font-mono font-bold tracking-widest uppercase px-2.5 py-1 rounded-full" style={{ background: sc.bg, color: sc.text }}>{project.status}</span>
               <span className="text-[0.6rem] font-mono text-white/50">{project.category} · {project.year}</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>{project.name}</h2>
-            <p className="text-white/60 text-xs mt-1">{project.tagline}</p>
+            <p className="text-white/60 text-xs mt-1.5">{project.tagline}</p>
+            {/* Field subline — new */}
+            {d.subline && (
+              <div className="flex items-center gap-1.5 mt-2">
+                <span className="inline-block w-1 h-1 rounded-full bg-indigo-400" />
+                <p className="text-[0.62rem] font-mono text-indigo-300/80 tracking-wide">{d.subline}</p>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-1 px-6 py-3 border-b" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+        <div className="flex items-center gap-1 px-6 py-3 border-b sticky top-0 z-20" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
           {(["overview", "gallery", "tech"] as const).map((t) => {
             const labels: Record<string, string> = { overview: "Overview", gallery: "Gallery", tech: "Technical Details" };
             const icons:  Record<string, string> = { overview: "◈", gallery: "◉", tech: "◆" };
             return (
               <button key={t} onClick={() => setTab(t)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all"
-                style={tab === t ? { background: "#111", color: "#fff" } : { color: "#6b7280", background: "transparent" }}>
+                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200"
+                style={tab === t
+                  ? { background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }
+                  : { color: "#6b7280", background: "transparent" }}>
                 <span className="text-[0.55rem]">{icons[t]}</span>
                 {labels[t]}
               </button>
@@ -1064,19 +1146,22 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         </div>
 
         {/* Tab content */}
-        <div className="p-6 md:p-8">
+        <div className="p-6 md:p-8" ref={contentRef}>
 
           {/* OVERVIEW */}
           {tab === "overview" && (
             <div className="space-y-7">
-              <div className="px-5 py-4 rounded-2xl border-l-4" style={{ background: "linear-gradient(135deg, #eff6ff, #f5f3ff)", borderColor: "#6366f1" }}>
-                <p className="text-sm md:text-base font-semibold leading-snug" style={{ color: "#1e3a8a" }}>"{d.headline}"</p>
+              {/* Headline quote */}
+              <div className="relative px-5 py-4 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #eff6ff, #f5f3ff)", border: "1px solid #c7d2fe" }}>
+                <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ background: "linear-gradient(to bottom, #6366f1, #8b5cf6)" }} />
+                <p className="text-sm md:text-base font-semibold leading-snug pl-2" style={{ color: "#1e3a8a" }}>"{d.headline}"</p>
               </div>
 
+              {/* Stats strip */}
               {d.stats && (
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
                   {d.stats.map((s) => (
-                    <div key={s.label} className="rounded-2xl p-3 text-center border" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+                    <div key={s.label} className="rounded-2xl p-3 text-center border hover:border-indigo-200 transition-colors" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
                       <p className="text-sm font-extrabold" style={{ color: "#4f46e5", fontFamily: "Syne, sans-serif" }}>{s.value}</p>
                       <p className="font-mono text-[0.45rem] uppercase tracking-widest mt-1" style={{ color: "#9ca3af" }}>{s.label}</p>
                     </div>
@@ -1084,6 +1169,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 </div>
               )}
 
+              {/* Overview + image */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2">
                   <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] mb-3" style={{ color: "#9ca3af" }}>About this project</h3>
@@ -1097,7 +1183,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                   {d.teamImage && (
                     <>
                       <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style={{ color: "#9ca3af" }}>The Team</h3>
-                      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "#e5e7eb" }}>
+                      <div className="rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: "#e5e7eb" }}>
                         <img src={d.teamImage} alt="Project team" className="w-full object-cover" style={{ aspectRatio: "4/3" }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                       </div>
@@ -1106,7 +1192,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                   {d.creatorImage && !d.teamImage && (
                     <>
                       <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style={{ color: "#9ca3af" }}>Creator</h3>
-                      <div className="rounded-2xl overflow-hidden border" style={{ borderColor: "#e5e7eb" }}>
+                      <div className="rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: "#e5e7eb" }}>
                         <img src={d.creatorImage} alt="Project creator" className="w-full object-cover" style={{ aspectRatio: "3/4" }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                       </div>
@@ -1116,11 +1202,12 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 </div>
               </div>
 
+              {/* Key features */}
               <div>
                 <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] mb-4" style={{ color: "#9ca3af" }}>Key Features</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {d.highlights.map((h) => (
-                    <div key={h.title} className="flex gap-3 p-4 rounded-2xl border hover:border-indigo-200 transition-colors" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+                    <div key={h.title} className="flex gap-3 p-4 rounded-2xl border hover:border-indigo-200 hover:shadow-sm transition-all duration-200" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
                       <span className="text-lg flex-shrink-0 mt-0.5">{h.icon}</span>
                       <div>
                         <p className="text-xs font-bold mb-1" style={{ color: "#111" }}>{h.title}</p>
@@ -1131,15 +1218,17 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 </div>
               </div>
 
+              {/* Tags */}
               <div className="flex flex-wrap gap-2 pt-4" style={{ borderTop: "1px solid #e5e7eb" }}>
                 {project.tags.filter(t => !t.startsWith("+")).map((t) => (
                   <span key={t} className="text-[0.62rem] font-mono px-2.5 py-1 rounded-lg border" style={{ background: "#f9fafb", borderColor: "#e5e7eb", color: "#374151" }}>{t}</span>
                 ))}
               </div>
 
+              {/* CTA to gallery */}
               <button onClick={() => setTab("gallery")}
                 className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-semibold border-2 border-dashed transition-all hover:bg-gray-50"
-                style={{ borderColor: "#d1d5db", color: "#4f46e5" }}>
+                style={{ borderColor: "#c7d2fe", color: "#4f46e5" }}>
                 <span>◉</span> View Gallery →
               </button>
             </div>
@@ -1153,8 +1242,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             <div className="space-y-4">
               {d.sections.map((s, i) => (
                 <div key={s.title} className="rounded-2xl border overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                  <div className="px-5 py-3 flex items-center gap-2" style={{ background: "#f9fafb", borderBottom: "1px solid #e5e7eb" }}>
-                    <span className="font-mono text-[0.55rem] text-indigo-400">0{i + 1}</span>
+                  <div className="px-5 py-3 flex items-center gap-3" style={{ background: "linear-gradient(135deg,#f9fafb,#eff6ff)", borderBottom: "1px solid #e5e7eb" }}>
+                    <span className="font-mono text-[0.55rem] text-indigo-400 font-bold">0{i + 1}</span>
                     <h4 className="text-sm font-bold" style={{ color: "#111" }}>{s.title}</h4>
                   </div>
                   <div className="px-5 py-4" style={{ background: "#fff" }}>
@@ -1164,12 +1253,12 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               ))}
               {d.archDiagram && (
                 <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                  <div className="px-5 py-3 flex items-center gap-2" style={{ background: "#f9fafb", borderBottom: "1px solid #e5e7eb" }}>
-                    <span className="font-mono text-[0.55rem] text-indigo-400">0{(d.sections?.length ?? 0) + 1}</span>
+                  <div className="px-5 py-3 flex items-center gap-3" style={{ background: "linear-gradient(135deg,#f9fafb,#eff6ff)", borderBottom: "1px solid #e5e7eb" }}>
+                    <span className="font-mono text-[0.55rem] text-indigo-400 font-bold">0{(d.sections?.length ?? 0) + 1}</span>
                     <h4 className="text-sm font-bold" style={{ color: "#111" }}>System Architecture Diagram</h4>
                   </div>
-                  <div className="px-5 py-4" style={{ background: "#fff" }}>
-                    <pre className="text-[0.6rem] leading-relaxed overflow-x-auto" style={{ color: "#374151", fontFamily: "monospace" }}>{d.archDiagram}</pre>
+                  <div className="px-5 py-4" style={{ background: "#0f172a" }}>
+                    <pre className="text-[0.6rem] leading-relaxed overflow-x-auto" style={{ color: "#a5f3fc", fontFamily: "monospace" }}>{d.archDiagram}</pre>
                   </div>
                 </div>
               )}
@@ -1182,7 +1271,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 }
 
 // ─── Project Card ─────────────────────────────────────────────────────────────
-function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () => void; index: number }) {
   const statusColors: Record<string, string> = {
     completed: "bg-emerald-500/15 text-emerald-400 border-emerald-500/25",
     ongoing:   "bg-amber-500/15 text-amber-400 border-amber-500/25",
@@ -1192,9 +1281,15 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
   const extra       = project.tags.find(t => t.startsWith("+"));
 
   return (
-    <div className="card group flex flex-col cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-1.5 transition-all duration-300 hover:shadow-2xl"
-      style={{ height: "420px" }} onClick={onOpen}>
-
+    <div
+      className="card group flex flex-col cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl"
+      style={{
+        height: "440px",
+        animationDelay: `${index * 60}ms`,
+        animation: "fadeInUp 0.5s ease both",
+      }}
+      onClick={onOpen}
+    >
       <div className="flex items-center justify-between px-5 pt-4 pb-3 flex-shrink-0">
         <div className="flex items-center gap-2">
           <span className={`text-[0.55rem] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${statusColors[project.status]}`}>{project.status}</span>
@@ -1203,32 +1298,41 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
         <span className="font-mono text-[0.58rem] text-[var(--text-subtle)]">{project.number}</span>
       </div>
 
-      <div className="mx-5 rounded-xl overflow-hidden flex-shrink-0"
-        style={{ height: "148px", background: "linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 8%, var(--surface)))" }}>
+      {/* Cover image — slightly taller for better visibility */}
+      <div className="mx-5 rounded-xl overflow-hidden flex-shrink-0 relative group/img"
+        style={{ height: "160px", background: "linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 8%, var(--surface)))" }}>
         {project.coverImage ? (
-          <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+          <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
             onError={(e) => {
               const el = e.target as HTMLImageElement;
               el.style.display = "none";
               el.parentElement!.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;opacity:0.2;font-size:2.5rem;">◈</div>`;
             }} />
         ) : (
-          <div className="w-full h-full flex items-center justify-center opacity-20 text-4xl">◈</div>
+          <div className="w-full h-full flex items-center justify-center text-4xl" style={{ opacity: 0.15 }}>◈</div>
         )}
+        {/* Category overlay on image */}
+        <div className="absolute top-2 left-2">
+          <span className="text-[0.5rem] font-mono font-semibold px-2 py-0.5 rounded-full text-white/90"
+            style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{project.category}</span>
+        </div>
       </div>
 
-      <div className="flex flex-col flex-1 px-5 pt-3.5 pb-4 gap-2.5 min-h-0">
+      <div className="flex flex-col flex-1 px-5 pt-3.5 pb-4 gap-2 min-h-0">
         <div className="flex-shrink-0">
-          <p className="font-mono text-[0.55rem] tracking-widest uppercase text-[var(--accent)] mb-0.5">{project.category}</p>
           <h3 className="text-[0.9rem] font-extrabold text-[var(--text)] leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>{project.name}</h3>
           <p className="text-[0.6rem] text-[var(--text-subtle)] mt-0.5 leading-snug line-clamp-1">{project.tagline}</p>
+          {/* NEW: field line */}
+          {project.fieldLine && (
+            <p className="text-[0.55rem] font-mono text-[var(--accent)] mt-1 opacity-80 truncate">{project.fieldLine}</p>
+          )}
         </div>
-        <p className="text-[0.72rem] text-[var(--text-muted)] leading-relaxed line-clamp-3 flex-shrink-0">{project.shortDesc}</p>
-        <div className="flex flex-wrap gap-1.5 flex-shrink-0" style={{ minHeight: "24px" }}>
+        <p className="text-[0.72rem] text-[var(--text-muted)] leading-relaxed line-clamp-2 flex-shrink-0">{project.shortDesc}</p>
+        <div className="flex flex-wrap gap-1.5 flex-shrink-0" style={{ minHeight: "22px" }}>
           {visibleTags.map((t) => (
-            <span key={t} className="tag text-[0.56rem] px-2 py-0.5">{t}</span>
+            <span key={t} className="tag text-[0.55rem] px-2 py-0.5">{t}</span>
           ))}
-          {extra && <span className="tag text-[0.56rem] px-2 py-0.5 text-[var(--accent)]">{extra}</span>}
+          {extra && <span className="tag text-[0.55rem] px-2 py-0.5 text-[var(--accent)]">{extra}</span>}
         </div>
         <div className="flex items-center justify-between pt-2 mt-auto flex-shrink-0" style={{ borderTop: "1px solid var(--border)" }}>
           <span className="flex items-center gap-1.5 text-[var(--accent)] text-[0.7rem] font-semibold group-hover:gap-2.5 transition-all">
@@ -1259,6 +1363,13 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 relative overflow-hidden">
+      <style>{`
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
       <div className="blob w-96 h-96 bg-[var(--accent)]/[0.05] top-0 right-0" />
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] bottom-0 left-0" />
 
@@ -1274,6 +1385,7 @@ export default function Projects() {
           </p>
         </div>
 
+        {/* Category filter */}
         <div className="flex flex-wrap gap-2 mb-10">
           {CATEGORIES.map((cat) => {
             const count = cat === "All Projects" ? projects.length : projects.filter(p => p.category === cat).length;
@@ -1297,8 +1409,8 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {filtered.map(p => (
-            <ProjectCard key={p.id} project={p} onOpen={() => p.detail && setOpenProject(p)} />
+          {filtered.map((p, i) => (
+            <ProjectCard key={p.id} project={p} index={i} onOpen={() => p.detail && setOpenProject(p)} />
           ))}
         </div>
       </div>
