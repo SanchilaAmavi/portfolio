@@ -1,6 +1,5 @@
 import Navbar       from "@/components/Navbar";
 import Hero         from "@/components/sections/Hero";
-import FeaturedProject from "@/components/sections/FeaturedProject";
 import About        from "@/components/sections/About";
 import Projects     from "@/components/sections/Projects";
 import Skills       from "@/components/sections/Skills";
@@ -13,7 +12,6 @@ export default function Home() {
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] overflow-x-hidden">
       <Navbar />
       <Hero />
-      <FeaturedProject />
       <About />
       <Projects />
       <Skills />
