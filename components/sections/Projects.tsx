@@ -395,7 +395,7 @@ const projects: Project[] = [
       "Decentralised wireless mesh communication network using LoRa for emergency and low-connectivity environments. Peer-to-peer SOS messaging, GPS tracking, and Flutter app.",
     coverImage: "/images/lankamesh.jpg",
     tags: ["ESP32-S3", "LoRa RA-02", "GPS NEO-4M", "Flutter", "Embedded C++", "+1"],
-    githubUrl: "https://github.com/SanchilaAmavi",
+    githubUrl: "https://github.com/SanchilaAmavi/LankaMesh",
     detail: {
       headline: "Keeping communities connected when all infrastructure fails — zero internet, zero cellular.",
       subline: "IoT · LoRa Mesh · GPS · Flutter Mobile",
@@ -650,7 +650,7 @@ const projects: Project[] = [
       "Autonomous robot for SLRC-inspired competition tasks: grid navigation, obstacle avoidance, ramp climbing, barcode scanning and intelligent potato sorting. ESP32-S3, sensor fusion, SolidWorks chassis, 3D-printed arm.",
     coverImage: "/images/marsrobot.jpg",
     tags: ["ESP32-S3", "TB6612FNG", "MPU6050", "TCS34725", "SolidWorks", "PID", "+3"],
-    githubUrl: "#",
+    githubUrl: "https://github.com/SanchilaAmavi/mars-robot-challenge",
     detail: {
       headline: "A fully autonomous robot tackling grid navigation, ramp climbing, and barcode-guided sorting — zero human input from start to finish.",
       subline: "Robotics · Embedded C++ · Sensor Fusion · Mechanical Design",
@@ -735,7 +735,7 @@ const projects: Project[] = [
       "Autonomous robot for ROSCO'25 supporting line following, wall following, obstacle avoidance, and ramp navigation. Modular state-machine architecture with PID control and custom laser-cut acrylic chassis.",
     coverImage: "/images/Rosco robot.jpg",
     tags: ["ESP32-S3", "VL53L0X", "IR Sensors", "MPU6050", "PID", "+2"],
-    githubUrl: "#",
+    githubUrl: "https://github.com/SanchilaAmavi/ROSCO25-Team_Botrix-Robot",
     detail: {
       headline: "Team Botrix at ROSCO'25 — autonomous line, wall following and ramp navigation built with IMechE KDU.",
       subline: "Robotics · Embedded C++ · PID Control · SolidWorks",
@@ -819,7 +819,7 @@ const projects: Project[] = [
       "An accessible smart measuring cup designed for visually impaired users — combining audio feedback, tactile sensing, and real-time volume detection to enable independent, accurate cooking and baking.",
     coverImage: "",
     tags: ["ESP32", "Capacitive Sensor", "DFPlayer Mini", "Embedded C++", "+2"],
-    githubUrl: "#",
+    githubUrl: "https://github.com/SanchilaAmavi/FeelFill",
     detail: {
       headline: "Restoring kitchen independence for 39 million blind individuals — one accurate pour at a time.",
       subline: "Assistive Technology · IoT · Embedded Systems · Inclusive Design",

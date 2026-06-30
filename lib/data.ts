@@ -128,7 +128,7 @@ export const projects = [
     year:     "2026",
     featured: false,
     image:    "/images/proctoring.jpg",
-    github:   "#",
+    github:   "https://github.com/SanchilaAmavi/AI-Proctoring-System",
     description:
       "Real-time exam proctoring combining MediaPipe face detection and YOLOv8 object detection. Dynamic risk scoring, audio alerts, live dashboard with risk-over-time graphs, and comprehensive session logging.",
     highlights: [
@@ -148,7 +148,7 @@ export const projects = [
     year:     "2025",
     featured: false,
     image:    "/images/mars-robot.jpg",
-    github:   "https://github.com/PabasaraIlankoon/mars-robot-challenge",
+    github:   "https://github.com/SanchilaAmavi/mars-robot-challenge",
     description:
       "Autonomous robot for competition-based navigation and object handling. Sensor fusion across IR, ultrasonic, gyroscope, and colour sensors. SolidWorks chassis, 3D printed, encoder-based motor control.",
     highlights: [
