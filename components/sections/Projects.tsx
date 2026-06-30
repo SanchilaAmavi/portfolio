@@ -476,7 +476,7 @@ const projects: Project[] = [
       "Full-stack driver safety platform combining deep learning fatigue detection (EfficientNet-B0, 93.24% accuracy), real-time face tracking, PERCLOS scoring, voice alerts, emergency SOS, and GPS tracking — built with PyTorch, FastAPI, and Flutter.",
     coverImage: "/images/NexDrive dashboard.jpg",
     tags: ["PyTorch", "EfficientNet-B0", "FastAPI", "Flutter", "ML Kit", "OpenCV", "+3"],
-    githubUrl: "#",
+    githubUrl: "https://github.com/SanchilaAmavi/driver-fatigue-detection",
     detail: {
       headline: "Preventing road fatalities by detecting driver drowsiness in real time — before the accident happens.",
       subline: "Computer Vision · Deep Learning · Mobile · FastAPI",
