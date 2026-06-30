@@ -898,7 +898,7 @@ const projects: Project[] = [
 
 const CATEGORIES = ["All Projects", "AI & ML", "IoT & Embedded", "Robotics"];
 
-// ─── Sectioned Gallery (improved: larger images, captions always visible) ─────
+// ─── Sectioned Gallery (dark-themed, larger images, captions always visible) ──
 function SectionedGallery({ sections }: { sections: GallerySection[] }) {
   const [activeSection, setActiveSection] = useState(sections[0].id);
   const [lightbox, setLightbox] = useState<{ src: string; caption: string; isVideo?: boolean; allImages: { src: string; caption: string; isVideo?: boolean }[]; idx: number } | null>(null);
@@ -932,38 +932,46 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
     <div>
       {/* Section tabs */}
       <div className="flex flex-wrap gap-2 mb-5">
-        {sections.map((s) => (
-          <button
-            key={s.id}
-            onClick={() => setActiveSection(s.id)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200"
-            style={activeSection === s.id
-              ? { background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff", borderColor: "transparent" }
-              : { background: "#fff", color: "#374151", borderColor: "#d1d5db" }}
-          >
-            <span>{s.icon}</span>
-            {s.label}
-            <span className="text-[0.52rem] px-1.5 py-0.5 rounded-full font-mono ml-0.5"
-              style={{ background: activeSection === s.id ? "rgba(255,255,255,0.2)" : "#f3f4f6", color: activeSection === s.id ? "#fff" : "#6b7280" }}>
-              {s.images.length}
-            </span>
-          </button>
-        ))}
+        {sections.map((s) => {
+          const active = activeSection === s.id;
+          return (
+            <button
+              key={s.id}
+              onClick={() => setActiveSection(s.id)}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-all duration-200"
+              style={active
+                ? { background: "linear-gradient(135deg, var(--accent), var(--violet))", color: "#021018", borderColor: "transparent" }
+                : { background: "var(--surface)", color: "var(--text-muted)", borderColor: "var(--border)" }}
+            >
+              <span>{s.icon}</span>
+              {s.label}
+              <span className="text-[0.52rem] px-1.5 py-0.5 rounded-full font-mono ml-0.5"
+                style={{ background: active ? "rgba(2,16,24,0.2)" : "var(--surface-2)", color: active ? "#021018" : "var(--text-subtle)" }}>
+                {s.images.length}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       {/* Section label bar */}
-      <div className="flex items-center gap-2 px-3 py-2 rounded-xl mb-4 border" style={{ background: current.accent, borderColor: "#e5e7eb" }}>
+      <div className="flex items-center gap-2 px-3 py-2 rounded-xl mb-4 border" style={{ background: "var(--surface)", borderColor: "var(--border)" }}>
         <span className="text-base">{current.icon}</span>
-        <span className="text-xs font-bold" style={{ color: "#111" }}>{current.label}</span>
-        <span className="text-[0.6rem] font-mono ml-1" style={{ color: "#6b7280" }}>{current.images.length} items</span>
+        <span className="text-xs font-bold text-[var(--text)]">{current.label}</span>
+        <span className="text-[0.6rem] font-mono ml-1 text-[var(--text-subtle)]">{current.images.length} items</span>
       </div>
 
       {/* Empty state */}
       {!hasImages && (
-        <div className="flex flex-col items-center justify-center py-12 text-center rounded-2xl border border-dashed border-gray-200">
-          <span className="text-4xl mb-3">🚧</span>
-          <p className="text-sm font-semibold text-gray-500">Gallery coming soon</p>
-          <p className="text-xs text-gray-400 mt-1">Images will be added as the project progresses</p>
+        <div className="flex flex-col items-center justify-center py-12 text-center rounded-2xl border border-dashed"
+          style={{
+            borderColor: "var(--border)",
+            backgroundImage: "linear-gradient(rgba(56,189,248,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.05) 1px, transparent 1px)",
+            backgroundSize: "16px 16px",
+          }}>
+          <span className="text-3xl mb-3 opacity-60">◈</span>
+          <p className="text-sm font-semibold text-[var(--text-muted)]">Gallery in progress</p>
+          <p className="text-xs text-[var(--text-subtle)] mt-1 font-mono">Build photos will land here as the prototype develops</p>
         </div>
       )}
 
@@ -977,10 +985,12 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
             return (
               <div
                 key={i}
-                className={`group relative rounded-2xl overflow-hidden cursor-pointer border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.015] hover:border-indigo-300
+                className={`circuit-corners group relative rounded-2xl overflow-hidden cursor-pointer border shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.015]
                   ${isWide ? "col-span-2" : isTall ? "row-span-2" : ""}`}
-                style={{ aspectRatio: isWide ? "16/7" : isTall ? "4/7" : "4/3", background: "#0f172a" }}
+                style={{ aspectRatio: isWide ? "16/7" : isTall ? "4/7" : "4/3", background: "var(--surface)", borderColor: "var(--border)" }}
                 onClick={() => openLightbox(img, i)}
+                onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--border-hover)")}
+                onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
               >
                 {isVid ? (
                   <video
@@ -998,14 +1008,14 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
                     onError={(e) => {
                       const el = e.target as HTMLImageElement;
                       el.style.display = "none";
-                      el.parentElement!.style.background = "#1e293b";
+                      el.parentElement!.style.background = "var(--surface-2)";
                     }}
                   />
                 )}
                 {/* Play indicator for videos */}
                 {isVid && (
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">▶</div>
+                    <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">▶</div>
                   </div>
                 )}
                 {/* Caption — always visible at bottom, stronger gradient */}
@@ -1022,8 +1032,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
 
       {/* Lightbox */}
       {lightbox && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
-          style={{ background: "rgba(0,0,0,0.96)", backdropFilter: "blur(20px)" }}
+        <div className="modal-overlay fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8"
           onClick={() => setLightbox(null)}>
           <div className="relative max-w-5xl w-full flex flex-col items-center" onClick={e => e.stopPropagation()}>
             {/* Close */}
@@ -1042,7 +1051,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
             {lightbox.isVideo ? (
               <video src={lightbox.src} className="w-full max-h-[80vh] rounded-2xl shadow-2xl" controls autoPlay />
             ) : (
-              <img src={lightbox.src} alt={lightbox.caption} className="w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl" />
+              <img src={lightbox.src} alt={lightbox.caption} className="image-reveal w-full max-h-[80vh] object-contain rounded-2xl shadow-2xl" />
             )}
             <div className="mt-4 text-center">
               <p className="text-white/80 text-sm font-medium">{lightbox.caption}</p>
@@ -1057,7 +1066,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
   );
 }
 
-// ─── Project Detail Modal ─────────────────────────────────────────────────────
+// ─── Project Detail Modal (dark-themed — matches the rest of the site) ───────
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   const d = project.detail!;
   const [tab, setTab] = useState<"overview" | "gallery" | "tech">("overview");
@@ -1076,60 +1085,57 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
   }, [tab]);
 
   const statusColor: Record<string, { bg: string; text: string }> = {
-    completed: { bg: "#dcfce7", text: "#15803d" },
-    ongoing:   { bg: "#fef9c3", text: "#92400e" },
-    prototype: { bg: "#ede9fe", text: "#6d28d9" },
+    completed: { bg: "var(--green-dim)", text: "var(--green)" },
+    ongoing:   { bg: "var(--amber-dim)", text: "var(--amber)" },
+    prototype: { bg: "var(--violet-dim)", text: "var(--violet)" },
   };
   const sc = statusColor[project.status];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center p-3 md:p-6 overflow-y-auto"
-      style={{ background: "rgba(0,0,0,0.82)", backdropFilter: "blur(12px)" }}
+    <div className="modal-overlay fixed inset-0 z-50 flex items-start justify-center p-3 md:p-6 overflow-y-auto animate-fade-in"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
-      <div className="relative w-full max-w-5xl my-4 rounded-3xl overflow-hidden shadow-2xl" style={{ background: "#f8f9fb", color: "#111" }}>
+      <div className="modal-shell relative w-full max-w-5xl my-4 rounded-3xl overflow-hidden shadow-2xl animate-scale-in">
 
         {/* Hero */}
-        <div className="relative h-56 md:h-72 overflow-hidden" style={{ background: "#0f172a" }}>
+        <div className="scan-header relative h-56 md:h-72 overflow-hidden" style={{ background: "var(--bg)" }}>
           {project.coverImage && (
-            <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover opacity-55"
+            <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover opacity-50"
               onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/35 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-          {/* Decorative grid */}
-          <div className="absolute inset-0 pointer-events-none opacity-10" style={{
-            backgroundImage: "linear-gradient(rgba(99,102,241,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(99,102,241,0.6) 1px, transparent 1px)",
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg)] via-[var(--bg)]/55 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] to-transparent" />
+          {/* Decorative circuit grid */}
+          <div className="absolute inset-0 pointer-events-none opacity-20" style={{
+            backgroundImage: "linear-gradient(rgba(56,189,248,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.5) 1px, transparent 1px)",
             backgroundSize: "40px 40px"
           }} />
-          <button onClick={onClose} className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/60 flex items-center justify-center text-sm font-bold transition-all">✕</button>
+          <button onClick={onClose} className="circuit-corners absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 backdrop-blur-sm text-white/80 hover:text-white hover:bg-black/60 flex items-center justify-center text-sm font-bold transition-all">✕</button>
           <div className="absolute bottom-0 left-0 p-6 md:p-8">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-[0.58rem] font-mono font-bold tracking-widest uppercase px-2.5 py-1 rounded-full" style={{ background: sc.bg, color: sc.text }}>{project.status}</span>
-              <span className="text-[0.6rem] font-mono text-white/50">{project.category} · {project.year}</span>
+              <span className="text-[0.6rem] font-mono text-[var(--text-subtle)]">{project.category} · {project.year}</span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>{project.name}</h2>
-            <p className="text-white/60 text-xs mt-1.5">{project.tagline}</p>
-            {/* Field subline — new */}
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[var(--text)] tracking-tight leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>{project.name}</h2>
+            <p className="text-[var(--text-muted)] text-xs mt-1.5">{project.tagline}</p>
+            {/* Field subline */}
             {d.subline && (
               <div className="flex items-center gap-1.5 mt-2">
-                <span className="inline-block w-1 h-1 rounded-full bg-indigo-400" />
-                <p className="text-[0.62rem] font-mono text-indigo-300/80 tracking-wide">{d.subline}</p>
+                <span className="live-dot" />
+                <p className="text-[0.62rem] font-mono text-[var(--accent)]/85 tracking-wide ml-1">{d.subline}</p>
               </div>
             )}
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center gap-1 px-6 py-3 border-b sticky top-0 z-20" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+        <div className="flex items-center gap-1 px-6 py-3 border-b sticky top-0 z-20" style={{ background: "var(--bg-2)", borderColor: "var(--border)" }}>
           {(["overview", "gallery", "tech"] as const).map((t) => {
             const labels: Record<string, string> = { overview: "Overview", gallery: "Gallery", tech: "Technical Details" };
             const icons:  Record<string, string> = { overview: "◈", gallery: "◉", tech: "◆" };
+            const active = tab === t;
             return (
               <button key={t} onClick={() => setTab(t)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200"
-                style={tab === t
-                  ? { background: "linear-gradient(135deg,#6366f1,#8b5cf6)", color: "#fff" }
-                  : { color: "#6b7280", background: "transparent" }}>
+                className={`modal-tab flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${active ? "modal-tab-active" : ""}`}>
                 <span className="text-[0.55rem]">{icons[t]}</span>
                 {labels[t]}
               </button>
@@ -1138,8 +1144,8 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
           <div className="ml-auto flex gap-2">
             {project.githubUrl && project.githubUrl !== "#" && (
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold border transition-all hover:bg-gray-50"
-                style={{ borderColor: "#d1d5db", color: "#374151" }}>
+                className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold border transition-all hover:border-[var(--border-hover)] hover:text-[var(--accent)]"
+                style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
                 <GitHubIcon size={14} /> GitHub
               </a>
             )}
@@ -1151,40 +1157,44 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
           {/* OVERVIEW */}
           {tab === "overview" && (
-            <div className="space-y-7">
+            <div className="space-y-7 animate-fade-in">
               {/* Headline quote */}
-              <div className="relative px-5 py-4 rounded-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #eff6ff, #f5f3ff)", border: "1px solid #c7d2fe" }}>
-                <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ background: "linear-gradient(to bottom, #6366f1, #8b5cf6)" }} />
-                <p className="text-sm md:text-base font-semibold leading-snug pl-2" style={{ color: "#1e3a8a" }}>"{d.headline}"</p>
+              <div className="modal-quote relative px-5 py-4 rounded-2xl overflow-hidden">
+                <div className="absolute left-0 top-0 bottom-0 w-1 rounded-l-2xl" style={{ background: "linear-gradient(to bottom, var(--accent), var(--violet))" }} />
+                <p className="text-sm md:text-base font-semibold leading-snug pl-2 text-[var(--text)]">"{d.headline}"</p>
               </div>
 
               {/* Stats strip */}
               {d.stats && (
                 <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
                   {d.stats.map((s) => (
-                    <div key={s.label} className="rounded-2xl p-3 text-center border hover:border-indigo-200 transition-colors" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
-                      <p className="text-sm font-extrabold" style={{ color: "#4f46e5", fontFamily: "Syne, sans-serif" }}>{s.value}</p>
-                      <p className="font-mono text-[0.45rem] uppercase tracking-widest mt-1" style={{ color: "#9ca3af" }}>{s.label}</p>
+                    <div key={s.label} className="modal-card p-3 text-center">
+                      <p className="text-sm font-extrabold text-[var(--accent)]" style={{ fontFamily: "Syne, sans-serif" }}>{s.value}</p>
+                      <p className="font-mono text-[0.45rem] uppercase tracking-widest mt-1 text-[var(--text-subtle)]">{s.label}</p>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Overview + image */}
+              {/* Overview + image — each paragraph gets a numbered accent so the
+                  "long description" reads as a structured narrative, not a wall of text */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2">
-                  <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] mb-3" style={{ color: "#9ca3af" }}>About this project</h3>
-                  <div className="space-y-3">
+                  <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] mb-3 text-[var(--text-subtle)]">About this project</h3>
+                  <div className="space-y-4">
                     {d.overview.map((p, i) => (
-                      <p key={i} className="text-sm leading-relaxed" style={{ color: "#374151" }}>{p}</p>
+                      <div key={i} className="flex gap-3">
+                        <span className="font-mono text-[0.6rem] text-[var(--accent)]/50 mt-1 flex-shrink-0">0{i + 1}</span>
+                        <p className="text-sm leading-relaxed text-[var(--text-muted)]">{p}</p>
+                      </div>
                     ))}
                   </div>
                 </div>
                 <div className="flex flex-col gap-2">
                   {d.teamImage && (
                     <>
-                      <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style={{ color: "#9ca3af" }}>The Team</h3>
-                      <div className="rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: "#e5e7eb" }}>
+                      <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)]">The Team</h3>
+                      <div className="circuit-corners rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
                         <img src={d.teamImage} alt="Project team" className="w-full object-cover" style={{ aspectRatio: "4/3" }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                       </div>
@@ -1192,27 +1202,29 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                   )}
                   {d.creatorImage && !d.teamImage && (
                     <>
-                      <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em]" style={{ color: "#9ca3af" }}>Creator</h3>
-                      <div className="rounded-2xl overflow-hidden border shadow-sm" style={{ borderColor: "#e5e7eb" }}>
+                      <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] text-[var(--text-subtle)]">Creator</h3>
+                      <div className="circuit-corners rounded-2xl overflow-hidden border" style={{ borderColor: "var(--border)" }}>
                         <img src={d.creatorImage} alt="Project creator" className="w-full object-cover" style={{ aspectRatio: "3/4" }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                       </div>
-                      <p className="text-[0.62rem] text-center font-medium" style={{ color: "#6b7280" }}>Sanchila Amavi — Creator & Engineer</p>
+                      <p className="text-[0.62rem] text-center font-medium text-[var(--text-muted)]">Sanchila Amavi — Creator &amp; Engineer</p>
                     </>
                   )}
                 </div>
               </div>
 
+              <div className="circuit-divider" />
+
               {/* Key features */}
               <div>
-                <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] mb-4" style={{ color: "#9ca3af" }}>Key Features</h3>
+                <h3 className="text-[0.6rem] font-mono uppercase tracking-[0.2em] mb-4 text-[var(--text-subtle)]">Key Features</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {d.highlights.map((h) => (
-                    <div key={h.title} className="flex gap-3 p-4 rounded-2xl border hover:border-indigo-200 hover:shadow-sm transition-all duration-200" style={{ background: "#fff", borderColor: "#e5e7eb" }}>
+                    <div key={h.title} className="modal-card flex gap-3 p-4">
                       <span className="text-lg flex-shrink-0 mt-0.5">{h.icon}</span>
                       <div>
-                        <p className="text-xs font-bold mb-1" style={{ color: "#111" }}>{h.title}</p>
-                        <p className="text-[0.68rem] leading-relaxed" style={{ color: "#6b7280" }}>{h.desc}</p>
+                        <p className="text-xs font-bold mb-1 text-[var(--text)]">{h.title}</p>
+                        <p className="text-[0.68rem] leading-relaxed text-[var(--text-muted)]">{h.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -1220,16 +1232,16 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
               </div>
 
               {/* Tags */}
-              <div className="flex flex-wrap gap-2 pt-4" style={{ borderTop: "1px solid #e5e7eb" }}>
+              <div className="flex flex-wrap gap-2 pt-4 border-t" style={{ borderColor: "var(--border)" }}>
                 {project.tags.filter(t => !t.startsWith("+")).map((t) => (
-                  <span key={t} className="text-[0.62rem] font-mono px-2.5 py-1 rounded-lg border" style={{ background: "#f9fafb", borderColor: "#e5e7eb", color: "#374151" }}>{t}</span>
+                  <span key={t} className="modal-pill text-[0.62rem] px-2.5 py-1 rounded-lg border">{t}</span>
                 ))}
               </div>
 
               {/* CTA to gallery */}
               <button onClick={() => setTab("gallery")}
-                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-semibold border-2 border-dashed transition-all hover:bg-gray-50"
-                style={{ borderColor: "#c7d2fe", color: "#4f46e5" }}>
+                className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-semibold border-2 border-dashed transition-all hover:bg-[var(--accent)]/5"
+                style={{ borderColor: "rgba(56,189,248,0.3)", color: "var(--accent)" }}>
                 <span>◉</span> View Gallery →
               </button>
             </div>
@@ -1240,26 +1252,26 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
 
           {/* TECH */}
           {tab === "tech" && d.sections && (
-            <div className="space-y-4">
+            <div className="space-y-4 animate-fade-in">
               {d.sections.map((s, i) => (
-                <div key={s.title} className="rounded-2xl border overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                  <div className="px-5 py-3 flex items-center gap-3" style={{ background: "linear-gradient(135deg,#f9fafb,#eff6ff)", borderBottom: "1px solid #e5e7eb" }}>
-                    <span className="font-mono text-[0.55rem] text-indigo-400 font-bold">0{i + 1}</span>
-                    <h4 className="text-sm font-bold" style={{ color: "#111" }}>{s.title}</h4>
+                <div key={s.title} className="modal-card overflow-hidden">
+                  <div className="px-5 py-3 flex items-center gap-3 border-b" style={{ background: "var(--surface-2)", borderColor: "var(--border)" }}>
+                    <span className="font-mono text-[0.55rem] text-[var(--accent)] font-bold">0{i + 1}</span>
+                    <h4 className="text-sm font-bold text-[var(--text)]">{s.title}</h4>
                   </div>
-                  <div className="px-5 py-4" style={{ background: "#fff" }}>
-                    <p className="text-xs leading-relaxed" style={{ color: "#4b5563" }}>{s.body}</p>
+                  <div className="px-5 py-4">
+                    <p className="text-xs leading-relaxed text-[var(--text-muted)]">{s.body}</p>
                   </div>
                 </div>
               ))}
               {d.archDiagram && (
-                <div className="rounded-2xl border overflow-hidden" style={{ borderColor: "#e5e7eb" }}>
-                  <div className="px-5 py-3 flex items-center gap-3" style={{ background: "linear-gradient(135deg,#f9fafb,#eff6ff)", borderBottom: "1px solid #e5e7eb" }}>
-                    <span className="font-mono text-[0.55rem] text-indigo-400 font-bold">0{(d.sections?.length ?? 0) + 1}</span>
-                    <h4 className="text-sm font-bold" style={{ color: "#111" }}>System Architecture Diagram</h4>
+                <div className="modal-card overflow-hidden">
+                  <div className="px-5 py-3 flex items-center gap-3 border-b" style={{ background: "var(--surface-2)", borderColor: "var(--border)" }}>
+                    <span className="font-mono text-[0.55rem] text-[var(--accent)] font-bold">0{(d.sections?.length ?? 0) + 1}</span>
+                    <h4 className="text-sm font-bold text-[var(--text)]">System Architecture Diagram</h4>
                   </div>
-                  <div className="px-5 py-4" style={{ background: "#0f172a" }}>
-                    <pre className="text-[0.6rem] leading-relaxed overflow-x-auto" style={{ color: "#a5f3fc", fontFamily: "monospace" }}>{d.archDiagram}</pre>
+                  <div className="px-5 py-4" style={{ background: "var(--bg)" }}>
+                    <pre className="text-[0.6rem] leading-relaxed overflow-x-auto text-[var(--green)]" style={{ fontFamily: "monospace" }}>{d.archDiagram}</pre>
                   </div>
                 </div>
               )}
@@ -1280,16 +1292,38 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
   };
   const visibleTags = project.tags.filter(t => !t.startsWith("+")).slice(0, 4);
   const extra       = project.tags.find(t => t.startsWith("+"));
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  // Subtle 3D tilt that tracks the cursor — reads as "inspecting a board",
+  // not a generic hover lift. Clamped to a few degrees so it stays tasteful.
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width  - 0.5;
+    const py = (e.clientY - r.top)  / r.height - 0.5;
+    el.style.setProperty("--rx", `${px * 6}deg`);
+    el.style.setProperty("--ry", `${-py * 6}deg`);
+  };
+  const resetTilt = () => {
+    const el = cardRef.current;
+    if (!el) return;
+    el.style.setProperty("--rx", "0deg");
+    el.style.setProperty("--ry", "0deg");
+  };
 
   return (
     <div
-      className="card group flex flex-col cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl"
+      ref={cardRef}
+      className="card circuit-corners tilt group flex flex-col cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl"
       style={{
         height: "440px",
         animationDelay: `${index * 60}ms`,
         animation: "fadeInUp 0.5s ease both",
       }}
       onClick={onOpen}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={resetTilt}
     >
       <div className="flex items-center justify-between px-5 pt-4 pb-3 flex-shrink-0">
         <div className="flex items-center gap-2">
@@ -1310,7 +1344,14 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
               el.parentElement!.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;opacity:0.2;font-size:2.5rem;">◈</div>`;
             }} />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-4xl" style={{ opacity: 0.15 }}>◈</div>
+          <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 relative overflow-hidden"
+            style={{
+              backgroundImage: "linear-gradient(rgba(56,189,248,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.07) 1px, transparent 1px)",
+              backgroundSize: "14px 14px",
+            }}>
+            <span className="text-2xl opacity-50">◈</span>
+            <span className="font-mono text-[0.55rem] tracking-widest uppercase text-[var(--text-subtle)]">Concept stage</span>
+          </div>
         )}
         {/* Category overlay on image */}
         <div className="absolute top-2 left-2">

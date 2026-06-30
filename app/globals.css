@@ -207,6 +207,25 @@ body::before {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0);   opacity: 0.55; }
+  50%       { transform: translateY(5px); opacity: 1; }
+}
+@keyframes scan-sweep {
+  0%   { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+@keyframes corner-pop {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes image-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
 
 /* ─── SCROLL REVEAL ─────────────────────────────────────────────────────────── */
 .reveal {
@@ -567,6 +586,164 @@ body::before {
   .animate-glow-pulse      { animation: glow-pulse       3s    ease-in-out infinite; }
   .animate-blob-float      { animation: blob-float       10s   ease-in-out infinite; }
   .animate-number-tick     { animation: number-tick      0.6s  ease both; }
+  .animate-bounce-gentle   { animation: bounce-gentle    1.8s  ease-in-out infinite; }
+
+  /* Used by Hero.tsx CountUp stat numbers — was previously referenced but undefined */
+  .stat-num { animation: number-tick 0.6s cubic-bezier(0.22,1,0.36,1) both; }
+
+  /* ── SIGNATURE: circuit-corner bracket accent ──────────────────────────────
+     Schematic-style corner brackets that draw in on hover. Used on cards in
+     place of generic glow so the interaction reads as "selecting a component
+     on a board" rather than a stock SaaS hover state. */
+  .circuit-corners { position: relative; }
+  .circuit-corners::before,
+  .circuit-corners::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 1.5px solid var(--accent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, width 0.3s cubic-bezier(0.22,1,0.36,1), height 0.3s cubic-bezier(0.22,1,0.36,1);
+    z-index: 2;
+  }
+  .circuit-corners::before {
+    top: 9px; left: 9px;
+    border-right: none; border-bottom: none;
+    border-radius: 3px 0 0 0;
+  }
+  .circuit-corners::after {
+    bottom: 9px; right: 9px;
+    border-left: none; border-top: none;
+    border-radius: 0 0 3px 0;
+  }
+  .circuit-corners:hover::before,
+  .circuit-corners:hover::after,
+  .circuit-corners:focus-within::before,
+  .circuit-corners:focus-within::after {
+    opacity: 0.9;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* ── SIGNATURE: 3D tilt wrapper, driven by JS setting --rx / --ry ── */
+  .tilt {
+    transform: perspective(900px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) translateZ(0);
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    will-change: transform;
+  }
+  .tilt:hover { transition: transform 0.08s linear; }
+
+  /* ── SIGNATURE: scan-sweep highlight for hero/header bands ── */
+  .scan-header { position: relative; overflow: hidden; }
+  .scan-header::after {
+    content: "";
+    position: absolute; inset: 0;
+    width: 35%;
+    background: linear-gradient(90deg, transparent, rgba(56,189,248,0.10), transparent);
+    animation: scan-sweep 6s linear infinite;
+    pointer-events: none;
+  }
+
+  /* ── SIGNATURE: circuit divider — replaces a plain <hr> between blocks ── */
+  .circuit-divider {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-hover), transparent);
+  }
+  .circuit-divider::before,
+  .circuit-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    transform: translateY(-50%);
+  }
+  .circuit-divider::before { left: 18%; }
+  .circuit-divider::after  { right: 18%; }
+
+  /* ── Reveal-on-scroll image wipe (used for project/photo media) ── */
+  .image-reveal { animation: image-wipe 0.9s cubic-bezier(0.22,1,0.36,1) both; }
+
+  /* ── Fixed top scroll-progress rail (Navbar) ── */
+  .scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    z-index: 60;
+    background: linear-gradient(90deg, var(--green), var(--accent), var(--violet));
+    box-shadow: 0 0 10px var(--accent-glow);
+    transform-origin: left;
+    transition: width 0.12s linear;
+  }
+
+  /* ── Inline stat pill (Achievements summary strip etc.) ── */
+  .stat-pill {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding: 0.55rem 0.95rem;
+    border-radius: 0.85rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .stat-pill:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .stat-pill b {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .stat-pill span {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+  }
+
+  /* ── Dark-themed modal system (replaces hardcoded light/indigo modal) ──
+     Project detail modal + gallery now read from the SAME tokens as the
+     rest of the site instead of a separate light palette. */
+  .modal-overlay {
+    background: rgba(2, 6, 12, 0.86);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .modal-shell {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+  }
+  .modal-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+  }
+  .modal-card:hover { border-color: var(--border-hover); }
+  .modal-tab {
+    color: var(--text-muted);
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .modal-tab:hover { color: var(--text); background: var(--surface); }
+  .modal-tab-active {
+    background: linear-gradient(135deg, var(--accent), var(--violet));
+    color: #021018;
+  }
+  .modal-pill {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: var(--font-mono), monospace;
+  }
+  .modal-quote {
+    background: linear-gradient(135deg, var(--accent-dim), var(--violet-dim));
+    border: 1px solid rgba(56,189,248,0.22);
+  }
 }
 
 /* ─── REDUCED MOTION ─────────────────────────────────────────────────────────── */
@@ -579,4 +756,6 @@ body::before {
     opacity: 1 !important;
     transform: none !important;
   }
+  .tilt { transform: none !important; }
+  .scan-header::after { display: none; }
 }

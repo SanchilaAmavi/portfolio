@@ -36,7 +36,7 @@ export default function Contact() {
 
           {/* ── Info column ── */}
           <div className="space-y-6">
-            <div className="card p-7 space-y-6">
+            <div className="card circuit-corners p-7 space-y-6">
               <p className="text-[var(--text-muted)] text-sm leading-relaxed">
                 Let&apos;s build something precise, useful, and a little ambitious. Whether it&apos;s
                 embedded systems, AI applications, IoT pipelines, or collaborative research — I&apos;m
@@ -104,7 +104,7 @@ export default function Contact() {
           </div>
 
           {/* ── Contact form ── */}
-          <form onSubmit={handleSubmit} className="card p-7 space-y-5">
+          <form onSubmit={handleSubmit} className="card circuit-corners p-7 space-y-5">
             <h3 className="font-semibold text-[var(--text)] text-base">Send a message</h3>
 
             {[

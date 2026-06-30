@@ -16,10 +16,15 @@ export default function Navbar() {
   const [scrolled,      setScrolled]      = useState(false);
   const [mobileOpen,    setMobileOpen]    = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [progress,      setProgress]      = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 60);
+
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(docHeight > 0 ? Math.min(100, (window.scrollY / docHeight) * 100) : 0);
+
       const sections = Array.from(document.querySelectorAll("section[id]"));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = sections[i] as HTMLElement;
@@ -30,6 +35,7 @@ export default function Navbar() {
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -41,6 +47,9 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Scroll progress rail — signal-strength style indicator across the top */}
+      <div className="scroll-progress" style={{ width: `${progress}%` }} />
+
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
@@ -54,7 +63,7 @@ export default function Navbar() {
           <button onClick={() => scrollTo("#home")}
             className="flex items-center gap-3 flex-shrink-0 group"
           >
-            <div className="w-9 h-9 rounded-xl overflow-hidden border border-[var(--accent)]/30 bg-[var(--accent)]/10 ring-1 ring-[var(--accent)]/10 ring-offset-1 ring-offset-[var(--bg)] flex items-center justify-center">
+            <div className="circuit-corners w-9 h-9 rounded-xl overflow-hidden border border-[var(--accent)]/30 bg-[var(--accent)]/10 ring-1 ring-[var(--accent)]/10 ring-offset-1 ring-offset-[var(--bg)] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
               <span
                 className="text-[var(--accent)] font-extrabold text-[0.72rem] leading-none select-none"
                 style={{ fontFamily: "Syne, sans-serif" }}
@@ -128,7 +137,7 @@ export default function Navbar() {
             <button
               key={item.href}
               onClick={() => scrollTo(item.href)}
-              className="text-3xl font-bold text-[var(--text)] hover:text-[var(--accent)] transition-colors relative z-10"
+              className="animate-fade-up text-3xl font-bold text-[var(--text)] hover:text-[var(--accent)] transition-colors relative z-10"
               style={{ animationDelay: `${i * 60}ms` }}
             >
               {item.label}
