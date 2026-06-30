@@ -68,7 +68,7 @@ export const projects = [
     year:     "2025",
     featured: true,
     image:    "/images/mine-pulse.jpg",
-    github:   "#",
+    github:   "https://github.com/SanchilaAmavi/mine-safety-system",
     description:
       "Multi-node IoT safety system for real-time underground hazard detection covering methane, carbon monoxide, and flooding. Custom PCBs, LoRa mesh with collision avoidance, Firebase cloud integration, Flutter mobile app, and GSM SMS alerting.",
     highlights: [
@@ -88,7 +88,7 @@ export const projects = [
     year:     "2026",
     featured: true,
     image:    "/images/fatigue.jpg",
-    github:   "#",
+    github:   "https://github.com/SanchilaAmavi/driver-fatigue-detection",
     description:
       "Full-stack real-time driver safety platform combining deep learning fatigue detection, live GPS tracking, voice alerts, and emergency response. EfficientNet-B0 CNN with PERCLOS-based continuous fatigue scoring.",
     highlights: [
@@ -108,7 +108,7 @@ export const projects = [
     year:     "2026",
     featured: true,
     image:    "/images/lankamesh.jpg",
-    github:   "#",
+    github:   "https://github.com/SanchilaAmavi/LankaMesh",
     description:
       "Decentralized wireless mesh communication network using LoRa for emergency and low-connectivity environments. Peer-to-peer SOS alerts, messages, and GPS data sharing without internet infrastructure.",
     highlights: [
@@ -148,7 +148,7 @@ export const projects = [
     year:     "2025",
     featured: false,
     image:    "/images/mars-robot.jpg",
-    github:   "#",
+    github:   "https://github.com/PabasaraIlankoon/mars-robot-challenge",
     description:
       "Autonomous robot for competition-based navigation and object handling. Sensor fusion across IR, ultrasonic, gyroscope, and colour sensors. SolidWorks chassis, 3D printed, encoder-based motor control.",
     highlights: [
@@ -168,7 +168,7 @@ export const projects = [
     year:     "2025",
     featured: false,
     image:    "/images/rosco.jpg",
-    github:   "#",
+    github:   "https://github.com/SanchilaAmavi/ROSCO25-Team_Botrix-Robot",
     description:
       "Autonomous robot for ROSCO'25 supporting line following, wall following, obstacle avoidance, and ramp navigation. Modular state-machine architecture with PID control and custom laser-cut acrylic chassis.",
     highlights: [

@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import { skills } from "@/lib/data";
-import { Brain, Cpu, Globe, Code, BarChart2, Wrench } from "lucide-react";
+import { skills, personalInfo } from "@/lib/data";
+import { Brain, Cpu, Globe, Code, BarChart2, Wrench, ArrowUpRight } from "lucide-react";
+import SkillsChart from "@/components/SkillsChart";
 
 const iconMap: Record<string, React.ElementType> = {
   Brain, Cpu, Globe, Code, BarChart2, Wrench,
@@ -33,14 +34,25 @@ export default function Skills() {
 
       <div className="section-inner">
         {/* Heading */}
-        <div className="mb-14">
-          <span className="eyebrow">04 / Skills</span>
-          <h2 className="text-4xl md:text-5xl font-extrabold leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>
-            What I <span className="gradient-text">Work With</span>
-          </h2>
-          <p className="text-[var(--text-muted)] mt-3 max-w-xl text-sm">
-            Tools and technologies across the full stack — from silicon to cloud.
-          </p>
+        <div className="mb-14 flex items-end justify-between flex-wrap gap-4">
+          <div>
+            <span className="eyebrow">04 / Skills</span>
+            <h2 className="text-4xl md:text-5xl font-extrabold leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>
+              What I <span className="gradient-text">Work With</span>
+            </h2>
+            <p className="text-[var(--text-muted)] mt-3 max-w-xl text-sm">
+              Tools and technologies across the full stack — from silicon to cloud.
+            </p>
+          </div>
+          {/* "See more" — sends recruiters to GitHub for full, generic, always-current view */}
+          <a
+            href={personalInfo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent)] hover-underline flex-shrink-0"
+          >
+            See more on GitHub <ArrowUpRight size={13} />
+          </a>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -107,9 +119,24 @@ export default function Skills() {
           </div>
         </div>
 
+        {/* Skills chart — breadth bars + radar, computed from real data */}
+        <div className="mt-12">
+          <SkillsChart />
+        </div>
+
         {/* Full skill cloud */}
         <div className="mt-16 pt-10 border-t border-[var(--border)]">
-          <p className="font-mono text-[0.62rem] text-[var(--text-subtle)] tracking-widest mb-5 uppercase">All Skills at a Glance</p>
+          <div className="flex items-center justify-between flex-wrap gap-3 mb-5">
+            <p className="font-mono text-[0.62rem] text-[var(--text-subtle)] tracking-widest uppercase">All Skills at a Glance</p>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[0.68rem] font-semibold text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors"
+            >
+              View repos <ArrowUpRight size={11} />
+            </a>
+          </div>
           <div className="flex flex-wrap gap-2">
             {skills
               .flatMap((s) => s.items)

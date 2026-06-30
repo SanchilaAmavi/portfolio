@@ -185,7 +185,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className={`mt-7 flex flex-wrap items-center gap-3.5 transition-all duration-700 delay-[400ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-            <a href="#featured" className="btn-primary text-[0.84rem] px-5 py-2.5">
+            <a href="#projects" className="btn-primary text-[0.84rem] px-5 py-2.5">
               View Work
             </a>
             <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer"
