@@ -93,9 +93,6 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-[var(--bg)] to-transparent" />
         {/* Mobile solid cover */}
         <div className="absolute inset-0 bg-[var(--bg)]/82 lg:hidden" />
-        {/* Decorative corner accent */}
-
-        
 
         <div className="hidden lg:block absolute -bottom-20 -right-20 w-40 h-40 rounded-full border border-[var(--accent)]/[0.03] opacity-10 animate-spin-slow pointer-events-none" />
         <div className="hidden lg:block absolute bottom-24 right-24 w-12 h-12 rounded-full border border-[var(--violet)]/20 animate-spin-slow" style={{ animationDirection: "reverse", animationDuration: "8s" }} />
@@ -106,16 +103,19 @@ export default function Hero() {
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 w-full">
         <div className="max-w-[640px]">
 
-          {/* Eyebrow */}
-          <div className={`flex items-center gap-3 mb-5 transition-all duration-700 delay-[0ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-            <div className="w-8 h-px bg-gradient-to-r from-[var(--green)] to-[var(--accent)]" />
-            <span className="font-mono text-[0.65rem] tracking-[0.22em] text-[var(--green)] uppercase">
-              Electronic &amp; Telecom Engineering
-            </span>
-            <span className="text-[var(--text-subtle)] text-xs hidden sm:inline">•</span>
-            <span className="font-mono text-[0.65rem] tracking-[0.16em] text-[var(--text-subtle)] uppercase hidden sm:inline">
-              KDU · Intake 41
-            </span>
+          {/* Eyebrow — identity-first: leads with what you build, not just the degree */}
+          <div className={`flex flex-col gap-1.5 mb-5 transition-all duration-700 delay-[0ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-px bg-gradient-to-r from-[var(--green)] to-[var(--accent)]" />
+              <span className="font-mono text-[0.65rem] tracking-[0.22em] text-[var(--green)] uppercase">
+                Building Autonomous Robots &amp; Embedded Systems
+              </span>
+            </div>
+            <div className="flex items-center gap-3 pl-11">
+              <span className="font-mono text-[0.6rem] tracking-[0.16em] text-[var(--text-subtle)] uppercase">
+                Electronics &amp; Telecom Engineering · KDU · Intake 41
+              </span>
+            </div>
           </div>
 
           {/* Headline */}
@@ -185,7 +185,7 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className={`mt-7 flex flex-wrap items-center gap-3.5 transition-all duration-700 delay-[400ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-            <a href="#projects" className="btn-primary text-[0.84rem] px-5 py-2.5">
+            <a href="#featured" className="btn-primary text-[0.84rem] px-5 py-2.5">
               View Work
             </a>
             <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer"
@@ -240,5 +240,3 @@ export default function Hero() {
     </section>
   );
 }
-
- 

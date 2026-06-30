@@ -80,7 +80,7 @@ body::before {
 /* ─── SELECTION ─────────────────────────────────────────────────────────────── */
 ::selection { background: rgba(56, 189, 248, 0.25); color: var(--text); }
 
-/* ─── CURSOR FOLLOWER (JS controlled) ──────────────────────────────────────── */
+/* ─── CURSOR FOLLOWER (JS controlled — driven by components/CustomCursor.tsx) ─ */
 #cursor-dot {
   position: fixed;
   width: 6px;
@@ -108,6 +108,15 @@ body::before {
   width: 56px;
   height: 56px;
   border-color: rgba(167, 139, 250, 0.6);
+}
+
+/* Hides the native pointer only once CustomCursor.tsx confirms a fine-pointer,
+   non-reduced-motion device. Touch devices keep the OS cursor untouched. */
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
 }
 
 /* ─── KEYFRAMES ─────────────────────────────────────────────────────────────── */
@@ -588,13 +597,11 @@ body::before {
   .animate-number-tick     { animation: number-tick      0.6s  ease both; }
   .animate-bounce-gentle   { animation: bounce-gentle    1.8s  ease-in-out infinite; }
 
-  /* Used by Hero.tsx CountUp stat numbers — was previously referenced but undefined */
+  /* Used by Hero.tsx / StatsStrip.tsx CountUp stat numbers */
   .stat-num { animation: number-tick 0.6s cubic-bezier(0.22,1,0.36,1) both; }
 
   /* ── SIGNATURE: circuit-corner bracket accent ──────────────────────────────
-     Schematic-style corner brackets that draw in on hover. Used on cards in
-     place of generic glow so the interaction reads as "selecting a component
-     on a board" rather than a stock SaaS hover state. */
+     Schematic-style corner brackets that draw in on hover. */
   .circuit-corners { position: relative; }
   .circuit-corners::before,
   .circuit-corners::after {
@@ -627,7 +634,8 @@ body::before {
     height: 16px;
   }
 
-  /* ── SIGNATURE: 3D tilt wrapper, driven by JS setting --rx / --ry ── */
+  /* ── SIGNATURE: 3D tilt wrapper, driven by JS setting --rx / --ry
+     (see components/Magnetic.tsx → TiltCard) ── */
   .tilt {
     transform: perspective(900px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) translateZ(0);
     transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
@@ -706,9 +714,7 @@ body::before {
     color: var(--text-subtle);
   }
 
-  /* ── Dark-themed modal system (replaces hardcoded light/indigo modal) ──
-     Project detail modal + gallery now read from the SAME tokens as the
-     rest of the site instead of a separate light palette. */
+  /* ── Dark-themed modal system ── */
   .modal-overlay {
     background: rgba(2, 6, 12, 0.86);
     backdrop-filter: blur(16px);
@@ -758,14 +764,4 @@ body::before {
   }
   .tilt { transform: none !important; }
   .scan-header::after { display: none; }
-  /* ─── CUSTOM CURSOR ACTIVATION ──────────────────────────────────────────────
-   Only hides the native pointer once CustomCursor.tsx has confirmed we're on
-   a fine-pointer (mouse) device with no reduced-motion preference. Touch
-   devices and reduced-motion users keep the OS cursor untouched. */
-@media (pointer: fine) {
-  body.custom-cursor-active,
-  body.custom-cursor-active * {
-    cursor: none !important;
-  }
-}
 }
