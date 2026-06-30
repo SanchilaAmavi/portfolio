@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono, Syne } from "next/font/google";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -28,7 +29,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`scroll-smooth ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${syne.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

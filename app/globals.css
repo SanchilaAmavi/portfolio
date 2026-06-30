@@ -758,4 +758,14 @@ body::before {
   }
   .tilt { transform: none !important; }
   .scan-header::after { display: none; }
+  /* ─── CUSTOM CURSOR ACTIVATION ──────────────────────────────────────────────
+   Only hides the native pointer once CustomCursor.tsx has confirmed we're on
+   a fine-pointer (mouse) device with no reduced-motion preference. Touch
+   devices and reduced-motion users keep the OS cursor untouched. */
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+}
 }
