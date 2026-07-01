@@ -1,8 +1,7 @@
 
-# Sanchila Amavi — Portfolio
+# Sanchila Amavi|Portfolio
 
-Built with **Next.js 14** · **Tailwind CSS** · **TypeScript**  
-Inspired by [sahas-eashanme.vercel.app](https://sahas-eashanme.vercel.app)
+Built with **Next.js 14** · **Tailwind CSS** · **TypeScript** 
 
 ---
 
