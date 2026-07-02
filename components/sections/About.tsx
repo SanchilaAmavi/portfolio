@@ -146,7 +146,7 @@ export default function About() {
                   {/* Quick stat strip */}
                   <div className="flex items-center gap-5 pt-1">
                     {[
-                      { n: "6+",  label: "Projects" },
+                      { n: "10+",  label: "Projects" },
                       { n: "9+",  label: "Awards" },
                       { n: "7",   label: "Certs" },
                     ].map(({ n, label }) => (
