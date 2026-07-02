@@ -103,7 +103,7 @@ export default function Hero() {
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 w-full">
         <div className="max-w-[640px]">
 
-          {/* Eyebrow — identity-first: leads with what you build, not just the degree */}
+          {/* Eyebrow - identity-first: leads with what you build, not just the degree */}
           <div className={`flex flex-col gap-1.5 mb-5 transition-all duration-700 delay-[0ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <div className="flex items-center gap-3">
               <div className="w-8 h-px bg-gradient-to-r from-[var(--green)] to-[var(--accent)]" />
@@ -174,7 +174,7 @@ export default function Hero() {
               at{" "}
               <a href="https://www.kdu.ac.lk" target="_blank" rel="noopener noreferrer"
                 className="text-[var(--accent)] underline underline-offset-2 decoration-[var(--accent)]/35 hover:decoration-[var(--accent)] transition-colors">KDU</a>,
-              building systems that span PCB to production — from firmware and AI inference
+              building systems that span PCB to production - from firmware and AI inference
               to cloud pipelines and mobile apps.
             </p>
             <p className="font-mono text-[0.67rem] text-[var(--text-subtle)] mt-2.5 leading-relaxed">
