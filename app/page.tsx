@@ -1,4 +1,5 @@
 import Navbar       from "@/components/Navbar";
+import Spotlight    from "@/components/Spotlight";
 import Hero         from "@/components/sections/Hero";
 import About        from "@/components/sections/About";
 import Projects     from "@/components/sections/Projects";
@@ -11,7 +12,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] overflow-x-hidden">
       <Navbar />
-      <Hero />
+      <Spotlight className="relative">
+        <Hero />
+      </Spotlight>
       <About />
       <Projects />
       <Skills />

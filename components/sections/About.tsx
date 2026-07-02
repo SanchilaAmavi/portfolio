@@ -18,9 +18,9 @@ const infoGrid = [
 ];
 
 const skillClusters = [
-  { label: "Hardware",   tags: ["STM32", "ESP32", "FreeRTOS", "PCB Design", "UART/SPI/I2C"] },
-  { label: "AI / ML",   tags: ["PyTorch", "OpenCV", "Edge AI", "YOLO", "TensorFlow"] },
-  { label: "Full-Stack", tags: ["Next.js", "React Native", "Node.js", "Firebase"] },
+  { label: "Hardware",   tags: ["ESP32 / ESP32-S3", "Arduino", "LoRa (SX1278)", "GSM (SIM800L)", "PCB Design"] },
+{ label: "AI / ML",    tags: ["PyTorch", "TensorFlow", "OpenCV", "YOLOv8", "MediaPipe"] },
+{ label: "Full-Stack", tags: ["Flutter", "React.js", "FastAPI", "Firebase", "Docker"] },
 ];
 
 function EduIcon({ institution }: { institution: string }) {
@@ -39,7 +39,7 @@ export default function About() {
   const [tab, setTab] = useState("overview");
 
   return (
-    <section id="about" className="py-20 relative overflow-hidden">
+    <section id="about" className="py-28 px-6 section-pro-background animate-fade-up relative overflow-hidden">
       {/* Ambient blobs */}
       <div className="blob w-[32rem] h-[32rem] bg-[var(--violet)]/[0.06] bottom-0 right-0" />
       <div className="blob w-80 h-80 bg-[var(--accent)]/[0.05] top-10 -left-24" />

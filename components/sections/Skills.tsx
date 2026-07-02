@@ -29,7 +29,7 @@ export default function Skills() {
   const Icon = iconMap[activeSkill.icon] || Cpu;
 
   return (
-    <section id="skills" className="py-28 relative overflow-hidden">
+    <section id="skills" className="py-28 px-6 section-pro-background animate-fade-up relative overflow-hidden">
       <div className="blob w-72 h-72 bg-[var(--green)]/[0.07] top-0 right-0" />
 
       <div className="section-inner">

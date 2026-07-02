@@ -73,7 +73,7 @@ export default function Achievements() {
   const stats = buildStats(achievements);
 
   return (
-    <section id="achievements" className="py-20 relative overflow-hidden">
+    <section id="achievements" className="py-28 px-6 section-tech-background animate-fade-in relative overflow-hidden">
       <div className="blob w-80 h-80 bg-[var(--amber)]/[0.05] bottom-0 left-0" />
 
       <div className="section-inner">
