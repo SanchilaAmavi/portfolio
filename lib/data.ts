@@ -1,7 +1,3 @@
-// ============================================================
-// DATA FILE — Edit everything here to update your portfolio
-// ============================================================
-
 export const personalInfo = {
   name:         "Maha Marakkalage Sanchila Amavi",
   shortName:    "Sanchila Amavi",
