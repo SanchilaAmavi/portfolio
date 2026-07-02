@@ -3,6 +3,7 @@ import { Space_Grotesk, JetBrains_Mono, Syne } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
 
+
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-sans",

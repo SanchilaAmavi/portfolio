@@ -19,7 +19,7 @@ export const personalInfo = {
   resumePath:   "/resume.pdf",
   profileImage: "/images/profile.jpg",
   stats: [
-    { label: "Projects", value: "6+" },
+    { label: "Projects", value: "10+" },
     { label: "Awards",   value: "9+" },
     { label: "Certs",    value: "7" },
   ],
