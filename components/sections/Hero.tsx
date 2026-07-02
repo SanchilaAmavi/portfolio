@@ -64,7 +64,7 @@ export default function Hero() {
       <div className="blob w-[520px] h-[520px] bg-[var(--accent)]/[0.055] -top-40 -left-40 pointer-events-none" />
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] top-32 right-24 pointer-events-none" />
       <div className="blob w-48 h-48 bg-[var(--green)]/[0.05] bottom-20 left-1/3 pointer-events-none" />
-      
+
       {/* ── Grid texture overlay ── */}
       <div className="absolute inset-0 pointer-events-none z-[1]"
         style={{
@@ -109,12 +109,12 @@ export default function Hero() {
             <div className="flex items-center gap-3">
               <div className="w-10 h-px bg-gradient-to-r from-[var(--green)] to-[var(--accent)]" />
               <span className="font-mono text-[0.65rem] tracking-[0.22em] text-[var(--green)] uppercase">
-                Electronics &amp; Telecom Engineering
+                Building Autonomous Robots &amp; Embedded Systems
               </span>
             </div>
             <div className="flex items-center gap-3 pl-11">
               <span className="font-mono text-[0.6rem] tracking-[0.16em] text-[var(--text-subtle)] uppercase">
-                {personalInfo.university} · Intake 41
+                Electronics &amp; Telecom Engineering · {personalInfo.university} · Intake 41
               </span>
             </div>
           </div>
@@ -155,14 +155,7 @@ export default function Hero() {
                 style={{ animation: "typewriter-cursor 1s ease-in-out infinite" }} />
             </div>
           </div>
-  {/* Live typewriter role line, echoing the badge above */}
-          <div
-            className={`flex items-center gap-1.5 mb-5 h-6 transition-all duration-700 delay-[250ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          >
-            <span className="text-accent-light font-mono text-sm">$</span>
-            <span className="text-muted font-mono text-sm">{roles}</span>
-            <span className="typing-caret text-accent-light" />
-          </div>
+
           {/* Bio */}
           <div className={`mt-4 transition-all duration-700 delay-[300ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <p className="text-[var(--text-muted)] leading-relaxed text-[0.92rem] max-w-lg">
