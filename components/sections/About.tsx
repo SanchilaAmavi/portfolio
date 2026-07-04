@@ -147,8 +147,8 @@ export default function About() {
                   <div className="flex items-center gap-5 pt-1">
                     {[
                       { n: "10+",  label: "Projects" },
-                      { n: "9+",  label: "Awards" },
-                      { n: "7",   label: "Certs" },
+                      { n: "10+",  label: "Awards" },
+                      { n: "10+",   label: "Certs" },
                     ].map(({ n, label }) => (
                       <div key={label} className="text-center">
                         <p className="text-xl font-extrabold text-[var(--text)]" style={{ fontFamily: "Syne, sans-serif" }}>{n}</p>
