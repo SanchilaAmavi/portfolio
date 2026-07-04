@@ -214,8 +214,8 @@ export default function Hero() {
           <div className={`mt-10 flex items-center gap-8 transition-all duration-700 delay-[500ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             {[
               { value: 10, suffix: "+", label: "Projects" },
-              { value: 9, suffix: "+", label: "Awards" },
-              { value: 7, suffix: "",  label: "Certs" },
+              { value: 10, suffix: "+", label: "Awards" },
+              { value: 10, suffix: "+",  label: "Certs" },
             ].map((s, i) => (
               <div key={s.label} className="text-center">
                 <div className="text-2xl font-extrabold text-[var(--text)] font-mono leading-none stat-num"
