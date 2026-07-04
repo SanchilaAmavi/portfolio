@@ -16,8 +16,8 @@ export const personalInfo = {
   profileImage: "/images/profile.jpg",
   stats: [
     { label: "Projects", value: "10+" },
-    { label: "Awards",   value: "9+" },
-    { label: "Certs",    value: "7" },
+    { label: "Awards",   value: "10+" },
+    { label: "Certs",    value: "10+" },
   ],
 };
 
@@ -432,6 +432,46 @@ export const certifications = [
     description: "Completed the GitHub Foundations learning path covering GitHub fundamentals.",
     images: [
       "/images/introduction to github.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+  },
+  {
+    title:       "Train and Evaluate Regression Models",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Learned how to build, train, and evaluate regression models to predict continuous values using supervised learning techniques.",
+    images: [
+      "/images/regression model.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+  },
+  {
+    title:       "Train and Evaluate Clustering Models",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Explored clustering techniques to group unlabeled data and evaluated model performance using unsupervised learning methods.",
+    images: [
+      "/images/train and evaluating.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+  },
+  {
+    title:       "Explore and Analyze Data with Python",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Used Python libraries such as Pandas and Matplotlib to explore datasets, perform data cleaning, and extract meaningful insights through visual and statistical analysis.",
+    images: [
+      "/images/explore and analyze data.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+  },
+   {
+    title:       "Introduction to Machine Learning Concepts",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Gained foundational understanding of machine learning concepts including supervised vs unsupervised learning, model training, and evaluation workflows.",
+    images: [
+      "/images/machine learning.jpeg",
     ],
     verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
   },
