@@ -462,7 +462,6 @@ export const certifications = [
     description: "Learned to train and evaluate classification models using supervised learning techniques to predict categorical outcomes and assess model performance.",
     images: [
       "/images/train and evaluating classification.jpeg",
-    },
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/WMYWQLJN?sharingId=4564DD6EAE22D7BC",
   },
