@@ -401,7 +401,7 @@ export const certifications = [
     issuer:      "MATLAB Training Program",
     year:        "2024",
     description: "Numerical computing, matrix operations, data visualization, scripting, and engineering simulation techniques.",
-    image:       null,
+    image:       "null",
   },
   {
     title:       "Introduction to GitHub Administrative",
@@ -461,7 +461,7 @@ export const certifications = [
     year:        "2026",
     description: "Learned to train and evaluate classification models using supervised learning techniques to predict categorical outcomes and assess model performance.",
     images: [
-      "/images/train and evaluating classification.jpeg",
+      "/images/train and evaluating classification.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/WMYWQLJN?sharingId=4564DD6EAE22D7BC",
   },
