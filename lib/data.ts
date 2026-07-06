@@ -401,7 +401,7 @@ export const certifications = [
     issuer:      "MATLAB Training Program",
     year:        "2024",
     description: "Numerical computing, matrix operations, data visualization, scripting, and engineering simulation techniques.",
-    image:       "null",
+    image:       null,
   },
   {
     title:       "Introduction to GitHub Administrative",
@@ -410,7 +410,6 @@ export const certifications = [
     description: "Completed the GitHub Foundations learning path covering GitHub administration.",
     images: [
       "/images/introduction to github administrative.jpeg",
-      "/images/introduction to github.jpeg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/JHLJUSFT?sharingId=4564DD6EAE22D7BC",
   },
