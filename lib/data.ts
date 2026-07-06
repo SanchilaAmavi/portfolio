@@ -412,7 +412,7 @@ export const certifications = [
       "/images/introduction to github administrative.jpeg",
       "/images/introduction to github.jpeg",
     ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/JHLJUSFT?sharingId=4564DD6EAE22D7BC",
   },
   {
     title:       "Introduction to GitHub Products",
@@ -433,7 +433,7 @@ export const certifications = [
     images: [
       "/images/introduction to github.jpeg",
     ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/Y4ZYQN7R?sharingId=4564DD6EAE22D7BC",
   },
   {
     title:       "Train and Evaluate Regression Models",
@@ -443,7 +443,7 @@ export const certifications = [
     images: [
       "/images/regression model.jpeg",
     ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/Y4ZYKL6R?sharingId=4564DD6EAE22D7BC",
   },
   {
     title:       "Train and Evaluate Clustering Models",
@@ -453,7 +453,16 @@ export const certifications = [
     images: [
       "/images/train and evaluating.jpeg",
     ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/2TE2SAAV?sharingId=4564DD6EAE22D7BC",
+    {
+    title:       "Train and Evaluate Classification Models",
+    issuer:      "Microsoft Learn",
+    year:        "2026",
+    description: "Learned to train and evaluate classification models using supervised learning techniques to predict categorical outcomes and assess model performance..",
+    images: [
+      "/images/train and evaluating classification.jpeg",
+    ],
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/WMYWQLJN?sharingId=4564DD6EAE22D7BC",
   },
   {
     title:       "Explore and Analyze Data with Python",
@@ -463,7 +472,7 @@ export const certifications = [
     images: [
       "/images/explore and analyze data.jpeg",
     ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/D35D3VVJ?sharingId=4564DD6EAE22D7BC",
   },
    {
     title:       "Introduction to Machine Learning Concepts",
@@ -473,8 +482,9 @@ export const certifications = [
     images: [
       "/images/machine learning.jpeg",
     ],
-    verifyUrl: "https://learn.microsoft.com/en-us/users/sanchilaamavi-5264/transcript/76w62cknp2zj5j9",
+    verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/BUSBULPD?sharingId=4564DD6EAE22D7BC",
   },
+  
 ];
 
 // ── LEADERSHIP ───────────────────────────────────────────────
