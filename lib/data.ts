@@ -454,6 +454,7 @@ export const certifications = [
       "/images/train and evaluating.jpeg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/2TE2SAAV?sharingId=4564DD6EAE22D7BC",
+    },
     {
     title:       "Train and Evaluate Classification Models",
     issuer:      "Microsoft Learn",
