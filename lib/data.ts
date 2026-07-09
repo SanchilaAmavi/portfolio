@@ -78,7 +78,7 @@ export const projects = [
   {
     id:       2,
     title:    "Driver Fatigue Detection System",
-    subtitle: "AI-Powered Driver Safety Application — NexDrive",
+    subtitle: "AI-Powered Driver Safety Application - NexDrive",
     category: "AI & ML",
     status:   "completed",
     year:     "2026",
@@ -233,7 +233,7 @@ export const skills = [
 // Replace the existing `achievements` array in your lib/data.ts with this.
 export const achievements = [
   {
-    title: "Winner — 1st Place (Inter University · Female · Individual)",
+    title: "Winner - 1st Place (Inter University · Female · Individual)",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Winner",
@@ -242,16 +242,16 @@ export const achievements = [
     image: "/images/MSSC 1 st place individual 2025.jpg",
   },
   {
-    title: "Champions — 1st Place (Inter University · Female · Team)",
+    title: "Champions - 1st Place (Inter University · Female · Team)",
     event: "Target Sprint Shooting Competition",
     year:  "2025",
     type:  "Winner",
     description:
-      "Led the KDU female team to a championship title at the Target Sprint Shooting Competition 2025 — a discipline combining precision air rifle shooting with sprint running. The team demonstrated both athletic and marksmanship excellence.",
+      "Led the KDU female team to a championship title at the Target Sprint Shooting Competition 2025 - a discipline combining precision air rifle shooting with sprint running. The team demonstrated both athletic and marksmanship excellence.",
     image: "/images/target sprint 1st place team 2025.jpg",
   },
   {
-    title: "Inter-Faculty Netball Champions — 1st Place",
+    title: "Inter-Faculty Netball Champions - 1st Place",
     event: "Inter Faculty Netball Tournament",
     year:  "2025",
     type:  "Winner",
@@ -274,29 +274,29 @@ export const achievements = [
     year:  "2025",
     type:  "Award",
     description:
-      "Earned bronze in the individual Target Sprint event at the 2025 championship — a demanding combined discipline requiring accurate shooting immediately after a physical sprint, testing both stamina and fine motor control.",
+      "Earned bronze in the individual Target Sprint event at the 2025 championship - a demanding combined discipline requiring accurate shooting immediately after a physical sprint, testing both stamina and fine motor control.",
     image: "/images/target sprint 3rd place individual 2025.jpg",
   },
   {
-    title: "KDU Colour Award — Air Rifle",
+    title: "KDU Colour Award - Air Rifle",
     event: "KDU Sports Awards",
     year:  "2025",
     type:  "Award",
     description:
-      "Received the prestigious KDU Colours Award for outstanding representation of the university in air rifle shooting at national inter-university level — the highest sporting recognition awarded by General Sir John Kotelawala Defence University.",
+      "Received the prestigious KDU Colours Award for outstanding representation of the university in air rifle shooting at national inter-university level - the highest sporting recognition awarded by General Sir John Kotelawala Defence University.",
     image: "/images/kdu colour 2025 certificate.jpg",
   },
   {
-    title: "KDU Merit Award — Air Rifle",
+    title: "KDU Colour Award - Air Rifle",
     event: "KDU Sports Awards",
     year:  "2024",
     type:  "Award",
     description:
-      "Awarded the KDU Merit Award for significant contribution and performance in university-level air rifle shooting during the 2024 academic year, recognising consistent competitive achievement.",
+      "Awarded the KDU Colours Award for significant contribution and performance in university-level air rifle shooting during the 2024 academic year, recognising consistent competitive achievement.",
     image: "/images/kdu merit 2024.jpg",
   },
   {
-    title: "Precision Shooter — Air Rifle",
+    title: "Precision Shooter - Air Rifle",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Award",
@@ -305,7 +305,7 @@ export const achievements = [
     image: "/images/precision shooter 2025.jpg",
   },
   {
-    title: "Excellent Shooter — 100 Marks (Air Rifle)",
+    title: "Excellent Shooter - 100 Marks (Air Rifle)",
     event: "MSSC Shooting Championship",
     year:  "2025",
     type:  "Award",
@@ -314,7 +314,7 @@ export const achievements = [
     image: "/images/excellent shooter 100 marks 2025.jpg",
   },
   {
-    title: "Sharp Shooter — Air Rifle",
+    title: "Sharp Shooter - Air Rifle",
     event: "Inter University Shooting Championship",
     year:  "2026",
     type:  "Award",
@@ -323,7 +323,7 @@ export const achievements = [
     image: null,
   },
   {
-    title: "Sharp Shooter — Air Rifle",
+    title: "Sharp Shooter - Air Rifle",
     event: "Inter University Shooting Championship",
     year:  "2024",
     type:  "Award",
@@ -332,25 +332,25 @@ export const achievements = [
     image: "/images/Inter university meet 2024.jpeg",
   },
   {
-    title: "Precision Shooter — Air Rifle",
+    title: "Precision Shooter - Air Rifle",
     event: "MSSC Shooting Championship",
     year:  "2024",
     type:  "Award",
     description:
-      "Earned the Precision Shooter distinction at MSSC 2024 for delivering a high-accuracy score in the air rifle event — validating consistent shooting form at the inter-university level in the inaugural competitive year.",
+      "Earned the Precision Shooter distinction at MSSC 2024 for delivering a high-accuracy score in the air rifle event - validating consistent shooting form at the inter-university level in the inaugural competitive year.",
     image: null,
   },
   {
-    title: "Sharp Shooter — Air Rifle",
+    title: "Sharp Shooter - Air Rifle",
     event: "Inter Shooting Championship",
     year:  "2014",
     type:  "Award",
     description:
-      "Awarded the Sharp Shooter title at the 2014 Inter Shooting Championship — the first competitive shooting recognition, marking the beginning of a decade-long journey in precision air rifle sport.",
+      "Awarded the Sharp Shooter title at the 2014 Inter Shooting Championship - the first competitive shooting recognition, marking the beginning of a decade-long journey in precision air rifle sport.",
     image: "/images/2014 sharp shooter.jpg",
   },
   {
-    title: "ROSCO '25 — Autonomous Robotics Competition",
+    title: "ROSCO '25 - Autonomous Robotics Competition",
     event: "IMechE / ERIC / KDU",
     year:  "2025",
     type:  "Participant",
@@ -359,7 +359,7 @@ export const achievements = [
     image: "/images/Rosco Certificate.jpg",
   },
   {
-    title: "TECHXhiBiT 2.0 — Hardware & Software Exhibition",
+    title: "TECHXhiBiT 2.0 - Hardware & Software Exhibition",
     event: "TECHXhiBiT 2.0 Exhibition",
     year:  "2026",
     type:  "Participant",
