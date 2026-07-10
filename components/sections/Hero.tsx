@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Github, Linkedin, ChevronDown, Download } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
-import BackgroundFX from "@/components/BackgroundFX";
+
 
 
 const roles = [
@@ -64,8 +64,6 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen overflow-hidden flex items-center pt-20 pb-10">
 
-      {/* ── Extra drifting-color background layer (behind everything else) ── */}
-      <BackgroundFX grid={false} />
 
       {/* ── Ambient background orbs ── */}
       <div className="blob w-[520px] h-[520px] bg-[var(--accent)]/[0.055] -top-40 -left-40 pointer-events-none" />
