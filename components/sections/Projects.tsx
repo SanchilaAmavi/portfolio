@@ -298,6 +298,72 @@ const FeelFillGallery: GallerySection[] = [
   },
 ];
 
+// ─── Kitchenly gallery ─────────────────────────────────────────────────────
+const kitchenlyGallery: GallerySection[] = [
+  {
+    id: "discover",
+    label: "Discover & Search",
+    icon: "🔍",
+    accent: "#eff6ff",
+    images: [
+      { src: "/images/kitchenly app1.jpg",  caption: "Discover home - curated recipe categories (Beef, Breakfast, Chicken, Dessert)", span: "wide" },
+      { src: "/images/kitchenly app3.jpg",  caption: "Live recipe search - instant results as you type" },
+      { src: "/images/kitchenly app14.jpg", caption: "Filter menu - browse by country & cuisine" },
+      { src: "/images/kitchenly app4.jpg",  caption: "Search results - chicken recipes" },
+    ],
+  },
+  {
+    id: "detail",
+    label: "Recipe Detail",
+    icon: "📖",
+    accent: "#fdf4ff",
+    images: [
+      { src: "/images/kitchenly app2.jpg", caption: "Full recipe detail - ingredients, instructions & source link", span: "wide" },
+      { src: "/images/kitchenly app5.jpg", caption: "Browsing recipes - Rice and Beans, Kidney Bean Curry" },
+    ],
+  },
+  {
+    id: "kitchengame",
+    label: "Kitchen Game",
+    icon: "🥕",
+    accent: "#fff7ed",
+    images: [
+      { src: "/images/kitchenly app7.jpg", caption: "Kitchen Game - list what's in your kitchen" },
+      { src: "/images/kitchenly app8.jpg", caption: "Kitchen Game result - scored meal suggestion" },
+    ],
+  },
+  {
+    id: "planner",
+    label: "Meal Plan & Shopping",
+    icon: "📅",
+    accent: "#f0fdf4",
+    images: [
+      { src: "/images/kitchenly app9.jpg",  caption: "Weekly meal planner - Monday through Saturday", span: "wide" },
+      { src: "/images/kitchenly app6.jpg",  caption: "Auto-generated shopping list from planned meals" },
+      { src: "/images/kitchenly app10.jpg", caption: "Combined meal plan + shopping list view" },
+    ],
+  },
+  {
+    id: "favorites",
+    label: "Favorites",
+    icon: "❤️",
+    accent: "#fef2f2",
+    images: [
+      { src: "/images/kitchenly app11.jpg", caption: "Favorites screen - saved recipes at a glance" },
+    ],
+  },
+  {
+    id: "chat",
+    label: "Chat & Sharing",
+    icon: "💬",
+    accent: "#eff6ff",
+    images: [
+      { src: "/images/kitchenly app12.jpg", caption: "Kitchenly Chat assistant - cooking questions & help" },
+      { src: "/images/kitchenly app13.jpg", caption: "Sharing a chat or recipe via email" },
+    ],
+  },
+];
+
 // ─── Projects data ────────────────────────────────────────────────────────────
 const projects: Project[] = [
 
@@ -362,7 +428,7 @@ const projects: Project[] = [
   ESP32-S3 + MQ-4 + MQ-7               ESP32-S3 + MQ-4 + MQ-7
   + Water Sensor + 12V Siren            + Water Sensor + 12V Siren
            │                                     │
-           │  LoRa 433 MHz                        │  LoRa 433 MHz
+           │  LoRa 433 MHz                       │  LoRa 433 MHz
            └─────────────────┬───────────────────┘
                              ▼
                     Surface Gateway
@@ -705,8 +771,8 @@ const projects: Project[] = [
       ],
       archDiagram: `  2S LiPo (7.4V) → 5V Regulator
           │
-   ┌──────┴──────────────────────────────────┐
-   │             ESP32-S3                    │
+   ┌──────┴─────────────────────────────────┐
+   │             ESP32-S3                   │
    │  ┌─────────────────────────────────┐   │
    │  │  Finite State Machine (FSM)     │   │
    │  │  Task 1: Plantation Grid        │   │
@@ -714,14 +780,14 @@ const projects: Project[] = [
    │  │  Task 3: Collect & Sort         │   │
    │  └────────┬───────────┬────────────┘   │
    │           │           │                │
-   │   ┌───────▼──┐  ┌────▼───────────┐   │
-   │   │ Sensors  │  │  Actuators     │   │
-   │   ├──────────┤  ├────────────────┤   │
-   │   │ 8ch IR   │  │ TB6612FNG      │   │
-   │   │ ×3 HC-SR │  │ → TT Motors    │   │
-   │   │ MPU6050  │  │ ×4 MG90S Servo │   │
-   │   │ TCS34725 │  │  (arm + gate)  │   │
-   │   └──────────┘  └────────────────┘   │
+   │   ┌───────▼──┐  ┌────▼───────────┐     │
+   │   │ Sensors  │  │  Actuators     │     │
+   │   ├──────────┤  ├────────────────┤     │
+   │   │ 8ch IR   │  │ TB6612FNG      │     │
+   │   │ ×3 HC-SR │  │ → TT Motors    │     │
+   │   │ MPU6050  │  │ ×4 MG90S Servo │     │
+   │   │ TCS34725 │  │  (arm + gate)  │     │
+   │   └──────────┘  └────────────────┘     │
    └────────────────────────────────────────┘`,
     },
   },
@@ -790,8 +856,8 @@ const projects: Project[] = [
       ],
       archDiagram: `  12V LiPo → Regulated Power Distribution
           │
-   ┌──────┴──────────────────────────────────┐
-   │             ESP32-S3                    │
+   ┌──────┴─────────────────────────────────┐
+   │             ESP32-S3                   │
    │  ┌─────────────────────────────────┐   │
    │  │  Finite State Machine (FSM)     │   │
    │  │  Task 1: Line Following         │   │
@@ -800,13 +866,13 @@ const projects: Project[] = [
    │  │  Task 4: Ramp Riding            │   │
    │  └────────┬───────────┬────────────┘   │
    │           │           │                │
-   │   ┌───────▼──┐  ┌────▼───────────┐   │
-   │   │ Sensors  │  │  Actuators     │   │
-   │   ├──────────┤  ├────────────────┤   │
-   │   │ 8ch IR   │  │ TB6612FNG      │   │
-   │   │ VL53L0X  │  │ → N20 Motors   │   │
-   │   │ MPU6050  │  │                │   │
-   │   └──────────┘  └────────────────┘   │
+   │   ┌───────▼──┐  ┌────▼───────────┐     │
+   │   │ Sensors  │  │  Actuators     │     │
+   │   ├──────────┤  ├────────────────┤     │
+   │   │ 8ch IR   │  │ TB6612FNG      │     │
+   │   │ VL53L0X  │  │ → N20 Motors   │     │
+   │   │ MPU6050  │  │                │     │
+   │   └──────────┘  └────────────────┘     │
    └────────────────────────────────────────┘`,
     },
   },
@@ -875,21 +941,21 @@ const projects: Project[] = [
           │
    ┌──────┴──────────────────────────────────────┐
    │              ESP32 (240 MHz)                │
-   │  ┌──────────────────────────────────────┐  │
-   │  │  Firmware Logic                      │  │
-   │  │  - ADC read (GPIO 34) every 200ms    │  │
-   │  │  - Map voltage → fill percentage     │  │
-   │  │  - Threshold check (25/50/75/95/100%)│  │
-   │  │  - UART command → DFPlayer voice     │  │
-   │  │  - GPIO 27 → vibration motor         │  │
-   │  └──────────────────────────────────────┘  │
+   │  ┌──────────────────────────────────────┐   │
+   │  │  Firmware Logic                      │   │
+   │  │  - ADC read (GPIO 34) every 200ms    │   │
+   │  │  - Map voltage → fill percentage     │   │
+   │  │  - Threshold check (25/50/75/95/100%)│   │
+   │  │  - UART command → DFPlayer voice     │   │
+   │  │  - GPIO 27 → vibration motor         │   │
+   │  └──────────────────────────────────────┘   │
    │           │           │           │         │
-   │   ┌───────▼──┐  ┌────▼──┐  ┌────▼──┐     │
-   │   │Capacitive│  │DFPlay │  │Vibrate│     │
-   │   │Sensor    │  │+ Spkr │  │Motor  │     │
-   │   │(external │  │(voice │  │(haptic│     │
-   │   │ strip)   │  │ alert)│  │ warn) │     │
-   │   └──────────┘  └───────┘  └───────┘     │
+   │   ┌───────▼──┐  ┌────▼──┐  ┌────▼──┐        │
+   │   │Capacitive│  │DFPlay │  │Vibrate│        │
+   │   │Sensor    │  │+ Spkr │  │Motor  │        │
+   │   │(external │  │(voice │  │(haptic│        │
+   │   │ strip)   │  │ alert)│  │ warn) │        │
+   │   └──────────┘  └───────┘  └───────┘        │
    └─────────────────────────────────────────────┘
 
   Fill Feedback:
@@ -900,9 +966,94 @@ const projects: Project[] = [
   100% → 🔊 Voice: "Full" + Vibration`,
     },
   },
+
+  // ── 08 Kitchenly ─────────────────────────────────────────────────────────
+  {
+    id: "kitchenly",
+    number: "08",
+    status: "completed",
+    year: "2026",
+    category: "Mobile & Web",
+    name: "Kitchenly",
+    tagline: "Recipe Discovery, Meal Planning & Smart Shopping Lists",
+    fieldLine: "Flutter · WSO2 API Gateway · OAuth2/PKCE · Mobile",
+    shortDesc:
+      "Cross-platform Flutter app to search recipes, save favorites, plan your week and auto-generate shopping lists - backed by a production-grade WSO2 API Manager + Identity Server architecture.",
+    coverImage: "/images/kitchenly app1.jpg",
+    tags: ["Flutter", "Dart", "WSO2 API Manager", "WSO2 Identity Server", "Dio", "+1"],
+    githubUrl: "https://github.com/SanchilaAmavi/Kitchenly",
+    detail: {
+      headline: "Turning 'what should I cook today?' into a two-minute decision - secured like a real production app, not a bare API key wrapper.",
+      subline: "Flutter · WSO2 Gateway · OAuth2 + PKCE",
+      creatorImage: "/images/me minepulse.jpg",
+      overview: [
+        "Kitchenly is a cross-platform mobile app built with Flutter that helps you decide what to cook, explore recipes from around the world, and plan meals for the week - all backed by a secure, production-grade API architecture powered by WSO2.",
+        "Beyond recipe search, Kitchenly includes a playful 'Kitchen Game' that scores a suggested recipe based on ingredients you already have, a weekly meal planner that auto-generates a consolidated shopping list, a favorites system, and a built-in assistant chat for cooking help - all shareable via email or any installed app.",
+        "Unlike a typical hobby app wrapping a public API key directly into the client, Kitchenly routes every Recipes, Favorites, and Meal Plan call through a WSO2 API Manager gateway, authenticated via WSO2 Identity Server using the Authorization Code flow with mandatory PKCE - so no client secret ever ships inside the app binary.",
+      ],
+      highlights: [
+        { icon: "🔍", title: "Live Recipe Search",        desc: "Search thousands of recipes in real time with instant results as you type, filterable by country and cuisine." },
+        { icon: "🥕", title: "Kitchen Game",               desc: "Enter what's sitting in your kitchen and get a playful, scored suggestion for what to cook next." },
+        { icon: "📅", title: "Weekly Meal Planner",        desc: "Assign recipes to each day of the week and let the app auto-generate a consolidated shopping list." },
+        { icon: "🔐", title: "OAuth2 + PKCE via WSO2",     desc: "Authorization Code flow with mandatory PKCE through WSO2 Identity Server - no client secret embedded in the app." },
+        { icon: "🌐", title: "WSO2 API Manager Gateway",   desc: "All Recipes, Favorites, and Meal Plan calls routed through a throttled, secured API gateway rather than a bare public key." },
+        { icon: "💬", title: "Kitchenly Chat",             desc: "Built-in assistant chat for recipe questions and cooking help, shareable via email or any installed app." },
+        { icon: "❤️", title: "Favorites & Fallback Mode",  desc: "Save recipes instantly, and run the app immediately against a public recipe source with zero WSO2 setup for fast demos." },
+        { icon: "🔒", title: "Secure Token Storage",       desc: "Tokens stored in flutter_secure_storage (Keychain/Keystore-backed) and silently refreshed by a Dio interceptor." },
+      ],
+      gallerySections: kitchenlyGallery,
+      stats: [
+        { label: "Framework",   value: "Flutter" },
+        { label: "Auth Flow",   value: "OAuth2+PKCE" },
+        { label: "Gateway",     value: "WSO2 APIM" },
+        { label: "Identity",    value: "WSO2 IS" },
+        { label: "Networking",  value: "Dio" },
+        { label: "Data Source", value: "TheMealDB" },
+      ],
+      sections: [
+        {
+          title: "Architecture",
+          body: "Kitchenly isn't a UI wrapper around a public API - it mirrors how a real production mobile app is secured and scaled. The Flutter client performs an OAuth2 Authorization Code + PKCE handshake against WSO2 Identity Server to obtain tokens, then attaches Authorization: Bearer <token> to every call made through the WSO2 API Manager gateway, which fronts the Recipes, Favorites, and Meal Plan backend services with optional throttling tiers.",
+        },
+        {
+          title: "Security Design",
+          body: "Because Kitchenly is a public mobile client, it never embeds a WSO2 client secret in the app binary - it exclusively uses Authorization Code flow with mandatory PKCE. Tokens live in flutter_secure_storage (Keychain on iOS, Keystore on Android), never SharedPreferences, and a Dio interceptor silently refreshes expired tokens and normalises gateway fault responses into friendly ApiException messages instead of leaking raw JSON to the UI.",
+        },
+        {
+          title: "Data Layer & Fallback Mode",
+          body: "RecipeRepository is the single point of contact with the recipe data source, defaulting to TheMealDB so the app runs immediately with zero WSO2 configuration. Swapping in Spoonacular, Edamam, or a custom database behind the WSO2 gateway only requires editing recipe_repository.dart and the Recipe.fromJson parsing logic - no screen code changes.",
+        },
+        {
+          title: "Project Structure",
+          body: "The Flutter codebase is organised by feature: core/auth handles WSO2 OAuth2/PKCE login and token refresh, core/network holds the Dio client and interceptors, and features/ splits recipes, favorites, and meal_plan into their own data and presentation layers, backed by a shared design-system theme and reusable widgets like RecipeCard.",
+        },
+      ],
+      archDiagram: `  Flutter Mobile App - Kitchenly
+          │
+          │  OAuth2 / PKCE
+          ▼
+  ┌───────────────────────┐
+  │  WSO2 Identity Server │
+  │   (Login & Tokens)    │
+  └───────────┬───────────┘
+              │  Authorization: Bearer <token>
+              ▼
+  ┌────────────────────────┐      ┌──────────────────────────┐
+  │  WSO2 API Manager      │───▶ │  Recipes / Favorites /   │
+  │  (Gateway, Throttling) │      │  Meal Plan backend APIs  │
+  └────────────────────────┘      └──────────────────────────┘
+
+  Client Features:
+  🔍 Live Search   🥕 Kitchen Game   📅 Meal Planner
+  🛒 Shopping List ❤️ Favorites      💬 Kitchenly Chat
+
+  Fallback: runs against TheMealDB directly with
+  useDirectFallback = true - zero WSO2 setup needed to demo.`,
+    },
+  },
 ];
 
-const CATEGORIES = ["All Projects", "AI & ML", "IoT & Embedded", "Robotics"];
+const CATEGORIES = ["All Projects", "AI & ML", "IoT & Embedded", "Robotics", "Mobile & Web"];
 
 // ─── Sectioned Gallery (dark-themed, larger images, captions always visible) ──
 function SectionedGallery({ sections }: { sections: GallerySection[] }) {
@@ -1336,7 +1487,7 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
           <span className={`text-[0.55rem] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${statusColors[project.status]}`}>{project.status}</span>
           <span className="text-[0.58rem] font-mono text-[var(--text-subtle)]">{project.year}</span>
         </div>
-        <span className="font-mono text-[0.58rem] text-[var(--text-subtle)]">{project.number}</span>
+        <span className="font-mono text-[0.58rem] text-[var(--text-subtle)] badge-float">{project.number}</span>
       </div>
 
       {/* Cover image - slightly taller for better visibility */}
@@ -1380,7 +1531,7 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
           {visibleTags.map((t) => (
             <span key={t} className="tag text-[0.55rem] px-2 py-0.5">{t}</span>
           ))}
-          {extra && <span className="tag text-[0.55rem] px-2 py-0.5 text-[var(--accent)]">{extra}</span>}
+          {extra && <span className="tag tag-cycle text-[0.55rem] px-2 py-0.5 text-[var(--accent)]">{extra}</span>}
         </div>
         <div className="flex items-center justify-between pt-2 mt-auto flex-shrink-0" style={{ borderTop: "1px solid var(--border)" }}>
           <span className="flex items-center gap-1.5 text-[var(--accent)] text-[0.7rem] font-semibold group-hover:gap-2.5 transition-all">

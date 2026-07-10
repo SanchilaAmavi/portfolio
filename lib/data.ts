@@ -175,6 +175,26 @@ export const projects = [
     ],
     tags: ["ESP32-S3", "VL53L0X", "IR Sensors", "MPU6050", "TB6612FNG", "SolidWorks", "PID"],
   },
+  {
+    id:       7,
+    title:    "Kitchenly",
+    subtitle: "Recipe Discovery, Meal Planning & Smart Shopping Lists",
+    category: "Mobile & Web",
+    status:   "completed",
+    year:     "2026",
+    featured: false,
+    image:    "/images/kitchenly app1.jpg",
+    github:   "https://github.com/SanchilaAmavi/Kitchenly",
+    description:
+      "Cross-platform Flutter app for recipe search, weekly meal planning, and auto-generated shopping lists - secured end-to-end with WSO2 API Manager and WSO2 Identity Server using OAuth2 + PKCE.",
+    highlights: [
+      "OAuth2 Authorization Code + PKCE via WSO2 Identity Server",
+      "All API calls routed through WSO2 API Manager gateway",
+      "Kitchen Game - scored recipe suggestions from what you have",
+      "Weekly meal planner with auto-generated shopping list",
+    ],
+    tags: ["Flutter", "Dart", "WSO2 API Manager", "WSO2 Identity Server", "Dio", "OAuth2/PKCE"],
+  },
 ];
 
 // ── SKILLS ───────────────────────────────────────────────────
