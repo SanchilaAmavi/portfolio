@@ -67,10 +67,10 @@ const minepulseGallery: GallerySection[] = [
     icon: "🔩",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/assembled mine pulse.jpg",         caption: "Fully assembled MinePulse — both nodes complete", span: "wide" },
-      { src: "/images/prototype mine pulse.jpg",         caption: "Early prototype — development phase" },
+      { src: "/images/assembled mine pulse.jpg",         caption: "Fully assembled MinePulse - both nodes complete", span: "wide" },
+      { src: "/images/prototype mine pulse.jpg",         caption: "Early prototype - development phase" },
       { src: "/images/working mine pulse.jpg",           caption: "System running live during field testing" },
-      { src: "/images/assembled pcb mine pulse.jpg",     caption: "Underground node PCB — assembled & wired" },
+      { src: "/images/assembled pcb mine pulse.jpg",     caption: "Underground node PCB - assembled & wired" },
     ],
   },
   {
@@ -80,8 +80,8 @@ const minepulseGallery: GallerySection[] = [
     accent: "#eff6ff",
     images: [
       { src: "/images/final surface mine pulse.jpg",     caption: "Final surface gateway node", span: "wide" },
-      { src: "/images/final underground mine pulse.jpg", caption: "Final underground node — deployment ready" },
-      { src: "/images/final surface 1 mine pulse.jpg",   caption: "Surface node — OLED display & antenna detail" },
+      { src: "/images/final underground mine pulse.jpg", caption: "Final underground node - deployment ready" },
+      { src: "/images/final surface 1 mine pulse.jpg",   caption: "Surface node - OLED display & antenna detail" },
       { src: "/images/output.jpg",                       caption: "Live sensor output on surface OLED display" },
     ],
   },
@@ -91,16 +91,17 @@ const minepulseGallery: GallerySection[] = [
     icon: "🖥️",
     accent: "#fdf4ff",
     images: [
-      { src: "/images/pcb mine pulse.jpg",               caption: "Custom PCB — top layer layout", span: "wide" },
-      { src: "/images/pcb otherside minepulse.jpg",      caption: "Custom PCB — bottom layer layout" },
+      { src: "/images/pcb mine pulse.jpg",               caption: "Custom PCB - top layer layout", span: "wide" },
+      { src: "/images/pcb otherside minepulse.jpg",      caption: "Custom PCB - bottom layer layout" },
       { src: "/images/enclosure surface2.jpg",           caption: "3D-designed surface node enclosure" },
       { src: "/images/enclosure surface.jpg",            caption: "3D-designed surface node enclosure" },
+       { src: "/images/minepulse surface enclosure.jpg", caption: "3D-designed surface node enclosure" },
       { src: "/images/underground1.jpg",                 caption: "3D-designed underground node enclosure" },
       { src: "/images/underground2.jpg",                 caption: "3D-designed underground node enclosure" },
       { src: "/images/underground3.jpg",                 caption: "3D-designed underground node enclosure" },
       { src: "/images/waterlevel1.jpg",                  caption: "3D-designed water level sensor enclosure" },
       { src: "/images/waterlevel2.jpg",                  caption: "3D-designed water level sensor enclosure" },
-      { src: "/images/minepulse underground enclosure.jpg", caption: "Underground enclosure — final assembly" },
+     
     ],
   },
   {
@@ -109,11 +110,11 @@ const minepulseGallery: GallerySection[] = [
     icon: "📱",
     accent: "#fff7ed",
     images: [
-      { src: "/images/minepulse mobile 1.jpg",  caption: "App home — live mine status dashboard" },
+      { src: "/images/minepulse mobile 1.jpg",  caption: "App home - live mine status dashboard" },
       { src: "/images/minepulse mobile3.jpg",   caption: "Real-time telemetry & sensor readings" },
-      { src: "/images/minepulsemobile2.jpg",    caption: "Push notification panel — instant alerts" },
+      { src: "/images/minepulsemobile2.jpg",    caption: "Push notification panel - instant alerts" },
       { src: "/images/minepulsemobile4.jpg",    caption: "Alert history log with timestamps" },
-      { src: "/images/minepulsemobile5.jpg",    caption: "Map View — live mine locations" },
+      { src: "/images/minepulsemobile5.jpg",    caption: "Map View - live mine locations" },
     ],
   },
   {
@@ -122,7 +123,7 @@ const minepulseGallery: GallerySection[] = [
     icon: "🌐",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/webapp minepulse.jpg",      caption: "Supervisor web dashboard — live mine status", span: "wide" },
+      { src: "/images/webapp minepulse.jpg",      caption: "Supervisor web dashboard - live mine status", span: "wide" },
       { src: "/images/web app mine pulse 1.jpg",  caption: "Alert frequency analytics" },
       { src: "/images/minepulse sms.jpg",         caption: "SMS alert delivered to supervisor mobile" },
     ],
@@ -133,7 +134,7 @@ const minepulseGallery: GallerySection[] = [
     icon: "🎥",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/Minepulse testing.mp4", caption: "▶ MinePulse live demo — real-time hazard detection", span: "wide", isVideo: true },
+      { src: "/images/Minepulse testing.mp4", caption: "▶ MinePulse live demo - real-time hazard detection", span: "wide", isVideo: true },
     ],
   },
 ];
@@ -146,8 +147,8 @@ const lankameshGallery: GallerySection[] = [
     icon: "🔩",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/lankamesh.jpg",        caption: "LankaMesh assembled node — field ready", span: "wide" },
-      { src: "/images/lankamesh-detail.jpg", caption: "Node internals — ESP32-S3, LoRa, GPS" },
+      { src: "/images/lankamesh.jpg",        caption: "LankaMesh assembled node - field ready", span: "wide" },
+      { src: "/images/lankamesh-detail.jpg", caption: "Node internals - ESP32-S3, LoRa, GPS" },
     ],
   },
   {
@@ -156,8 +157,8 @@ const lankameshGallery: GallerySection[] = [
     icon: "📱",
     accent: "#fdf4ff",
     images: [
-      { src: "/images/lankamesh-mobile.jpg", caption: "Flutter app — SOS, map & message panel" },
-       { src: "/images/lankamesh-sos.jpg",       caption: "SOS broadcast on app — emergency alert" },
+      { src: "/images/lankamesh-mobile.jpg", caption: "Flutter app - SOS, map & message panel" },
+       { src: "/images/lankamesh-sos.jpg",       caption: "SOS broadcast on app - emergency alert" },
     ],
   },
   {
@@ -166,7 +167,7 @@ const lankameshGallery: GallerySection[] = [
     icon: "📡",
     accent: "#eff6ff",
     images: [
-      { src: "/images/lankamesh_flowchart.jpg", caption: "Node operation flowchart — mesh relay logic", span: "wide" },
+      { src: "/images/lankamesh_flowchart.jpg", caption: "Node operation flowchart - mesh relay logic", span: "wide" },
      
     ],
   },
@@ -180,11 +181,11 @@ const nexdriveGallery: GallerySection[] = [
     icon: "📱",
     accent: "#eff6ff",
     images: [
-      { src: "/images/NexDrive dashboard.jpg", caption: "NexDrive home dashboard — real-time safety score, trip stats & quick actions", span: "wide" },
-      { src: "/images/NexDrive Map.jpg",       caption: "Live GPS map view — real-time driver location tracking" },
-      { src: "/images/NexDrive SOS.jpg",       caption: "Emergency SOS screen — one-tap alert to emergency contacts" },
-      { src: "/images/NexDrive assistant.jpg", caption: "NexDrive AI assistant — voice-guided safety recommendations" },
-      { src: "/images/NexDrive mic.jpg",       caption: "Voice alert system — audio fatigue warning delivered to driver" },
+      { src: "/images/NexDrive dashboard.jpg", caption: "NexDrive home dashboard - real-time safety score, trip stats & quick actions", span: "wide" },
+      { src: "/images/NexDrive Map.jpg",       caption: "Live GPS map view - real-time driver location tracking" },
+      { src: "/images/NexDrive SOS.jpg",       caption: "Emergency SOS screen - one-tap alert to emergency contacts" },
+      { src: "/images/NexDrive assistant.jpg", caption: "NexDrive AI assistant - voice-guided safety recommendations" },
+      { src: "/images/NexDrive mic.jpg",       caption: "Voice alert system - audio fatigue warning delivered to driver" },
     ],
   },
   {
@@ -193,9 +194,9 @@ const nexdriveGallery: GallerySection[] = [
     icon: "👁️",
     accent: "#fdf4ff",
     images: [
-      { src: "/images/NexDrive1.jpg", caption: "Live fatigue monitoring screen — eye tracking & PERCLOS score overlay" },
-      { src: "/images/NexDrive2.jpg", caption: "Fatigue detection active — alert level indicator & confidence score" },
-      { src: "/images/NexDrivve Yawn.jpg", caption: "Yawn detection — real-time mouth contour analysis" },
+      { src: "/images/NexDrive1.jpg", caption: "Live fatigue monitoring screen - eye tracking & PERCLOS score overlay" },
+      { src: "/images/NexDrive2.jpg", caption: "Fatigue detection active - alert level indicator & confidence score" },
+      { src: "/images/NexDrivve Yawn.jpg", caption: "Yawn detection - real-time mouth contour analysis" },
     ],
   },
   {
@@ -204,7 +205,7 @@ const nexdriveGallery: GallerySection[] = [
     icon: "🎥",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/NexDrive video.mp4", caption: "▶ NexDrive live demo — real-time fatigue detection on device", span: "wide", isVideo: true },
+      { src: "/images/NexDrive video.mp4", caption: "▶ NexDrive live demo - real-time fatigue detection on device", span: "wide", isVideo: true },
     ],
   },
 ];
@@ -217,9 +218,9 @@ const marsrobotGallery: GallerySection[] = [
     icon: "🏆",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/marsrobot.jpg",          caption: "Assembled Mars Robot — ready for competition" },
-      { src: "/images/marsrobot areana.jpg",   caption: "Arena layout — 6×4 grid plantation task" },
-      { src: "/images/marsrobot team.jpg",     caption: "Team photo — competition day" },
+      { src: "/images/marsrobot.jpg",          caption: "Assembled Mars Robot - ready for competition" },
+      { src: "/images/marsrobot areana.jpg",   caption: "Arena layout - 6×4 grid plantation task" },
+      { src: "/images/marsrobot team.jpg",     caption: "Team photo - competition day" },
     ],
   },
   {
@@ -229,7 +230,7 @@ const marsrobotGallery: GallerySection[] = [
     accent: "#fdf4ff",
     images: [
       { src: "/images/marsrobot brackets.jpg", caption: "3D-printed TT motor & servo arm brackets" },
-      { src: "/images/marsrobotroboarm.jpg",   caption: "Robot arm — 3D-printed components" },
+      { src: "/images/marsrobotroboarm.jpg",   caption: "Robot arm - 3D-printed components" },
     ],
   },
 ];
@@ -242,9 +243,9 @@ const aiproctoringGallery: GallerySection[] = [
     icon: "🖥️",
     accent: "#fdf4ff",
     images: [
-      { src: "/images/proctoring1.jpg", caption: "Main dashboard — live video feed with detection overlays & risk score", span: "wide" },
-      { src: "/images/proctoring2.jpg", caption: "Risk score analytics — spike pattern over exam session" },
-      { src: "/images/proctoring3.jpg", caption: "Event distribution pie chart — No Face vs Phone Detected" },
+      { src: "/images/proctoring1.jpg", caption: "Main dashboard - live video feed with detection overlays & risk score", span: "wide" },
+      { src: "/images/proctoring2.jpg", caption: "Risk score analytics - spike pattern over exam session" },
+      { src: "/images/proctoring3.jpg", caption: "Event distribution pie chart - No Face vs Phone Detected" },
     ],
   },
   {
@@ -253,8 +254,8 @@ const aiproctoringGallery: GallerySection[] = [
     icon: "🚨",
     accent: "#fff7ed",
     images: [
-      { src: "/images/proctoring4.jpg", caption: "Phone detection — YOLOv8 bounding box overlay", span: "wide" },
-      { src: "/images/proctoring5.jpg", caption: "No Face Detected alert — red overlay visual warning" },
+      { src: "/images/proctoring4.jpg", caption: "Phone detection - YOLOv8 bounding box overlay", span: "wide" },
+      { src: "/images/proctoring5.jpg", caption: "No Face Detected alert - red overlay visual warning" },
     ],
   },
 ];
@@ -267,9 +268,9 @@ const rosco25Gallery: GallerySection[] = [
     icon: "🏆",
     accent: "#f0fdf4",
     images: [
-      { src: "/images/Rosco Competition.jpg",  caption: "ROSCO'25 — Team Botrix at the competition arena", span: "wide" },
-      { src: "/images/Rosco robot.jpg",        caption: "Autonomous robot — fully assembled & ready" },
-      { src: "/images/Rosco Arena.jpg",        caption: "Competition arena — line & wall following track" },
+      { src: "/images/Rosco Competition.jpg",  caption: "ROSCO'25 - Team Botrix at the competition arena", span: "wide" },
+      { src: "/images/Rosco robot.jpg",        caption: "Autonomous robot - fully assembled & ready" },
+      { src: "/images/Rosco Arena.jpg",        caption: "Competition arena - line & wall following track" },
     ],
   },
   {
@@ -278,8 +279,8 @@ const rosco25Gallery: GallerySection[] = [
     icon: "🖥️",
     accent: "#fdf4ff",
     images: [
-      { src: "/images/Rosco solidwork design.jpg",            caption: "SolidWorks chassis layout — component placement", span: "wide" },
-      { src: "/images/Rosco Solid work design chassie 2.jpg", caption: "SolidWorks chassis — second view" },
+      { src: "/images/Rosco solidwork design.jpg",            caption: "SolidWorks chassis layout - component placement", span: "wide" },
+      { src: "/images/Rosco Solid work design chassie 2.jpg", caption: "SolidWorks chassis - second view" },
       { src: "/images/Rosco design.jpg",                      caption: "Chassis design overview" },
       { src: "/images/Rosco bracket design.jpg",              caption: "3D-printed motor & sensor brackets" },
     ],
@@ -321,17 +322,17 @@ const projects: Project[] = [
       creatorImage: "/images/me minepulse.jpg",
       overview: [
         "MinePulse is a professional end-to-end mine safety solution engineered to protect miners with fast multi-gas hazard detection, immediate local and cloud alerts, and polished cross-platform monitoring applications.",
-        "Two underground ESP32-S3 sensor nodes continuously measure methane (MQ-4), carbon monoxide (MQ-7), and water level. When any reading breaches the danger threshold, the node fires a 12V siren and transmits a LoRa radio alert to the surface gateway — all within milliseconds, with zero cloud dependency underground.",
-        "At the surface, the gateway decodes the alert, activates a local buzzer, displays hazard details on an OLED screen, dispatches an SMS via SIM800L GSM, and simultaneously uploads the event to Firebase — instantly pushing notifications to the web dashboard and Flutter mobile app used by supervisors anywhere on-site.",
+        "Two underground ESP32-S3 sensor nodes continuously measure methane (MQ-4), carbon monoxide (MQ-7), and water level. When any reading breaches the danger threshold, the node fires a 12V siren and transmits a LoRa radio alert to the surface gateway - all within milliseconds, with zero cloud dependency underground.",
+        "At the surface, the gateway decodes the alert, activates a local buzzer, displays hazard details on an OLED screen, dispatches an SMS via SIM800L GSM, and simultaneously uploads the event to Firebase - instantly pushing notifications to the web dashboard and Flutter mobile app used by supervisors anywhere on-site.",
       ],
       highlights: [
-        { icon: "📡", title: "LoRa 433 MHz",             desc: "Long-range wireless from underground nodes to surface — no WiFi or cellular infrastructure required underground." },
+        { icon: "📡", title: "LoRa 433 MHz",             desc: "Long-range wireless from underground nodes to surface - no WiFi or cellular infrastructure required underground." },
         { icon: "🔥", title: "Multi-Gas Detection",       desc: "Simultaneous real-time sensing of methane (CH4), carbon monoxide (CO), and water flooding from each node." },
-        { icon: "🚨", title: "5-Channel Instant Alerts",  desc: "Siren · OLED · Buzzer · SMS · Firebase push — all triggered within seconds of any threshold breach." },
+        { icon: "🚨", title: "5-Channel Instant Alerts",  desc: "Siren · OLED · Buzzer · SMS · Firebase push - all triggered within seconds of any threshold breach." },
         { icon: "☁️", title: "Firebase Cloud Layer",      desc: "Realtime Database stores all alerts with full timestamps. Cloud Functions auto-dispatch FCM push to all devices." },
         { icon: "📱", title: "Flutter Mobile App",        desc: "Android/iOS app with live mine status, real-time telemetry, alert history, and Firebase Cloud Messaging notifications." },
         { icon: "🌐", title: "Web Dashboard",             desc: "Supervisor browser dashboard showing live mine status, alert history, analytics, and event timeline." },
-        { icon: "🔌", title: "Custom PCB Design",         desc: "Professionally designed compact PCBs for both underground nodes and surface gateway — robust and field-deployable." },
+        { icon: "🔌", title: "Custom PCB Design",         desc: "Professionally designed compact PCBs for both underground nodes and surface gateway - robust and field-deployable." },
         { icon: "🏗️", title: "Multi-Node Scalability",   desc: "One surface gateway monitors multiple underground nodes simultaneously. Built to expand across adjacent mine shafts." },
       ],
       gallerySections: minepulseGallery,
@@ -346,11 +347,11 @@ const projects: Project[] = [
       sections: [
         {
           title: "System Architecture",
-          body: "Each underground ESP32-S3-N16R8 node reads sensors every 2 seconds. On hazard detection, it fires the 12V siren via a transistor-MOSFET driver circuit and transmits a compact LoRa packet (node ID + sensor values + flags) to the surface gateway. The gateway processes the packet, activates the local buzzer, updates the SH1106 OLED display, sends an SMS via SIM800L GSM, and uploads the hazard event to Firebase Realtime Database — which propagates instantly to the web dashboard and triggers FCM push notifications to the Flutter app.",
+          body: "Each underground ESP32-S3-N16R8 node reads sensors every 2 seconds. On hazard detection, it fires the 12V siren via a transistor-MOSFET driver circuit and transmits a compact LoRa packet (node ID + sensor values + flags) to the surface gateway. The gateway processes the packet, activates the local buzzer, updates the SH1106 OLED display, sends an SMS via SIM800L GSM, and uploads the hazard event to Firebase Realtime Database - which propagates instantly to the web dashboard and triggers FCM push notifications to the Flutter app.",
         },
         {
           title: "Hardware Design",
-          body: "Both underground nodes and surface gateway use custom-designed PCBs on ESP32-S3-N16R8 microcontrollers paired with LoRa Ra-02 SX1278 433 MHz radio modules. Underground nodes carry MQ-4 methane, MQ-7 CO, and water level sensors, plus a 12V siren driven through a transistor-MOSFET switching circuit. The surface gateway adds SIM800L GSM, 1.3\" SH1106 OLED, and active buzzer — powered by LM2596/XL4015 buck converters from a 12V supply.",
+          body: "Both underground nodes and surface gateway use custom-designed PCBs on ESP32-S3-N16R8 microcontrollers paired with LoRa Ra-02 SX1278 433 MHz radio modules. Underground nodes carry MQ-4 methane, MQ-7 CO, and water level sensors, plus a 12V siren driven through a transistor-MOSFET switching circuit. The surface gateway adds SIM800L GSM, 1.3\" SH1106 OLED, and active buzzer - powered by LM2596/XL4015 buck converters from a 12V supply.",
         },
         {
           title: "Cloud & Software Stack",
@@ -402,23 +403,23 @@ const projects: Project[] = [
     tags: ["ESP32-S3", "LoRa RA-02", "GPS NEO-4M", "Flutter", "Embedded C++", "+1"],
     githubUrl: "https://github.com/SanchilaAmavi/LankaMesh",
     detail: {
-      headline: "Keeping communities connected when all infrastructure fails — zero internet, zero cellular.",
+      headline: "Keeping communities connected when all infrastructure fails - zero internet, zero cellular.",
       subline: "IoT · LoRa Mesh · GPS · Flutter Mobile",
       creatorImage: "/images/lankamesh-detail.jpg",
       teamImage: "/images/lankamesh team.jpg",
       overview: [
-        "When disasters strike Sri Lanka — floods, landslides, cyclones — the first infrastructure to collapse is communication. Cellular towers lose power, internet backhaul goes down, and communities are left isolated at exactly the moment they need to coordinate rescue and relief.",
+        "When disasters strike Sri Lanka - floods, landslides, cyclones - the first infrastructure to collapse is communication. Cellular towers lose power, internet backhaul goes down, and communities are left isolated at exactly the moment they need to coordinate rescue and relief.",
         "LankaMesh is a decentralised wireless mesh communication network built entirely on LoRa 433 MHz radio. Each node is an ESP32-S3 with a LoRa RA-02 module, GPS NEO-4M, SSD1306 OLED, and DHT22 environmental sensor, mounted on a custom PCB inside a waterproof ABS enclosure.",
-        "Nodes form a self-healing peer-to-peer mesh: when an SOS is triggered, the packet is broadcast and automatically relayed by every intermediate node in range — extending the network reach far beyond a single hop. A Flutter mobile app connects over USB CDC Serial to send messages, trigger SOS, view the live map, and read sensor data.",
+        "Nodes form a self-healing peer-to-peer mesh: when an SOS is triggered, the packet is broadcast and automatically relayed by every intermediate node in range - extending the network reach far beyond a single hop. A Flutter mobile app connects over USB CDC Serial to send messages, trigger SOS, view the live map, and read sensor data.",
       ],
       highlights: [
-        { icon: "📡", title: "LoRa Mesh — 5 km per Hop",        desc: "433 MHz with Spreading Factor 10, each node achieves 5 km open terrain. Relay nodes extend total reach far beyond any single hop." },
+        { icon: "📡", title: "LoRa Mesh - 5 km per Hop",        desc: "433 MHz with Spreading Factor 10, each node achieves 5 km open terrain. Relay nodes extend total reach far beyond any single hop." },
         { icon: "🆘", title: "One-Button SOS Broadcast",         desc: "GPIO button fires an immediate LoRa SOS packet containing the node's GPS coordinates, broadcast to all nodes in range. Auto-relayed by every intermediate node." },
         { icon: "🗺️", title: "Real-Time GPS Coordinate Share",   desc: "Every node broadcasts its GPS position (NEO-4M) every 15 seconds. The Flutter app plots all nodes on an OpenStreetMap view in real time." },
-        { icon: "📋", title: "Structured Emergency Categories",   desc: "Messages are tagged as Medical, Flood, Landslide, Fire, Evacuation, Supply Request, or Other — letting rescuers triage incoming alerts by type." },
+        { icon: "📋", title: "Structured Emergency Categories",   desc: "Messages are tagged as Medical, Flood, Landslide, Fire, Evacuation, Supply Request, or Other - letting rescuers triage incoming alerts by type." },
         { icon: "🔋", title: "Battery-Backed Multi-Day Field Op", desc: "ESP32-S3 sleeps between transmissions. DHT22 and GPS duty-cycled, targeting 48+ hours on a standard 18650 cell." },
         { icon: "📱", title: "Flutter App via USB CDC",          desc: "No Bluetooth needed. The app receives incoming messages, allows sending categorised text, triggers SOS, displays the map, and reads node sensor data." },
-        { icon: "🌐", title: "Zero Infrastructure",              desc: "No servers, no SIM cards, no Wi-Fi access points. The system works the instant cellular fails — built for disaster, not convenience." },
+        { icon: "🌐", title: "Zero Infrastructure",              desc: "No servers, no SIM cards, no Wi-Fi access points. The system works the instant cellular fails - built for disaster, not convenience." },
         { icon: "🔌", title: "Custom PCB in ABS Enclosure",     desc: "ESP32-S3 + LoRa RA-02 + GPS NEO-4M + SSD1306 OLED + DHT22 on a custom PCB inside a waterproof ABS enclosure for field deployment." },
       ],
       gallerySections: lankameshGallery,
@@ -433,15 +434,15 @@ const projects: Project[] = [
       sections: [
         {
           title: "Hardware & PCB",
-          body: "Each LankaMesh node is built around an ESP32-S3 paired with a LoRa RA-02 (SX1276, 433 MHz), GPS NEO-4M module, SSD1306 OLED display (128×64), and DHT22 temperature/humidity sensor — all mounted on a custom-designed PCB inside a waterproof ABS enclosure. The GPIO0 button triggers immediate SOS. Power comes from a single 18650 Li-ion cell with USB-C charging.",
+          body: "Each LankaMesh node is built around an ESP32-S3 paired with a LoRa RA-02 (SX1276, 433 MHz), GPS NEO-4M module, SSD1306 OLED display (128×64), and DHT22 temperature/humidity sensor - all mounted on a custom-designed PCB inside a waterproof ABS enclosure. The GPIO0 button triggers immediate SOS. Power comes from a single 18650 Li-ion cell with USB-C charging.",
         },
         {
           title: "Mesh Relay Protocol",
-          body: "LankaMesh uses a custom LoRa packet format with source node ID, destination (broadcast or unicast), message type, sequence counter, GPS payload, and a 2-byte CRC. Every receiving node checks the sequence counter to avoid re-relaying duplicates, then rebroadcasts after a random 100–400 ms backoff — eliminating simultaneous relay collisions.",
+          body: "LankaMesh uses a custom LoRa packet format with source node ID, destination (broadcast or unicast), message type, sequence counter, GPS payload, and a 2-byte CRC. Every receiving node checks the sequence counter to avoid re-relaying duplicates, then rebroadcasts after a random 100–400 ms backoff - eliminating simultaneous relay collisions.",
         },
         {
           title: "Flutter App & USB Serial",
-          body: "The Flutter mobile app connects to the node over USB CDC Serial at 115200 baud — no Bluetooth pairing required. The app parses incoming JSON frames from the node to display all online nodes on an OpenStreetMap tile view (flutter_map), show incoming messages with category and timestamp, allow the user to compose and send categorised text messages, and trigger an SOS directly from the app UI.",
+          body: "The Flutter mobile app connects to the node over USB CDC Serial at 115200 baud - no Bluetooth pairing required. The app parses incoming JSON frames from the node to display all online nodes on an OpenStreetMap tile view (flutter_map), show incoming messages with category and timestamp, allow the user to compose and send categorised text messages, and trigger an SOS directly from the app UI.",
         },
         {
           title: "Challenges & Solutions",
@@ -478,27 +479,27 @@ const projects: Project[] = [
     tagline: "AI-Based Driver Fatigue & Safety Detection Platform",
     fieldLine: "Computer Vision · Deep Learning · Mobile App · FastAPI",
     shortDesc:
-      "Full-stack driver safety platform combining deep learning fatigue detection (EfficientNet-B0, 93.24% accuracy), real-time face tracking, PERCLOS scoring, voice alerts, emergency SOS, and GPS tracking — built with PyTorch, FastAPI, and Flutter.",
+      "Full-stack driver safety platform combining deep learning fatigue detection (EfficientNet-B0, 93.24% accuracy), real-time face tracking, PERCLOS scoring, voice alerts, emergency SOS, and GPS tracking - built with PyTorch, FastAPI, and Flutter.",
     coverImage: "/images/NexDrive dashboard.jpg",
     tags: ["PyTorch", "EfficientNet-B0", "FastAPI", "Flutter", "ML Kit", "OpenCV", "+3"],
     githubUrl: "https://github.com/SanchilaAmavi/driver-fatigue-detection",
     detail: {
-      headline: "Preventing road fatalities by detecting driver drowsiness in real time — before the accident happens.",
+      headline: "Preventing road fatalities by detecting driver drowsiness in real time - before the accident happens.",
       subline: "Computer Vision · Deep Learning · Mobile · FastAPI",
       overview: [
         "Every year over 1.35 million people die in road accidents globally, with 20% of all fatal crashes directly caused by driver fatigue and drowsiness. NexDrive is a complete AI-powered driver safety platform engineered to detect fatigue in real time and alert drivers before a dangerous situation occurs.",
-        "The system is built on a custom-trained EfficientNet-B0 deep learning model achieving 93.24% test accuracy across four detection classes — eye closure, yawning, no yawn, and eyes open. The model was trained on 50,000+ images from the CEW and Yawn datasets using nine anti-overfitting techniques including transfer learning, dropout, batch normalisation, label smoothing, cosine annealing LR, early stopping, gradient clipping, and L2 regularisation.",
-        "A Flutter mobile app named NexDrive connects to a FastAPI ML backend. The app uses Google ML Kit face detection for on-device facial landmark analysis — tracking eye open probability, mouth contour ratio, and head pose in real time to feed the PERCLOS drowsiness scoring engine. When fatigue is detected, the system triggers voice alerts, haptic feedback, push notifications, emergency SMS to contacts, and logs every event to the backend for post-trip analysis.",
+        "The system is built on a custom-trained EfficientNet-B0 deep learning model achieving 93.24% test accuracy across four detection classes - eye closure, yawning, no yawn, and eyes open. The model was trained on 50,000+ images from the CEW and Yawn datasets using nine anti-overfitting techniques including transfer learning, dropout, batch normalisation, label smoothing, cosine annealing LR, early stopping, gradient clipping, and L2 regularisation.",
+        "A Flutter mobile app named NexDrive connects to a FastAPI ML backend. The app uses Google ML Kit face detection for on-device facial landmark analysis - tracking eye open probability, mouth contour ratio, and head pose in real time to feed the PERCLOS drowsiness scoring engine. When fatigue is detected, the system triggers voice alerts, haptic feedback, push notifications, emergency SMS to contacts, and logs every event to the backend for post-trip analysis.",
       ],
       highlights: [
-        { icon: "🧠", title: "EfficientNet-B0 — 93.24% Accuracy", desc: "Custom-trained deep learning model on 50,000+ images. 4-class detection: eye closed, open, yawn, no yawn. 9 anti-overfitting techniques. Trained with PyTorch in Google Colab." },
+        { icon: "🧠", title: "EfficientNet-B0 - 93.24% Accuracy", desc: "Custom-trained deep learning model on 50,000+ images. 4-class detection: eye closed, open, yawn, no yawn. 9 anti-overfitting techniques. Trained with PyTorch in Google Colab." },
         { icon: "👁️", title: "PERCLOS Drowsiness Engine",          desc: "Industry-standard metric used by Bosch, Mobileye, and Tesla. 30-frame sliding window: PERCLOS × 0.7 + Yawn Rate × 0.3. Four alert levels: Normal → Warning → Danger → Critical." },
         { icon: "📱", title: "Flutter Cross-Platform App",         desc: "Android/iOS app with real-time camera feed, live fatigue score overlay, PERCLOS gauge, trip history charts, emergency SOS, GPS map view, and AI voice assistant." },
-        { icon: "🔊", title: "Multi-Channel Alert System",         desc: "Voice TTS alerts, haptic vibration, push notifications, red screen overlay, and automatic emergency SMS — triggered progressively as drowsiness level escalates." },
+        { icon: "🔊", title: "Multi-Channel Alert System",         desc: "Voice TTS alerts, haptic vibration, push notifications, red screen overlay, and automatic emergency SMS - triggered progressively as drowsiness level escalates." },
         { icon: "🆘", title: "Emergency SOS & Contact Alerts",     desc: "One-tap SOS broadcasts the driver's GPS coordinates to pre-configured emergency contacts via SMS. Auto-triggered when CRITICAL fatigue level is sustained for >3 seconds." },
         { icon: "🗺️", title: "Live GPS Tracking",                  desc: "Real-time driver location on OpenStreetMap. GPS coordinates logged with every fatigue event for post-trip safety review." },
         { icon: "⚡", title: "FastAPI ML Backend",                 desc: "REST API serving EfficientNet-B0 with OpenCV face/eye cropping, PERCLOS session state management, trip recording, and safety statistics endpoints." },
-        { icon: "📊", title: "Trip Analytics Dashboard",           desc: "Post-trip safety score breakdown, alert frequency charts, and session history — all accessible from the app's analytics screen." },
+        { icon: "📊", title: "Trip Analytics Dashboard",           desc: "Post-trip safety score breakdown, alert frequency charts, and session history - all accessible from the app's analytics screen." },
       ],
       gallerySections: nexdriveGallery,
       stats: [
@@ -512,14 +513,14 @@ const projects: Project[] = [
       sections: [
         {
           title: "Machine Learning Pipeline",
-          body: "The EfficientNet-B0 model was trained in Google Colab on PyTorch using two Kaggle datasets — CEW Eye Dataset (48,000 images) and Yawn Eye Dataset (5,000+ images across yawn/no_yawn/open/closed classes). Images were preprocessed to 64×64 grayscale and augmented with nine Albumentations techniques: horizontal flip, random brightness/contrast, Gaussian noise, rotation, blur, CLAHE, shift-scale-rotate, grid distortion, and coarse dropout. Nine anti-overfitting techniques were applied simultaneously — including transfer learning with frozen backbone layers, dropout (50% + 25%), batch normalisation, L2 weight decay, label smoothing (0.1), cosine annealing LR scheduler, early stopping (patience=8), and gradient clipping. The model achieved 93.24% test accuracy with validation loss lower than training loss — a strong indicator of healthy generalisation.",
+          body: "The EfficientNet-B0 model was trained in Google Colab on PyTorch using two Kaggle datasets - CEW Eye Dataset (48,000 images) and Yawn Eye Dataset (5,000+ images across yawn/no_yawn/open/closed classes). Images were preprocessed to 64×64 grayscale and augmented with nine Albumentations techniques: horizontal flip, random brightness/contrast, Gaussian noise, rotation, blur, CLAHE, shift-scale-rotate, grid distortion, and coarse dropout. Nine anti-overfitting techniques were applied simultaneously - including transfer learning with frozen backbone layers, dropout (50% + 25%), batch normalisation, L2 weight decay, label smoothing (0.1), cosine annealing LR scheduler, early stopping (patience=8), and gradient clipping. The model achieved 93.24% test accuracy with validation loss lower than training loss - a strong indicator of healthy generalisation.",
         },
         {
           title: "Real-Time Detection Architecture",
           body: "The Flutter mobile app captures a continuous live camera stream and passes each frame to Google ML Kit Face Detection, configured with enableClassification=true (eye open probabilities), enableLandmarks=true (mouth corner positions), and enableContours=true (upper/lower lip contours for yawn ratio calculation). The detected face region is cropped and sent to the FastAPI backend, where OpenCV Haar cascades further isolate the eye region before EfficientNet-B0 predicts the class. The PERCLOS engine maintains a 30-frame sliding window computing eye closure percentage and yawn rate. A weighted score (PERCLOS × 0.7 + Yawn Rate × 0.3) determines the alert level: NORMAL (<0.20), WARNING (0.20–0.40), DANGER (0.40–0.60), CRITICAL (>0.60).",
         },
         {
-          title: "Flutter Mobile App — NexDrive Features",
+          title: "Flutter Mobile App - NexDrive Features",
           body: "The NexDrive Flutter app targets Android and iOS with a dark-themed professional UI. Key screens include: Home Dashboard with real-time safety score, trip count, alert count, and quick-start buttons; Camera Monitor with live face feed, animated PERCLOS gauge, fatigue score progress bar, colour-coded alert overlay, and Start/Stop controls; Trip History with session logs, per-trip safety scores, and alert counts; GPS Map View using geolocator showing live driver position; Emergency SOS screen with one-tap broadcast to configured contacts; Break Recommendations based on current fatigue level; and AI Voice Assistant (flutter_tts) delivering spoken safety guidance.",
         },
         {
@@ -527,7 +528,7 @@ const projects: Project[] = [
           body: "The FastAPI backend exposes five endpoints: GET /health (system status and model info), POST /predict (face image → class + confidence + PERCLOS alert level), POST /trips/record (log completed trip with duration, alerts, safe score), GET /trips (retrieve last 50 trips), GET /stats (aggregated statistics including average score, total alerts, best/worst scores). The backend applies JWT-based authentication for all endpoints, ensuring only authenticated app users can access their trip data.",
         },
       ],
-      archDiagram: `  Flutter Mobile App — NexDrive (Android / iOS)
+      archDiagram: `  Flutter Mobile App - NexDrive (Android / iOS)
   ┌──────────────────────────────────────────┐
   │  Camera Feed → Google ML Kit Face Detect │
   │  Eye Open Prob + Mouth Contour + HeadPose│
@@ -571,12 +572,12 @@ const projects: Project[] = [
     tags: ["Python", "YOLOv8", "MediaPipe", "OpenCV", "FastAPI", "Flutter", "+3"],
     githubUrl: "https://github.com/SanchilaAmavi/AI-Proctoring-System",
     detail: {
-      headline: "Automated, unbiased exam surveillance — detecting academic dishonesty in real time without human intervention.",
+      headline: "Automated, unbiased exam surveillance - detecting academic dishonesty in real time without human intervention.",
       subline: "Computer Vision · YOLOv8 · MediaPipe · Python",
       overview: [
-        "The AI Proctoring System is a comprehensive solution designed to monitor examination sessions in real-time using advanced computer vision and deep learning technologies. It analyzes live webcam feeds to monitor candidate behavior and detect potential academic dishonesty — including face absence, multiple persons, unauthorized device usage, and gaze deviation.",
-        "The system focuses on automated surveillance during online examinations by identifying suspicious activities and enabling continuous, unbiased monitoring without requiring a human proctor. MediaPipe provides real-time face detection and multi-face identification at ~95% accuracy, while YOLOv8-nano efficiently detects mobile phones, tablets, and wireless devices at ~88% accuracy — all within a 40–60ms combined latency per frame.",
-        "A Tkinter GUI dashboard presents a live video feed with detection overlays, a running total risk score, a Risk Score Over Time line graph, and an Event Type Distribution pie chart — all auto-updating during active monitoring. All events are logged to CSV with timestamps for post-examination audit and review.",
+        "The AI Proctoring System is a comprehensive solution designed to monitor examination sessions in real-time using advanced computer vision and deep learning technologies. It analyzes live webcam feeds to monitor candidate behavior and detect potential academic dishonesty - including face absence, multiple persons, unauthorized device usage, and gaze deviation.",
+        "The system focuses on automated surveillance during online examinations by identifying suspicious activities and enabling continuous, unbiased monitoring without requiring a human proctor. MediaPipe provides real-time face detection and multi-face identification at ~95% accuracy, while YOLOv8-nano efficiently detects mobile phones, tablets, and wireless devices at ~88% accuracy - all within a 40–60ms combined latency per frame.",
+        "A Tkinter GUI dashboard presents a live video feed with detection overlays, a running total risk score, a Risk Score Over Time line graph, and an Event Type Distribution pie chart - all auto-updating during active monitoring. All events are logged to CSV with timestamps for post-examination audit and review.",
       ],
       highlights: [
         { icon: "🎯", title: "MediaPipe Face Detection",    desc: "Real-time face detection and tracking at ~95% accuracy. Detects missing faces, multiple persons, and off-angle presence for natural monitoring." },
@@ -600,7 +601,7 @@ const projects: Project[] = [
       sections: [
         {
           title: "Detection Architecture",
-          body: "The system runs two parallel detection pipelines on every captured frame. MediaPipe Face Detection (min_detection_confidence=0.7) identifies face presence, count, and position — flagging No Face Detected, Multiple Faces, and off-angle gaze. YOLOv8-nano (yolov8n.pt, 59 MB) simultaneously scans for object classes including mobile phones and tablets, issuing Phone Detected events. Both pipelines feed into the Risk Assessment Engine which classifies the event, applies a configurable risk multiplier, accumulates the session score, and triggers the alert layer if the threshold is exceeded.",
+          body: "The system runs two parallel detection pipelines on every captured frame. MediaPipe Face Detection (min_detection_confidence=0.7) identifies face presence, count, and position - flagging No Face Detected, Multiple Faces, and off-angle gaze. YOLOv8-nano (yolov8n.pt, 59 MB) simultaneously scans for object classes including mobile phones and tablets, issuing Phone Detected events. Both pipelines feed into the Risk Assessment Engine which classifies the event, applies a configurable risk multiplier, accumulates the session score, and triggers the alert layer if the threshold is exceeded.",
         },
         {
           title: "Dashboard & Analytics",
@@ -615,7 +616,7 @@ const projects: Project[] = [
           body: "All detection events are written to proctoring_log.csv with three columns: Timestamp (ISO 8601), Event (NO FACE DETECTED / PHONE DETECTED / MULTIPLE FACES), and Risk Score (per-event value). Multi-session support writes to separate log files per session. The Exit & Save Logs control triggers a graceful save of the complete session before closing.",
         },
       ],
-      archDiagram: `Input Layer (Webcam Feed — OpenCV 640×480 @ 30 FPS)
+      archDiagram: `Input Layer (Webcam Feed - OpenCV 640×480 @ 30 FPS)
          ↓
 ┌──────────────────────┐   ┌──────────────────────┐
 │   MediaPipe Face     │   │   YOLOv8-nano        │
@@ -649,7 +650,7 @@ const projects: Project[] = [
     year: "2025",
     category: "Robotics",
     name: "Mars Robot",
-    tagline: "Autonomous Competition Robot — SLRC-Inspired Challenge",
+    tagline: "Autonomous Competition Robot - SLRC-Inspired Challenge",
     fieldLine: "Robotics · Embedded Systems · Sensor Fusion · Mechanical Design",
     shortDesc:
       "Autonomous robot for SLRC-inspired competition tasks: grid navigation, obstacle avoidance, ramp climbing, barcode scanning and intelligent potato sorting. ESP32-S3, sensor fusion, SolidWorks chassis, 3D-printed arm.",
@@ -657,16 +658,16 @@ const projects: Project[] = [
     tags: ["ESP32-S3", "TB6612FNG", "MPU6050", "TCS34725", "SolidWorks", "PID", "+3"],
     githubUrl: "https://github.com/SanchilaAmavi/mars-robot-challenge",
     detail: {
-      headline: "A fully autonomous robot tackling grid navigation, ramp climbing, and barcode-guided sorting — zero human input from start to finish.",
+      headline: "A fully autonomous robot tackling grid navigation, ramp climbing, and barcode-guided sorting - zero human input from start to finish.",
       subline: "Robotics · Embedded C++ · Sensor Fusion · Mechanical Design",
       teamImage: "/images/marsrobot team.jpg",
       overview: [
         "As part of the Microprocessors, Microcontrollers and Embedded Systems (ET2223) module, our team designed and built a fully autonomous mobile robot for a competitive challenge inspired by the Sri Lankan Robotics Challenge (SLRC 2025 – University Category), organised by the University of Moratuwa.",
-        "The Mars Robot Challenge: Greenhouse Survival Edition simulates greenhouse operations on Mars. The robot must navigate a 6×4 grid to collect potatoes, cross a muddy obstacle course, climb and descend a 20° ramp, scan a binary barcode, and sort good/bad potatoes into the correct baskets — all in a single autonomous run without any human input.",
+        "The Mars Robot Challenge: Greenhouse Survival Edition simulates greenhouse operations on Mars. The robot must navigate a 6×4 grid to collect potatoes, cross a muddy obstacle course, climb and descend a 20° ramp, scan a binary barcode, and sort good/bad potatoes into the correct baskets - all in a single autonomous run without any human input.",
         "The project demanded tight integration of electronics, embedded software, control algorithms, and mechanical design. A single state machine drives three sequential competition tasks, fusing data from IR, ultrasonic, IMU, and colour sensors in real time on the ESP32-S3.",
       ],
       highlights: [
-        { icon: "🧠", title: "Single FSM — Three Tasks",       desc: "One finite state machine takes the robot through grid navigation, muddy road obstacle avoidance, ramp climbing, barcode scanning and potato sorting — zero human input once started." },
+        { icon: "🧠", title: "Single FSM - Three Tasks",       desc: "One finite state machine takes the robot through grid navigation, muddy road obstacle avoidance, ramp climbing, barcode scanning and potato sorting - zero human input once started." },
         { icon: "📡", title: "Four-Sensor Fusion",             desc: "8-channel IR array, ×3 HC-SR04 ultrasonics, MPU6050 IMU, and TCS34725 colour sensor fused in real time to drive PID line-following and obstacle-avoidance logic simultaneously." },
         { icon: "📐", title: "PID Line & Ramp Control",        desc: "Encoder-based wheel odometry with a tuned Kp/Ki/Kd PID loop for line following. MPU6050 pitch detection triggers dedicated ramp-climb and controlled-descent routines." },
         { icon: "🎨", title: "Colour & Barcode Detection",     desc: "TCS34725 detects green sticker cells in the 6×4 grid and reads a binary barcode (3 cm = 0, 6 cm = 1) to identify and sort good/bad potatoes into red/blue baskets." },
@@ -687,7 +688,7 @@ const projects: Project[] = [
       sections: [
         {
           title: "Competition Tasks",
-          body: "Task 1 — Plantation: Navigates a 6×4 grid autonomously, detecting green-sticker plant cells using TCS34725, then collecting yellow and white potatoes. Task 2 — Muddy Road & Ramp: Avoids randomly placed white-wall obstacles using three HC-SR04 ultrasonic sensors, then climbs and descends a 20° ramp (90 cm base) using MPU6050 pitch feedback. Task 3 — Collection & Sort: Reads a binary barcode (3 cm = 0, 6 cm = 1) using the IR array and TCS34725, determines good/bad potato classification, and actuates the sort-gate servo to direct potatoes into red or blue baskets.",
+          body: "Task 1 - Plantation: Navigates a 6×4 grid autonomously, detecting green-sticker plant cells using TCS34725, then collecting yellow and white potatoes. Task 2 - Muddy Road & Ramp: Avoids randomly placed white-wall obstacles using three HC-SR04 ultrasonic sensors, then climbs and descends a 20° ramp (90 cm base) using MPU6050 pitch feedback. Task 3 - Collection & Sort: Reads a binary barcode (3 cm = 0, 6 cm = 1) using the IR array and TCS34725, determines good/bad potato classification, and actuates the sort-gate servo to direct potatoes into red or blue baskets.",
         },
         {
           title: "Electronics & Hardware",
@@ -695,7 +696,7 @@ const projects: Project[] = [
         },
         {
           title: "Mechanical Design & Fabrication",
-          body: "The chassis frame was designed in SolidWorks and laser-cut from acrylic sheet. Custom 3D-printed PLA brackets mount the TT motors and servo motors precisely to the chassis. The robotic arm — with shoulder, elbow, and gripper joints — was fully self-designed and 3D-printed for fast iteration between competition runs.",
+          body: "The chassis frame was designed in SolidWorks and laser-cut from acrylic sheet. Custom 3D-printed PLA brackets mount the TT motors and servo motors precisely to the chassis. The robotic arm - with shoulder, elbow, and gripper joints - was fully self-designed and 3D-printed for fast iteration between competition runs.",
         },
         {
           title: "Software & Control Architecture",
@@ -726,7 +727,7 @@ const projects: Project[] = [
   },
 
   // ── 06 ROSCO'25 ──────────────────────────────────────────────────────────
-  // FIX: removed "Lankamesh | LoRa Based" prefix — completely wrong tagline
+  // FIX: removed "Lankamesh | LoRa Based" prefix - completely wrong tagline
   {
     id: "rosco25",
     number: "06",
@@ -742,17 +743,17 @@ const projects: Project[] = [
     tags: ["ESP32-S3", "VL53L0X", "IR Sensors", "MPU6050", "PID", "+2"],
     githubUrl: "https://github.com/SanchilaAmavi/ROSCO25-Team_Botrix-Robot",
     detail: {
-      headline: "Team Botrix at ROSCO'25 — autonomous line, wall following and ramp navigation built with IMechE KDU.",
+      headline: "Team Botrix at ROSCO'25 - autonomous line, wall following and ramp navigation built with IMechE KDU.",
       subline: "Robotics · Embedded C++ · PID Control · SolidWorks",
       teamImage: "/images/Rosco Competition.jpg",
       overview: [
         "ROSCO'25 is a robotics competition organised by the Institution of Mechanical Engineers (IMechE) Student Chapter of KDU in collaboration with the Electronics, Robotics and Innovations Club (ERIC) of KDU. As Team Botrix, we designed and built a fully autonomous mobile robot to complete a series of progressive challenges.",
         "The robot was required to complete four sequential tasks in a single autonomous run: line following, wall following, advanced line following with intersections, and ramp riding. Each task demanded precise sensor fusion and reliable state-machine transitions without any human intervention.",
-        "The mechanical and electronic system was designed end-to-end — from SolidWorks chassis layout to custom 3D-printed brackets, laser-cut acrylic structure, and a tuned PID firmware stack running on ESP32-S3.",
+        "The mechanical and electronic system was designed end-to-end - from SolidWorks chassis layout to custom 3D-printed brackets, laser-cut acrylic structure, and a tuned PID firmware stack running on ESP32-S3.",
       ],
       highlights: [
-        { icon: "🤖", title: "Fully Autonomous — Four Tasks",    desc: "Line following, wall following, advanced line following with intersections, and ramp riding — all completed in a single uninterrupted autonomous run." },
-        { icon: "📡", title: "VL53L0X ToF Wall Detection",       desc: "Time-of-flight distance sensors provide precise wall clearance measurement for wall-following mode — far more accurate than ultrasonic at close range." },
+        { icon: "🤖", title: "Fully Autonomous - Four Tasks",    desc: "Line following, wall following, advanced line following with intersections, and ramp riding - all completed in a single uninterrupted autonomous run." },
+        { icon: "📡", title: "VL53L0X ToF Wall Detection",       desc: "Time-of-flight distance sensors provide precise wall clearance measurement for wall-following mode - far more accurate than ultrasonic at close range." },
         { icon: "📏", title: "8-Bit IR Array Line Following",    desc: "8-channel reflective IR sensor array feeds the PID controller for accurate centre-line tracking across straight runs and intersections." },
         { icon: "🔄", title: "MPU6050 Ramp Stabilisation",      desc: "Gyroscope feedback detects incline and adjusts motor power to maintain stable ramp ascent and controlled descent." },
         { icon: "⚙️", title: "TB6612FNG Dual Motor Driver",     desc: "PWM-controlled dual H-bridge drives two 6V 600 RPM N20 DC gear motors with smooth speed transitions for precise manoeuvring." },
@@ -772,7 +773,7 @@ const projects: Project[] = [
       sections: [
         {
           title: "Competition Tasks",
-          body: "Task 1 — Line Following: Robot tracks a black line on white surface using the 8-channel IR array and PID controller. Task 2 — Wall Following: Switches to VL53L0X ToF sensors to maintain a fixed lateral distance from the wall surface. Task 3 — Advanced Line Following: Handles intersections and branching paths using sensor array logic to decide correct path direction. Task 4 — Ramp Riding: Detects ramp incline via MPU6050 pitch, boosts motor power for ascent, then applies controlled deceleration on descent.",
+          body: "Task 1 - Line Following: Robot tracks a black line on white surface using the 8-channel IR array and PID controller. Task 2 - Wall Following: Switches to VL53L0X ToF sensors to maintain a fixed lateral distance from the wall surface. Task 3 - Advanced Line Following: Handles intersections and branching paths using sensor array logic to decide correct path direction. Task 4 - Ramp Riding: Detects ramp incline via MPU6050 pitch, boosts motor power for ascent, then applies controlled deceleration on descent.",
         },
         {
           title: "Electronics & Hardware",
@@ -821,26 +822,26 @@ const projects: Project[] = [
     tagline: "Smart Measuring Cup for the Visually Impaired",
     fieldLine: "Assistive Tech · IoT · Embedded Systems · Inclusive Design",
     shortDesc:
-      "An accessible smart measuring cup designed for visually impaired users — combining audio feedback, tactile sensing, and real-time volume detection to enable independent, accurate cooking and baking.",
+      "An accessible smart measuring cup designed for visually impaired users - combining audio feedback, tactile sensing, and real-time volume detection to enable independent, accurate cooking and baking.",
     coverImage: "",
     tags: ["ESP32", "Capacitive Sensor", "DFPlayer Mini", "Embedded C++", "+2"],
     githubUrl: "https://github.com/SanchilaAmavi/FeelFill",
     detail: {
-      headline: "Restoring kitchen independence for 39 million blind individuals — one accurate pour at a time.",
+      headline: "Restoring kitchen independence for 39 million blind individuals - one accurate pour at a time.",
       subline: "Assistive Technology · IoT · Embedded Systems · Inclusive Design",
       overview: [
-        "Globally, an estimated 285 million people live with visual impairment, of whom 39 million are fully blind. Among the most persistent challenges these individuals face are routine household tasks — such as measuring liquids accurately during cooking, medicine preparation, or beverage making. The absence of a visual reference forces reliance on another person or risking dangerous measurement errors.",
+        "Globally, an estimated 285 million people live with visual impairment, of whom 39 million are fully blind. Among the most persistent challenges these individuals face are routine household tasks - such as measuring liquids accurately during cooking, medicine preparation, or beverage making. The absence of a visual reference forces reliance on another person or risking dangerous measurement errors.",
         "FeelFill is a low-cost, non-contact, capacitive liquid-level sensing device that provides real-time multi-modal feedback through voice announcements and haptic vibration to guide a visually impaired user to pour the exact required volume. The device is self-contained, battery-powered, and designed to clip onto any standard cup, making it universally applicable and affordable.",
-        "Developed through the Design Thinking framework — grounded in a specific persona (Chamari Perera, 34, a fully blind home-maker from Galle) and validated by empathy research — the design satisfies all six stated design criteria: no visual display, non-contact sensing, universal cup fit, battery operation, under 8,000 LKR unit cost, and no smartphone or digital literacy required.",
+        "Developed through the Design Thinking framework - grounded in a specific persona (Chamari Perera, 34, a fully blind home-maker from Galle) and validated by empathy research - the design satisfies all six stated design criteria: no visual display, non-contact sensing, universal cup fit, battery operation, under 8,000 LKR unit cost, and no smartphone or digital literacy required.",
       ],
       highlights: [
-        { icon: "🎙️", title: "Voice Feedback at 4 Levels",      desc: "DFPlayer Mini + 8Ω speaker announces fill levels at 25%, 50%, 75%, and 100% — giving real-time audio guidance throughout the pour." },
-        { icon: "📳", title: "Haptic Near-Full Warning",         desc: "Vibration motor fires at 95% capacity — giving the user time to stop pouring before overflow, even in noisy kitchen environments." },
-        { icon: "🔬", title: "Non-Contact Capacitive Sensing",  desc: "External copper-tape electrode strip detects liquid level through the cup wall — no liquid contact required, fully hygienic and safe with hot liquids." },
+        { icon: "🎙️", title: "Voice Feedback at 4 Levels",      desc: "DFPlayer Mini + 8Ω speaker announces fill levels at 25%, 50%, 75%, and 100% - giving real-time audio guidance throughout the pour." },
+        { icon: "📳", title: "Haptic Near-Full Warning",         desc: "Vibration motor fires at 95% capacity - giving the user time to stop pouring before overflow, even in noisy kitchen environments." },
+        { icon: "🔬", title: "Non-Contact Capacitive Sensing",  desc: "External copper-tape electrode strip detects liquid level through the cup wall - no liquid contact required, fully hygienic and safe with hot liquids." },
         { icon: "🔌", title: "ESP32 + DFPlayer Architecture",   desc: "ESP32 microcontroller reads capacitive ADC, applies threshold logic, and drives DFPlayer Mini voice module and vibration motor through UART and GPIO." },
         { icon: "🔋", title: "8+ Hour Battery Life",            desc: "18650 Li-ion 3.7V / 3000 mAh cell with USB-C charging via TP4056. Deep-sleep between pours reduces idle current to under 1 mA." },
         { icon: "📐", title: "Universal Cup Fit",               desc: "Adjustable silicone sleeve fits cups from 50 mm to 100 mm outer diameter. Snap-fit ABS enclosure requires no tools for attachment." },
-        { icon: "💰", title: "Affordable — Under 8,000 LKR",   desc: "Full BOM cost estimated at 5,100–7,800 LKR per unit. Target batch production cost drops to ~2,500 LKR at 500 units." },
+        { icon: "💰", title: "Affordable - Under 8,000 LKR",   desc: "Full BOM cost estimated at 5,100–7,800 LKR per unit. Target batch production cost drops to ~2,500 LKR at 500 units." },
         { icon: "♿", title: "Inclusive Design",                desc: "No screen, no smartphone, no literacy required. Single Start button operation. Non-stigmatising neutral clip-on form for public and home use." },
       ],
       gallerySections: FeelFillGallery,
@@ -855,7 +856,7 @@ const projects: Project[] = [
       sections: [
         {
           title: "Problem & Design Thinking",
-          body: "Standard measuring cups provide only visual graduation marks — useless for blind users. Existing assistive solutions (talking scales, Braille labels) do not solve dynamic pouring in real time. Finger dipping — the most common workaround — is unhygienic and dangerous with hot liquids. The FeelFill design was developed through a structured Design Thinking process: Empathize (persona interviews with Chamari Perera), Define (problem statement focused on real-time non-contact measurement), Ideate (three concepts evaluated), and Prototype (capacitive clip-on selected as the only concept satisfying all six criteria simultaneously).",
+          body: "Standard measuring cups provide only visual graduation marks - useless for blind users. Existing assistive solutions (talking scales, Braille labels) do not solve dynamic pouring in real time. Finger dipping - the most common workaround - is unhygienic and dangerous with hot liquids. The FeelFill design was developed through a structured Design Thinking process: Empathize (persona interviews with Chamari Perera), Define (problem statement focused on real-time non-contact measurement), Ideate (three concepts evaluated), and Prototype (capacitive clip-on selected as the only concept satisfying all six criteria simultaneously).",
         },
         {
           title: "System Architecture",
@@ -867,7 +868,7 @@ const projects: Project[] = [
         },
         {
           title: "Design for Manufacture & Sustainability",
-          body: "Design for Manufacturability: single two-layer PCB (100 mm × 60 mm), SMD components, copper tape electrode — no specialist tooling. Design for Assembly: snap-fit ABS shell with no screws; adjustable silicone band fits any cup in under 3 minutes. Design for Cost: first prototype 5,100–7,800 LKR; batch of 500 units targets ~2,500 LKR unit cost. Design for Reliability: non-contact sensing eliminates corrosion; MTBF >100,000 cycles; firmware updatable via USB. Sustainability: ABS/recycled PLA enclosure, RoHS-compliant PCB, modular component replacement, deep-sleep idle mode.",
+          body: "Design for Manufacturability: single two-layer PCB (100 mm × 60 mm), SMD components, copper tape electrode - no specialist tooling. Design for Assembly: snap-fit ABS shell with no screws; adjustable silicone band fits any cup in under 3 minutes. Design for Cost: first prototype 5,100–7,800 LKR; batch of 500 units targets ~2,500 LKR unit cost. Design for Reliability: non-contact sensing eliminates corrosion; MTBF >100,000 cycles; firmware updatable via USB. Sustainability: ABS/recycled PLA enclosure, RoHS-compliant PCB, modular component replacement, deep-sleep idle mode.",
         },
       ],
       archDiagram: `  18650 Li-ion → TP4056 → 5V Boost → 3.3V LDO
@@ -980,7 +981,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
         </div>
       )}
 
-      {/* Image grid — larger cells, caption always visible */}
+      {/* Image grid - larger cells, caption always visible */}
       {hasImages && (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {current.images.map((img, i) => {
@@ -1023,7 +1024,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
                     <div className="w-14 h-14 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center text-white text-2xl shadow-lg group-hover:scale-110 transition-transform">▶</div>
                   </div>
                 )}
-                {/* Caption — always visible at bottom, stronger gradient */}
+                {/* Caption - always visible at bottom, stronger gradient */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pt-8 pb-2.5 px-3">
                   <p className="text-white text-[0.65rem] leading-snug font-medium drop-shadow-sm">{img.caption}</p>
                 </div>
@@ -1071,7 +1072,7 @@ function SectionedGallery({ sections }: { sections: GallerySection[] }) {
   );
 }
 
-// ─── Project Detail Modal (dark-themed — matches the rest of the site) ───────
+// ─── Project Detail Modal (dark-themed - matches the rest of the site) ───────
 function ProjectModal({ project, onClose }: { project: Project; onClose: () => void }) {
   const d = project.detail!;
   const [tab, setTab] = useState<"overview" | "gallery" | "tech">("overview");
@@ -1181,7 +1182,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                 </div>
               )}
 
-              {/* Overview + image — each paragraph gets a numbered accent so the
+              {/* Overview + image - each paragraph gets a numbered accent so the
                   "long description" reads as a structured narrative, not a wall of text */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="md:col-span-2">
@@ -1212,7 +1213,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
                         <img src={d.creatorImage} alt="Project creator" className="w-full object-cover" style={{ aspectRatio: "3/4" }}
                           onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
                       </div>
-                      <p className="text-[0.62rem] text-center font-medium text-[var(--text-muted)]">Sanchila Amavi — Creator &amp; Engineer</p>
+                      <p className="text-[0.62rem] text-center font-medium text-[var(--text-muted)]">Sanchila Amavi - Creator &amp; Engineer</p>
                     </>
                   )}
                 </div>
@@ -1299,7 +1300,7 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
   const extra       = project.tags.find(t => t.startsWith("+"));
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Subtle 3D tilt that tracks the cursor — reads as "inspecting a board",
+  // Subtle 3D tilt that tracks the cursor - reads as "inspecting a board",
   // not a generic hover lift. Clamped to a few degrees so it stays tasteful.
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = cardRef.current;
@@ -1338,7 +1339,7 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
         <span className="font-mono text-[0.58rem] text-[var(--text-subtle)]">{project.number}</span>
       </div>
 
-      {/* Cover image — slightly taller for better visibility */}
+      {/* Cover image - slightly taller for better visibility */}
       <div className="mx-5 rounded-xl overflow-hidden flex-shrink-0 relative group/img"
         style={{ height: "160px", background: "linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 8%, var(--surface)))" }}>
         {project.coverImage ? (
