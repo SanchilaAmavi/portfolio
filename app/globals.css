@@ -836,6 +836,339 @@ body::before {
   }
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   EXPANDED VISUAL SYSTEM — extra color, motion & graphic effects
+   Everything below is additive: it introduces a wider hue range (cyan, pink,
+   gold, teal, coral) and a set of signature effects you can sprinkle on top
+   of the existing components. Nothing here overrides what's above.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* Extra accent hues — use sparingly, as highlights, not backgrounds */
+  --cyan:         #22d3ee;
+  --cyan-dim:     rgba(34, 211, 238, 0.10);
+
+  --pink:         #f472b6;
+  --pink-dim:     rgba(244, 114, 182, 0.10);
+
+  --gold:         #fde047;
+  --gold-dim:     rgba(253, 224, 71, 0.10);
+
+  --teal:         #2dd4bf;
+  --teal-dim:     rgba(45, 212, 191, 0.10);
+
+  --coral:        #fb923c;
+  --coral-dim:    rgba(251, 146, 60, 0.10);
+
+  /* Full-spectrum gradient used by rainbow/aurora utilities */
+  --spectrum: linear-gradient(
+    115deg,
+    var(--accent) 0%,
+    var(--cyan) 16%,
+    var(--teal) 32%,
+    var(--green) 48%,
+    var(--gold) 62%,
+    var(--coral) 74%,
+    var(--rose) 86%,
+    var(--pink) 94%,
+    var(--violet) 100%
+  );
+}
+
+/* ─── NEW KEYFRAMES ────────────────────────────────────────────────────────── */
+@keyframes aurora-drift {
+  0%   { background-position: 0% 50%, 100% 30%, 50% 100%; }
+  50%  { background-position: 100% 50%, 0% 70%, 60% 0%; }
+  100% { background-position: 0% 50%, 100% 30%, 50% 100%; }
+}
+@keyframes hue-cycle {
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+@keyframes spectrum-sweep {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.15; transform: scale(0.7); }
+  50%       { opacity: 1;    transform: scale(1.15); }
+}
+@keyframes ripple-out {
+  0%   { transform: scale(0);   opacity: 0.45; }
+  100% { transform: scale(4.2); opacity: 0; }
+}
+@keyframes flip-in {
+  from { transform: rotateY(180deg); }
+  to   { transform: rotateY(0deg); }
+}
+@keyframes color-pop-in {
+  0%   { opacity: 0; transform: translateY(18px) scale(0.92); filter: saturate(0.4); }
+  60%  { filter: saturate(1.3); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: saturate(1); }
+}
+@keyframes bar-fill-glow {
+  from { width: 0; filter: brightness(1); }
+  to   { width: var(--bar-w, 100%); filter: brightness(1.15); }
+}
+@keyframes chip-bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25%       { transform: translateY(-3px) rotate(-2deg); }
+  75%       { transform: translateY(2px) rotate(2deg); }
+}
+@keyframes glow-orbit-color {
+  0%   { box-shadow: 0 0 24px 2px rgba(56,189,248,0.35); }
+  25%  { box-shadow: 0 0 24px 2px rgba(167,139,250,0.35); }
+  50%  { box-shadow: 0 0 24px 2px rgba(244,114,182,0.35); }
+  75%  { box-shadow: 0 0 24px 2px rgba(253,224,71,0.30); }
+  100% { box-shadow: 0 0 24px 2px rgba(56,189,248,0.35); }
+}
+
+@layer components {
+
+  /* ── Aurora mesh background — swap in behind a hero or full section for a
+       living, colorful backdrop instead of a flat dark fill ── */
+  .aurora-mesh {
+    position: relative;
+    isolation: isolate;
+  }
+  .aurora-mesh::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(56,189,248,0.20), transparent 45%),
+      radial-gradient(circle at 80% 20%, rgba(244,114,182,0.16), transparent 45%),
+      radial-gradient(circle at 50% 85%, rgba(52,211,153,0.16), transparent 50%);
+    background-size: 140% 140%, 130% 130%, 150% 150%;
+    filter: blur(60px);
+    animation: aurora-drift 18s ease-in-out infinite;
+  }
+
+  /* ── Spectrum text — a fuller rainbow pass of .gradient-text, for the one
+       headline word you want to feel like the loudest thing on the page ── */
+  .gradient-text-spectrum {
+    background: var(--spectrum);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: spectrum-sweep 6s linear infinite;
+  }
+
+  /* ── Rainbow animated border — wrap any card/panel for a festive outline ── */
+  .rainbow-border {
+    position: relative;
+    border-radius: 1.1rem;
+    z-index: 0;
+  }
+  .rainbow-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    border-radius: 1.2rem;
+    background: var(--spectrum);
+    background-size: 300% 300%;
+    animation: spectrum-sweep 5s linear infinite;
+    opacity: 0.9;
+  }
+
+  /* ── Holographic sheen — a soft color sweep across glass/cards on hover,
+       like light catching foil ── */
+  .holo-sheen { position: relative; overflow: hidden; }
+  .holo-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgba(56,189,248,0.16) 35%,
+      rgba(244,114,182,0.16) 45%,
+      rgba(253,224,71,0.14) 55%,
+      rgba(52,211,153,0.16) 65%,
+      transparent 80%
+    );
+    background-size: 250% 250%;
+    background-position: -100% -100%;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .holo-sheen:hover::after {
+    opacity: 1;
+    animation: spectrum-sweep 1.6s ease forwards;
+  }
+
+  /* ── Spotlight card — set --mx / --my (0–100) from pointer position in JS
+       to move a soft colored glow with the cursor across a card surface ── */
+  .spotlight-card {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0;
+    background: radial-gradient(
+      280px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(56,189,248,0.14),
+      rgba(167,139,250,0.08) 45%,
+      transparent 70%
+    );
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .spotlight-card:hover::before { opacity: 1; }
+
+  /* ── Multi-color orbiting glow — for a hero portrait ring, a featured
+       project card, or a "currently building" badge ── */
+  .glow-orbit { animation: glow-orbit-color 6s ease-in-out infinite; }
+
+  /* ── Sparkle field — scatter of twinkling dots behind a heading or CTA.
+       Purely CSS: several radial dots via box-shadow, each on its own delay ── */
+  .sparkle-field { position: relative; }
+  .sparkle-field::before,
+  .sparkle-field::after {
+    content: "";
+    position: absolute;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow:
+      36px -18px 0 0 var(--cyan),
+      -44px 12px 0 0 var(--pink),
+      70px 20px 0 0 var(--green),
+      -70px -22px 0 0 var(--violet),
+      110px -8px 0 0 var(--coral);
+    animation: twinkle 2.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .sparkle-field::before { top: 10%; left: 12%; animation-delay: 0s; }
+  .sparkle-field::after  { bottom: 8%; right: 14%; animation-delay: 1.1s; }
+
+  /* ── Hue-cycling icon/image accent — subtle color drift for a small mark,
+       not for full images (keep it to logos, icons, tiny accents) ── */
+  .hue-cycle { animation: hue-cycle 8s linear infinite; }
+
+  /* ── Colorful skill bar fill — pair with a wrapper that sets --bar-w ── */
+  .skill-bar-track {
+    width: 100%;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, var(--accent), var(--cyan), var(--green));
+    animation: bar-fill-glow 1.1s cubic-bezier(0.22,1,0.36,1) forwards;
+  }
+
+  /* ── Chip / pill that bobs gently — nice for a small "open to work" tag ── */
+  .chip-bob { animation: chip-bob 3.4s ease-in-out infinite; }
+
+  /* ── Ripple on click — put position:relative + overflow:hidden on the
+       target, and toggle a ::after via a JS-appended <span class="ripple">
+       positioned with --rx / --ry, OR use this simpler ambient variant that
+       ripples from center automatically ── */
+  .ripple-ambient { position: relative; overflow: hidden; }
+  .ripple-ambient::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 12px; height: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 50%;
+    background: rgba(56,189,248,0.35);
+    animation: ripple-out 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  /* ── 3D flip card — front/back panels for a project card that reveals
+       tech stack or results on hover/focus ──
+       Markup:
+       <div class="flip-card">
+         <div class="flip-card-inner">
+           <div class="flip-card-front">...</div>
+           <div class="flip-card-back">...</div>
+         </div>
+       </div>                                                                 */
+  .flip-card { perspective: 1200px; }
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    transform-style: preserve-3d;
+  }
+  .flip-card:hover .flip-card-inner,
+  .flip-card:focus-within .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 1.1rem;
+  }
+  .flip-card-back { transform: rotateY(180deg); }
+
+  /* ── Entrance animation with a color "pop" — use instead of plain
+       .animate-fade-up when you want the reveal to feel more vivid ── */
+  .animate-color-pop { animation: color-pop-in 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+
+  /* ── Section-scoped color washes — alternate these on successive sections
+       so the page reads as a deliberate color journey, not one flat tone ── */
+  .section-wash-cyan {
+    background: radial-gradient(circle at 15% 20%, rgba(34,211,238,0.10), transparent 35%),
+                radial-gradient(circle at 85% 80%, rgba(167,139,250,0.08), transparent 40%),
+                linear-gradient(180deg, #040d12 0%, #04070f 100%);
+  }
+  .section-wash-rose {
+    background: radial-gradient(circle at 80% 15%, rgba(251,113,133,0.10), transparent 35%),
+                radial-gradient(circle at 15% 85%, rgba(253,224,71,0.07), transparent 40%),
+                linear-gradient(180deg, #0c0710 0%, #06050d 100%);
+  }
+  .section-wash-teal {
+    background: radial-gradient(circle at 25% 80%, rgba(45,212,191,0.10), transparent 38%),
+                radial-gradient(circle at 75% 20%, rgba(56,189,248,0.08), transparent 36%),
+                linear-gradient(180deg, #04100d 0%, #04070c 100%);
+  }
+
+  /* ── Extra tag colors to match the wider palette ── */
+  .tag-cyan  { background: var(--cyan-dim);  border-color: rgba(34,211,238,0.24);  color: var(--cyan); }
+  .tag-pink  { background: var(--pink-dim);  border-color: rgba(244,114,182,0.24); color: var(--pink); }
+  .tag-gold  { background: var(--gold-dim);  border-color: rgba(253,224,71,0.24);  color: var(--gold); }
+  .tag-teal  { background: var(--teal-dim);  border-color: rgba(45,212,191,0.24);  color: var(--teal); }
+  .tag-coral { background: var(--coral-dim); border-color: rgba(251,146,60,0.24);  color: var(--coral); }
+}
+
+/* ─── REDUCED MOTION (expanded) ────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-mesh::before,
+  .gradient-text-spectrum,
+  .rainbow-border::before,
+  .holo-sheen::after,
+  .glow-orbit,
+  .sparkle-field::before,
+  .sparkle-field::after,
+  .hue-cycle,
+  .skill-bar-fill,
+  .chip-bob,
+  .ripple-ambient::after,
+  .flip-card-inner {
+    animation: none !important;
+    transition: none !important;
+  }
+  .flip-card-inner { transform: none !important; }
+}
+
 /* ─── REDUCED MOTION ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
