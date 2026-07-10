@@ -1169,6 +1169,221 @@ body::before {
   .flip-card-inner { transform: none !important; }
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   PROFESSIONAL MOTION SYSTEM — restrained floating, depth & micro-interactions
+   Calmer than the spectrum/rainbow set above: single or two-tone accents,
+   low opacity, slow timing. This is the set to reach for on a resume-facing
+   portfolio where "polished" matters more than "loud".
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── NEW KEYFRAMES ────────────────────────────────────────────────────────── */
+@keyframes float-tiny {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-9px) rotate(0.6deg); }
+}
+@keyframes float-large {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%       { transform: translateY(-16px) rotate(-0.8deg); }
+}
+@keyframes float-drift-x {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(6px); }
+}
+@keyframes mesh-drift-subtle {
+  0%, 100% { background-position: 0% 0%, 100% 100%; }
+  50%       { background-position: 8% 6%, 92% 94%; }
+}
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes letter-rise {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes underline-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes elevate-breathe {
+  0%, 100% { box-shadow: 0 8px 24px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.02) inset; }
+  50%       { box-shadow: 0 18px 44px rgba(0,0,0,0.38), 0 1px 0 rgba(255,255,255,0.03) inset; }
+}
+@keyframes accent-blink-soft {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1; }
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: -150% 0; }
+  100% { background-position:  150% 0; }
+}
+@keyframes reveal-mask-wipe {
+  from { clip-path: inset(0 0 0 100%); }
+  to   { clip-path: inset(0 0 0 0%); }
+}
+@keyframes focus-ring-pop {
+  from { box-shadow: 0 0 0 0 rgba(56,189,248,0.45); }
+  to   { box-shadow: 0 0 0 5px rgba(56,189,248,0); }
+}
+
+@layer components {
+
+  /* ── Floating utilities, three weights so nested elements don't sync ──
+       Apply -tiny to small icons/badges, -medium to cards, -large to bigger
+       portrait/illustration blocks. Stagger with animation-delay inline. */
+  .float-tiny   { animation: float-tiny   3s   ease-in-out infinite; }
+  .float-medium { animation: float-medium 5.5s ease-in-out infinite; }
+  .float-large  { animation: float-large  7.5s ease-in-out infinite; }
+  .float-drift  { animation: float-drift-x 6s  ease-in-out infinite; }
+
+  /* ── Professional glass panel — quieter than .card-glass, for nav bars,
+       filter pills, and modal chrome that should recede behind content ── */
+  .panel-glass-pro {
+    background: rgba(12, 20, 34, 0.62);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* ── Subtle two-tone mesh — a calmer alternative to .aurora-mesh, best
+       for a hero backdrop on a professional/recruiter-facing page ── */
+  .mesh-pro {
+    position: relative;
+    isolation: isolate;
+  }
+  .mesh-pro::before {
+    content: "";
+    position: absolute;
+    inset: -15%;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(56,189,248,0.14), transparent 42%),
+      radial-gradient(circle at 88% 82%, rgba(167,139,250,0.10), transparent 46%);
+    background-size: 120% 120%, 120% 120%;
+    filter: blur(70px);
+    animation: mesh-drift-subtle 16s ease-in-out infinite;
+  }
+
+  /* ── Elevation / breathing shadow — apply to a hero card or CTA panel you
+       want to feel gently alive without any color motion ── */
+  .elevate-breathe { animation: elevate-breathe 4.5s ease-in-out infinite; }
+
+  /* ── Soft accent pulse for a status dot / "available for work" indicator,
+       calmer than .live-dot's ping ring ── */
+  .accent-pulse-soft { animation: accent-blink-soft 2.4s ease-in-out infinite; }
+
+  /* ── Tech-stack / logo marquee — infinite horizontal scroll.
+       Markup: wrap two identical copies of your logo row in .marquee-track
+       so the loop is seamless:
+       <div class="marquee"><div class="marquee-track">
+         <LogoRow /><LogoRow />
+       </div></div>                                                          */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    gap: 2.5rem;
+    animation: marquee-scroll 28s linear infinite;
+  }
+  .marquee:hover .marquee-track { animation-play-state: paused; }
+
+  /* ── Heading letter-rise — pair with JS that wraps each word/letter in a
+       <span style="animation-delay: {i * 0.03}s">, class goes on each span ── */
+  .letter-rise {
+    display: inline-block;
+    animation: letter-rise 0.55s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  /* ── Professional animated underline for nav links / section labels,
+       draws from left rather than the width-based .hover-underline ── */
+  .underline-draw {
+    position: relative;
+  }
+  .underline-draw::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -3px;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--accent), var(--violet));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+  }
+  .underline-draw:hover::after,
+  .underline-draw[data-active="true"]::after {
+    transform: scaleX(1);
+  }
+
+  /* ── Skeleton loading shimmer — for async content (project data, GitHub
+       stats) while it fetches, keeps the page feeling intentional ── */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--surface-2) 25%,
+      rgba(56,189,248,0.08) 37%,
+      var(--surface-2) 50%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.6s ease-in-out infinite;
+    border-radius: 0.5rem;
+  }
+
+  /* ── Directional reveal mask — a crisp wipe-in for project screenshots,
+       calmer and more "designed" than a fade ── */
+  .reveal-mask { animation: reveal-mask-wipe 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+
+  /* ── Accessible focus ring pop — pair with :focus-visible so keyboard
+       users get an intentional, on-brand focus state instead of the
+       browser default ── */
+  .focus-ring-pro:focus-visible {
+    outline: none;
+    animation: focus-ring-pop 0.5s ease-out;
+    box-shadow: 0 0 0 3px rgba(56,189,248,0.35);
+    border-radius: 0.5rem;
+  }
+
+  /* ── Magnetic button lift — a quieter alternative to .btn-primary's
+       gradient shift, for secondary CTAs that shouldn't compete ── */
+  .btn-lift {
+    transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease;
+  }
+  .btn-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  }
+  .btn-lift:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* ── Parallax layer — set --parallax-y from a scroll listener in JS
+       (e.g. rate * scrollY) for a slow-moving background layer behind
+       hero content; keep the multiplier small (0.1–0.25) ── */
+  .parallax-layer {
+    transform: translateY(var(--parallax-y, 0px));
+    will-change: transform;
+  }
+}
+
+/* ─── REDUCED MOTION (professional set) ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .float-tiny, .float-medium, .float-large, .float-drift,
+  .mesh-pro::before, .elevate-breathe, .accent-pulse-soft,
+  .marquee-track, .letter-rise, .skeleton, .reveal-mask,
+  .focus-ring-pro:focus-visible {
+    animation: none !important;
+  }
+  .parallax-layer { transform: none !important; }
+}
+
 /* ─── REDUCED MOTION ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
