@@ -1450,6 +1450,113 @@ body::before {
   .scroll-fade-line { opacity: 1 !important; filter: none !important; }
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   BACKGROUND GRAPHIC LAYER + CARD FLOATING
+   Pairs with components/BackgroundFX.tsx below. Pure-CSS card floating
+   that auto-desyncs neighbors (no JS/inline delays needed) plus a layered
+   blob + grid-glow backdrop system for section/hero backgrounds.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes bg-blob-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(60px, -40px) scale(1.12); }
+}
+@keyframes bg-blob-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-50px, 50px) scale(0.94); }
+}
+@keyframes bg-blob-drift-c {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(30px, 30px) scale(1.06); }
+}
+@keyframes grid-glow-pulse {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.7; }
+}
+
+@layer components {
+
+  /* ── Full-bleed background FX wrapper — place once per section/hero,
+       position:relative + overflow:hidden on the parent, this fills it ── */
+  .bg-fx {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .bg-fx__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.55;
+  }
+  .bg-fx__blob--a {
+    top: -10%; left: -8%;
+    width: 42%; height: 42%;
+    background: radial-gradient(circle, var(--accent), transparent 70%);
+    animation: bg-blob-drift-a 16s ease-in-out infinite;
+  }
+  .bg-fx__blob--b {
+    bottom: -14%; right: -10%;
+    width: 46%; height: 46%;
+    background: radial-gradient(circle, var(--violet), transparent 70%);
+    animation: bg-blob-drift-b 20s ease-in-out infinite;
+  }
+  .bg-fx__blob--c {
+    top: 35%; right: 18%;
+    width: 26%; height: 26%;
+    background: radial-gradient(circle, var(--green), transparent 70%);
+    animation: bg-blob-drift-c 14s ease-in-out infinite;
+  }
+  .bg-fx__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(56,189,248,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(56,189,248,0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 72%);
+    animation: grid-glow-pulse 6s ease-in-out infinite;
+  }
+
+  /* ── Card floating, auto-desynced — put .card-float-group on the grid
+       container and .card-float-item on each card. Odd/even children get
+       different amplitude + duration + delay so the grid never looks like
+       it's moving in lockstep. No inline styles or JS required.        ── */
+  .card-float-item {
+    animation: float-medium 6s ease-in-out infinite;
+  }
+  .card-float-group > .card-float-item:nth-child(odd) {
+    animation: float-medium 6s ease-in-out infinite;
+    animation-delay: 0s;
+  }
+  .card-float-group > .card-float-item:nth-child(even) {
+    animation: float-large 7.2s ease-in-out infinite;
+    animation-delay: 0.6s;
+  }
+  .card-float-group > .card-float-item:nth-child(3n) {
+    animation-duration: 8.4s;
+    animation-delay: 1.1s;
+  }
+  .card-float-group > .card-float-item:nth-child(4n) {
+    animation-duration: 5.4s;
+    animation-delay: 0.3s;
+  }
+  /* Pause the float on hover so hover-triggered effects (tilt, spotlight,
+     glow) read cleanly without fighting the floating transform. */
+  .card-float-item:hover { animation-play-state: paused; }
+}
+
+/* ─── REDUCED MOTION (background FX + card float) ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .bg-fx__blob--a, .bg-fx__blob--b, .bg-fx__blob--c, .bg-fx__grid,
+  .card-float-item {
+    animation: none !important;
+  }
+}
+
 /* ─── REDUCED MOTION ─────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

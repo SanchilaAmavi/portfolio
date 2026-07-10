@@ -1,6 +1,6 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
+import BackgroundFX from "../BackgroundFX";
 
 // ─── GitHub SVG Icon ──────────────────────────────────────────────────────────
 function GitHubIcon({ size = 16 }: { size?: number }) {
@@ -1469,81 +1469,87 @@ function ProjectCard({ project, onOpen, index }: { project: Project; onOpen: () 
   };
 
   return (
-    <div
-      ref={cardRef}
-      className="card circuit-corners tilt group flex flex-col cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl"
-      style={{
-        height: "440px",
-        animationDelay: `${index * 60}ms`,
-        animation: "fadeInUp 0.5s ease both",
-      }}
-      onClick={onOpen}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetTilt}
-    >
-      <div className="flex items-center justify-between px-5 pt-4 pb-3 flex-shrink-0">
-        <div className="flex items-center gap-2">
-          <span className={`text-[0.55rem] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${statusColors[project.status]}`}>{project.status}</span>
-          <span className="text-[0.58rem] font-mono text-[var(--text-subtle)]">{project.year}</span>
-        </div>
-        <span className="font-mono text-[0.58rem] text-[var(--text-subtle)] badge-float">{project.number}</span>
-      </div>
-
-      {/* Cover image - slightly taller for better visibility */}
-      <div className="mx-5 rounded-xl overflow-hidden flex-shrink-0 relative group/img"
-        style={{ height: "160px", background: "linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 8%, var(--surface)))" }}>
-        {project.coverImage ? (
-          <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
-            onError={(e) => {
-              const el = e.target as HTMLImageElement;
-              el.style.display = "none";
-              el.parentElement!.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;opacity:0.2;font-size:2.5rem;">◈</div>`;
-            }} />
-        ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 relative overflow-hidden"
-            style={{
-              backgroundImage: "linear-gradient(rgba(56,189,248,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.07) 1px, transparent 1px)",
-              backgroundSize: "14px 14px",
-            }}>
-            <span className="text-2xl opacity-50">◈</span>
-            <span className="font-mono text-[0.55rem] tracking-widest uppercase text-[var(--text-subtle)]">Concept stage</span>
+    // Outer wrapper handles the gentle floating animation (translateY via
+    // globals.css .card-float-item keyframes). The inner div keeps its own
+    // JS-driven 3D tilt (--rx/--ry) untouched — two separate transforms on
+    // two separate elements, so they never fight over the same property.
+    <div className="card-float-item h-full">
+      <div
+        ref={cardRef}
+        className="card circuit-corners tilt group flex flex-col cursor-pointer hover:border-[var(--border-hover)] hover:-translate-y-2 transition-all duration-300 hover:shadow-2xl h-full"
+        style={{
+          height: "440px",
+          animationDelay: `${index * 60}ms`,
+          animation: "fadeInUp 0.5s ease both",
+        }}
+        onClick={onOpen}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={resetTilt}
+      >
+        <div className="flex items-center justify-between px-5 pt-4 pb-3 flex-shrink-0">
+          <div className="flex items-center gap-2">
+            <span className={`text-[0.55rem] font-mono font-bold tracking-widest uppercase px-2 py-0.5 rounded-full border ${statusColors[project.status]}`}>{project.status}</span>
+            <span className="text-[0.58rem] font-mono text-[var(--text-subtle)]">{project.year}</span>
           </div>
-        )}
-        {/* Category overlay on image */}
-        <div className="absolute top-2 left-2">
-          <span className="text-[0.5rem] font-mono font-semibold px-2 py-0.5 rounded-full text-white/90"
-            style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{project.category}</span>
+          <span className="font-mono text-[0.58rem] text-[var(--text-subtle)] badge-float">{project.number}</span>
         </div>
-      </div>
 
-      <div className="flex flex-col flex-1 px-5 pt-3.5 pb-4 gap-2 min-h-0">
-        <div className="flex-shrink-0">
-          <h3 className="text-[0.9rem] font-extrabold text-[var(--text)] leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>{project.name}</h3>
-          <p className="text-[0.6rem] text-[var(--text-subtle)] mt-0.5 leading-snug line-clamp-1">{project.tagline}</p>
-          {/* NEW: field line */}
-          {project.fieldLine && (
-            <p className="text-[0.55rem] font-mono text-[var(--accent)] mt-1 opacity-80 truncate">{project.fieldLine}</p>
+        {/* Cover image - slightly taller for better visibility */}
+        <div className="mx-5 rounded-xl overflow-hidden flex-shrink-0 relative group/img"
+          style={{ height: "160px", background: "linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 8%, var(--surface)))" }}>
+          {project.coverImage ? (
+            <img src={project.coverImage} alt={project.name} className="w-full h-full object-cover group-hover:scale-[1.05] transition-transform duration-500"
+              onError={(e) => {
+                const el = e.target as HTMLImageElement;
+                el.style.display = "none";
+                el.parentElement!.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;opacity:0.2;font-size:2.5rem;">◈</div>`;
+              }} />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center gap-1.5 relative overflow-hidden"
+              style={{
+                backgroundImage: "linear-gradient(rgba(56,189,248,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.07) 1px, transparent 1px)",
+                backgroundSize: "14px 14px",
+              }}>
+              <span className="text-2xl opacity-50">◈</span>
+              <span className="font-mono text-[0.55rem] tracking-widest uppercase text-[var(--text-subtle)]">Concept stage</span>
+            </div>
           )}
+          {/* Category overlay on image */}
+          <div className="absolute top-2 left-2">
+            <span className="text-[0.5rem] font-mono font-semibold px-2 py-0.5 rounded-full text-white/90"
+              style={{ background: "rgba(0,0,0,0.55)", backdropFilter: "blur(4px)" }}>{project.category}</span>
+          </div>
         </div>
-        <p className="text-[0.72rem] text-[var(--text-muted)] leading-relaxed line-clamp-2 flex-shrink-0">{project.shortDesc}</p>
-        <div className="flex flex-wrap gap-1.5 flex-shrink-0" style={{ minHeight: "22px" }}>
-          {visibleTags.map((t) => (
-            <span key={t} className="tag text-[0.55rem] px-2 py-0.5">{t}</span>
-          ))}
-          {extra && <span className="tag tag-cycle text-[0.55rem] px-2 py-0.5 text-[var(--accent)]">{extra}</span>}
-        </div>
-        <div className="flex items-center justify-between pt-2 mt-auto flex-shrink-0" style={{ borderTop: "1px solid var(--border)" }}>
-          <span className="flex items-center gap-1.5 text-[var(--accent)] text-[0.7rem] font-semibold group-hover:gap-2.5 transition-all">
-            {project.detail ? "View details" : "Coming soon"}
-            {project.detail && <span className="transition-transform group-hover:translate-x-1">→</span>}
-          </span>
-          {project.githubUrl && project.githubUrl !== "#" && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              className="text-[var(--text-subtle)] hover:text-[var(--text)] transition-colors" title="View on GitHub">
-              <GitHubIcon size={15} />
-            </a>
-          )}
+
+        <div className="flex flex-col flex-1 px-5 pt-3.5 pb-4 gap-2 min-h-0">
+          <div className="flex-shrink-0">
+            <h3 className="text-[0.9rem] font-extrabold text-[var(--text)] leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>{project.name}</h3>
+            <p className="text-[0.6rem] text-[var(--text-subtle)] mt-0.5 leading-snug line-clamp-1">{project.tagline}</p>
+            {/* NEW: field line */}
+            {project.fieldLine && (
+              <p className="text-[0.55rem] font-mono text-[var(--accent)] mt-1 opacity-80 truncate">{project.fieldLine}</p>
+            )}
+          </div>
+          <p className="text-[0.72rem] text-[var(--text-muted)] leading-relaxed line-clamp-2 flex-shrink-0">{project.shortDesc}</p>
+          <div className="flex flex-wrap gap-1.5 flex-shrink-0" style={{ minHeight: "22px" }}>
+            {visibleTags.map((t) => (
+              <span key={t} className="tag text-[0.55rem] px-2 py-0.5">{t}</span>
+            ))}
+            {extra && <span className="tag tag-cycle text-[0.55rem] px-2 py-0.5 text-[var(--accent)]">{extra}</span>}
+          </div>
+          <div className="flex items-center justify-between pt-2 mt-auto flex-shrink-0" style={{ borderTop: "1px solid var(--border)" }}>
+            <span className="flex items-center gap-1.5 text-[var(--accent)] text-[0.7rem] font-semibold group-hover:gap-2.5 transition-all">
+              {project.detail ? "View details" : "Coming soon"}
+              {project.detail && <span className="transition-transform group-hover:translate-x-1">→</span>}
+            </span>
+            {project.githubUrl && project.githubUrl !== "#" && (
+              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                className="text-[var(--text-subtle)] hover:text-[var(--text)] transition-colors" title="View on GitHub">
+                <GitHubIcon size={15} />
+              </a>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -1567,6 +1573,9 @@ export default function Projects() {
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
+
+      {/* Extra drifting-color background layer */}
+      <BackgroundFX grid={false} />
 
       <div className="blob w-96 h-96 bg-[var(--accent)]/[0.05] top-0 right-0" />
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] bottom-0 left-0" />
@@ -1606,7 +1615,7 @@ export default function Projects() {
           })}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 card-float-group">
           {filtered.map((p, i) => (
             <ProjectCard key={p.id} project={p} index={i} onOpen={() => p.detail && setOpenProject(p)} />
           ))}

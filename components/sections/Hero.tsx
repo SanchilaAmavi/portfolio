@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { Github, Linkedin, ChevronDown, Download } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
+import BackgroundFX from "@/components/BackgroundFX";
+
 
 const roles = [
   "AI Systems Engineer",
@@ -62,6 +64,9 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen overflow-hidden flex items-center pt-20 pb-10">
 
+      {/* ── Extra drifting-color background layer (behind everything else) ── */}
+      <BackgroundFX grid={false} />
+
       {/* ── Ambient background orbs ── */}
       <div className="blob w-[520px] h-[520px] bg-[var(--accent)]/[0.055] -top-40 -left-40 pointer-events-none" />
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] top-32 right-24 pointer-events-none" />
@@ -95,7 +100,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[var(--bg)]/82 lg:hidden" />
 
         <div className="hidden lg:block absolute -bottom-20 -right-20 w-40 h-40 rounded-full border border-[var(--accent)]/[0.03] opacity-10 animate-spin-slow pointer-events-none" />
-        <div className="hidden lg:block absolute bottom-24 right-24 w-12 h-12 rounded-full border border-[var(--violet)]/20 animate-spin-slow" style={{ animationDirection: "reverse", animationDuration: "8s" }} />
+        <div className="hidden lg:block absolute bottom-24 right-24 w-12 h-12 rounded-full border border-[var(--violet)]/20 animate-spin-slow glow-orbit" style={{ animationDirection: "reverse", animationDuration: "8s" }} />
 
       </div>
 
@@ -189,7 +194,7 @@ export default function Hero() {
               View Work
             </a>
             <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer"
-              className="btn-outline text-[0.84rem] px-5 py-2.5">
+              className="btn-outline btn-lift text-[0.84rem] px-5 py-2.5">
               <Download size={13} />
               Resume
             </a>

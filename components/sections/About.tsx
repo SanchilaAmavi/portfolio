@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { education, coursework, leadership } from "@/lib/data";
+import BackgroundFX from "@/components/BackgroundFX";
 
 const tabs = [
   { key: "overview",    label: "Overview",    icon: "◈" },
