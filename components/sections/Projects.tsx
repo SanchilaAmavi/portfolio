@@ -985,7 +985,6 @@ const projects: Project[] = [
     detail: {
       headline: "Turning 'what should I cook today?' into a two-minute decision - secured like a real production app, not a bare API key wrapper.",
       subline: "Flutter · WSO2 Gateway · OAuth2 + PKCE",
-      creatorImage: "/images/me minepulse.jpg",
       overview: [
         "Kitchenly is a cross-platform mobile app built with Flutter that helps you decide what to cook, explore recipes from around the world, and plan meals for the week - all backed by a secure, production-grade API architecture powered by WSO2.",
         "Beyond recipe search, Kitchenly includes a playful 'Kitchen Game' that scores a suggested recipe based on ingredients you already have, a weekly meal planner that auto-generates a consolidated shopping list, a favorites system, and a built-in assistant chat for cooking help - all shareable via email or any installed app.",
