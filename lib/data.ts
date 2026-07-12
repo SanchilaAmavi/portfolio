@@ -429,7 +429,7 @@ export const certifications = [
     year:        "2026",
     description: "Completed the GitHub Foundations learning path covering GitHub administration.",
     images: [
-      "/images/introduction to github administrative.jpeg",
+      "/images/introduction to github administrative.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/JHLJUSFT?sharingId=4564DD6EAE22D7BC",
   },
@@ -439,8 +439,8 @@ export const certifications = [
     year:        "2026",
     description: "Completed the GitHub Foundations learning path covering an introduction to GitHub products.",
     images: [
-      "/images/introduction to github products.jpeg",
-      "/images/introduction to github.jpeg",
+      "/images/introduction to github products.jpg",
+      "/images/introduction to github.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/CRHCXFE9?sharingId=4564DD6EAE22D7BC",
   },
@@ -450,7 +450,7 @@ export const certifications = [
     year:        "2026",
     description: "Completed the GitHub Foundations learning path covering GitHub fundamentals.",
     images: [
-      "/images/introduction to github.jpeg",
+      "/images/introduction to github.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/Y4ZYQN7R?sharingId=4564DD6EAE22D7BC",
   },
@@ -460,7 +460,7 @@ export const certifications = [
     year:        "2026",
     description: "Learned how to build, train, and evaluate regression models to predict continuous values using supervised learning techniques.",
     images: [
-      "/images/regression model.jpeg",
+      "/images/regression model.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/Y4ZYKL6R?sharingId=4564DD6EAE22D7BC",
   },
@@ -470,7 +470,7 @@ export const certifications = [
     year:        "2026",
     description: "Explored clustering techniques to group unlabeled data and evaluated model performance using unsupervised learning methods.",
     images: [
-      "/images/train and evaluating.jpeg",
+      "/images/train and evaluating.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/2TE2SAAV?sharingId=4564DD6EAE22D7BC",
     },
@@ -490,7 +490,7 @@ export const certifications = [
     year:        "2026",
     description: "Used Python libraries such as Pandas and Matplotlib to explore datasets, perform data cleaning, and extract meaningful insights through visual and statistical analysis.",
     images: [
-      "/images/explore and analyze data.jpeg",
+      "/images/explore and analyze data.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/D35D3VVJ?sharingId=4564DD6EAE22D7BC",
   },
@@ -500,7 +500,7 @@ export const certifications = [
     year:        "2026",
     description: "Gained foundational understanding of machine learning concepts including supervised vs unsupervised learning, model training, and evaluation workflows.",
     images: [
-      "/images/machine learning.jpeg",
+      "/images/machine learning.jpg",
     ],
     verifyUrl: "https://learn.microsoft.com/api/achievements/share/en-us/SanchilaAmavi-5264/BUSBULPD?sharingId=4564DD6EAE22D7BC",
   },
