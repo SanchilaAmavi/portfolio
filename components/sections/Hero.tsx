@@ -59,7 +59,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="mesh-pro relative min-h-screen overflow-hidden flex items-center pt-20 pb-10">
+    <section id="home" className="relative min-h-screen overflow-hidden flex items-center pt-20 pb-10">
 
       {/* ── Ambient particle field — sits behind everything, subtle brand-hue drift ── */}
       <ParticleField count={16} />
@@ -97,7 +97,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[var(--bg)]/82 lg:hidden" />
 
         <div className="hidden lg:block absolute -bottom-20 -right-20 w-40 h-40 rounded-full border border-[var(--accent)]/[0.03] opacity-10 animate-spin-slow pointer-events-none" />
-        <div className="hidden lg:block float-medium absolute bottom-24 right-24 w-12 h-12 rounded-full border border-[var(--violet)]/20 animate-spin-slow glow-orbit" style={{ animationDirection: "reverse", animationDuration: "8s" }} />
+        <div className="hidden lg:block absolute bottom-24 right-24 w-12 h-12 rounded-full border border-[var(--violet)]/20 animate-spin-slow glow-orbit" style={{ animationDirection: "reverse", animationDuration: "8s" }} />
 
       </div>
 
