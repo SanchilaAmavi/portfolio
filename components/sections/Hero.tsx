@@ -3,8 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import { Github, Linkedin, ChevronDown, Download } from "lucide-react";
 import { personalInfo } from "@/lib/data";
 import Image from "next/image";
-
-
+import ParticleField from "@/components/ParticleField";
+import { Magnetic } from "@/components/Magnetic";
 
 const roles = [
   "AI Systems Engineer",
@@ -58,18 +58,17 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const delay = (ms: number) =>
-    `transition-all duration-700 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`;
-
   return (
     <section id="home" className="relative min-h-screen overflow-hidden flex items-center pt-20 pb-10">
 
+      {/* ── Ambient particle field — sits behind everything, subtle brand-hue drift ── */}
+      <ParticleField count={16} />
 
       {/* ── Ambient background orbs ── */}
       <div className="blob w-[520px] h-[520px] bg-[var(--accent)]/[0.055] -top-40 -left-40 pointer-events-none" />
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] top-32 right-24 pointer-events-none" />
       <div className="blob w-48 h-48 bg-[var(--green)]/[0.05] bottom-20 left-1/3 pointer-events-none" />
-      
+
       {/* ── Grid texture overlay ── */}
       <div className="absolute inset-0 pointer-events-none z-[1]"
         style={{
@@ -186,16 +185,20 @@ export default function Hero() {
             </p>
           </div>
 
-          {/* CTAs */}
+          {/* CTAs — primary + secondary now pull toward the cursor via Magnetic */}
           <div className={`mt-7 flex flex-wrap items-center gap-3.5 transition-all duration-700 delay-[400ms] ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-            <a href="#projects" className="btn-primary text-[0.84rem] px-5 py-2.5">
-              View Work
-            </a>
-            <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer"
-              className="btn-outline btn-lift text-[0.84rem] px-5 py-2.5">
-              <Download size={13} />
-              Resume
-            </a>
+            <Magnetic strength={0.25}>
+              <a href="#projects" className="btn-primary text-[0.84rem] px-5 py-2.5">
+                View Work
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.2}>
+              <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer"
+                className="btn-outline btn-lift text-[0.84rem] px-5 py-2.5">
+                <Download size={13} />
+                Resume
+              </a>
+            </Magnetic>
             <span className="w-px h-6 bg-[var(--border)] mx-1 hidden sm:block" />
             <div className="flex items-center gap-4">
               <a href={personalInfo.github} target="_blank" rel="noopener noreferrer"
