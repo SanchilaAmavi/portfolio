@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { education, coursework, leadership } from "@/lib/data";
+import ConstellationBG from "@/components/ConstellationBG";
 
 
 const tabs = [
@@ -41,6 +42,9 @@ export default function About() {
 
   return (
     <section id="about" className="py-28 px-6 section-pro-background animate-fade-up relative overflow-hidden">
+      {/* Animated constellation network background */}
+      <ConstellationBG density={46} />
+
       {/* Ambient blobs */}
       <div className="blob w-[32rem] h-[32rem] bg-[var(--violet)]/[0.06] bottom-0 right-0" />
       <div className="blob w-80 h-80 bg-[var(--accent)]/[0.05] top-10 -left-24" />

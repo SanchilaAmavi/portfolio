@@ -15,6 +15,7 @@ import {
   Users,
 } from "lucide-react";
 import Image from "next/image";
+import ConstellationBG from "@/components/ConstellationBG";
 
 const AUTO_ADVANCE_MS = 3000;
 
@@ -74,6 +75,8 @@ export default function Achievements() {
 
   return (
     <section id="achievements" className="py-28 px-6 section-tech-background animate-fade-in relative overflow-hidden">
+      {/* Animated constellation network background */}
+      <ConstellationBG density={40} />
       <div className="blob w-80 h-80 bg-[var(--amber)]/[0.05] bottom-0 left-0" />
 
       <div className="section-inner">

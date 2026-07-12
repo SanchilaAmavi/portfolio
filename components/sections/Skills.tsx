@@ -3,6 +3,7 @@ import { useState } from "react";
 import { skills, personalInfo } from "@/lib/data";
 import { Brain, Cpu, Globe, Code, BarChart2, Wrench, ArrowUpRight } from "lucide-react";
 import SkillsChart from "@/components/SkillsChart";
+import ConstellationBG from "@/components/ConstellationBG";
 
 const iconMap: Record<string, React.ElementType> = {
   Brain, Cpu, Globe, Code, BarChart2, Wrench,
@@ -30,9 +31,12 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-28 px-6 section-pro-background animate-fade-up relative overflow-hidden">
+      {/* Animated constellation network background */}
+      <ConstellationBG density={40} />
+
       <div className="blob w-72 h-72 bg-[var(--green)]/[0.07] top-0 right-0" />
 
-      <div className="section-inner">
+      <div className="section-inner relative z-10">
         {/* Heading */}
         <div className="mb-14 flex items-end justify-between flex-wrap gap-4 reveal">
           <div>
