@@ -26,13 +26,13 @@ export const education = [
   {
     institution: "General Sir John Kotelawala Defence University",
     degree:      "BSc. (Hons) Electronic and Telecommunication Engineering",
-    period:      "Jan 2024 – Present",
+    period:      "Jan 2024 - Present",
     image:       "/images/kdu.jpg",
   },
   {
     institution: "Devi Balika Vidyalaya, Colombo 08",
     degree:      "GCE Advanced Level - Physical Science Stream",
-    period:      "Jan 2014 – Dec 2022",
+    period:      "Jan 2014 - Dec 2022",
     detail:      "A/L: Combined Maths · Physics · Chemistry",
     image:       "/images/devi-balika.jpg",
   },
@@ -170,7 +170,7 @@ export const projects = [
     highlights: [
       "8-channel IR array + VL53L0X ToF + MPU6050 fusion",
       "PID-based line following & wall distance regulation",
-      "Modular perception–decision–control architecture",
+      "Modular perception-decision-control architecture",
       "Laser-cut acrylic + 3D-printed sensor mounts",
     ],
     tags: ["ESP32-S3", "VL53L0X", "IR Sensors", "MPU6050", "TB6612FNG", "SolidWorks", "PID"],
@@ -512,27 +512,27 @@ export const leadership = [
   {
     role:   "Secretary",
     org:    "Shooting Sports Association KDU",
-    period: "Aug 2025 – Present",
+    period: "Aug 2025 - Present",
   },
   {
     role:   "Finance Team Member",
     org:    "GENESIZ'26",
-    period: "May 2026 – Present",
+    period: "May 2026 - Present",
   },
   {
     role:   "Finance Committee Member",
     org:    "ERIC KDU",
-    period: "Feb 2026 – Present",
+    period: "Feb 2026 - Present",
   },
   {
     role:   "Program Team Member",
     org:    "IEEE ComSoc KDU",
-    period: "Jun 2024 – Jun 2026",
+    period: "Jun 2024 - Jun 2026",
   },
   {
     role:   "Design Committee Member",
     org:    "Mathematical Society KDU",
-    period: "Feb 2025 – Feb 2026",
+    period: "Feb 2025 - Feb 2026",
   },
 ];
 
