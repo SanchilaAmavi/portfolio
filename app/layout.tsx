@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono, Syne } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import CursorTrail from "@/components/CursorTrail";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ScrollReveal from "@/components/providers/ScrollReveal";
 
@@ -36,6 +37,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             (Navbar.tsx no longer renders its own copy of this — see the
             fixed Navbar.tsx from the previous pass.) */}
         <ScrollProgressBar />
+
+        {/* Sitewide cursor-follow particle trail, sits behind all content
+            (z-[1], pointer-events-none). Auto-disabled on touch devices
+            and prefers-reduced-motion. */}
+        <CursorTrail />
 
         {/* Magnetic dot + ring cursor, fine-pointer devices only */}
         <CustomCursor />
