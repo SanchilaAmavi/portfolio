@@ -34,7 +34,7 @@ export default function Skills() {
 
       <div className="section-inner">
         {/* Heading */}
-        <div className="mb-14 flex items-end justify-between flex-wrap gap-4 reveal">
+        <div className="mb-14 flex items-end justify-between flex-wrap gap-4">
           <div>
             <span className="eyebrow">04 / Skills</span>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>
@@ -56,8 +56,8 @@ export default function Skills() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Category list — staggers in on scroll, one tick per button */}
-          <div className="space-y-1.5 reveal-stagger">
+          {/* Category list */}
+          <div className="space-y-1.5">
             {skills.map((s, i) => {
               const Ico = iconMap[s.icon] || Cpu;
               const isActive = active === i;
@@ -65,7 +65,7 @@ export default function Skills() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`reveal-left w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all border ${
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all border ${
                     isActive
                       ? "bg-[var(--accent)]/8 border-[var(--accent)]/25 text-[var(--accent)]"
                       : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)] border-transparent"
@@ -86,7 +86,7 @@ export default function Skills() {
           </div>
 
           {/* Skill detail panel */}
-          <div className="md:col-span-2 card spotlight-card p-7 space-y-6 reveal-scale">
+          <div className="md:col-span-2 card p-7 space-y-6">
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
                 <Icon size={20} />
@@ -120,12 +120,12 @@ export default function Skills() {
         </div>
 
         {/* Skills chart — breadth bars + radar, computed from real data */}
-        <div className="mt-12 reveal">
+        <div className="mt-12">
           <SkillsChart />
         </div>
 
         {/* Full skill cloud */}
-        <div className="mt-16 pt-10 border-t border-[var(--border)] reveal">
+        <div className="mt-16 pt-10 border-t border-[var(--border)]">
           <div className="flex items-center justify-between flex-wrap gap-3 mb-5">
             <p className="font-mono text-[0.62rem] text-[var(--text-subtle)] tracking-widest uppercase">All Skills at a Glance</p>
             <a
