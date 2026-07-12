@@ -13,7 +13,7 @@ const tabs = [
 const infoGrid = [
   { label: "University", value: "KDU",               full: "General Sir John Kotelawala Defence University" },
   { label: "Degree",     value: "BSc. (Hons) Electronic & Telecommunication Engineering",    full: "BSc. (Hons) Electronic & Telecommunication Engineering" },
-  { label: "started",     value: "Feb 2024",            full: "41st Intake" },
+  { label: "started",     value: "Jan 2024",            full: "41st Intake" },
   { label: "Focus",      value: "AI · IoT · Robotics", full: null },
   { label: "Location",   value: "Sri Lanka ",      full: null },
 ];

@@ -26,7 +26,7 @@ export const education = [
   {
     institution: "General Sir John Kotelawala Defence University",
     degree:      "BSc. (Hons) Electronic and Telecommunication Engineering",
-    period:      "Feb 2024 – Present",
+    period:      "Jan 2024 – Present",
     image:       "/images/kdu.jpg",
   },
   {
