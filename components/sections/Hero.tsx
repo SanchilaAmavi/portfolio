@@ -194,7 +194,7 @@ export default function Hero() {
             </Magnetic>
             <Magnetic strength={0.2}>
               <a href={personalInfo.resumePath} target="_blank" rel="noopener noreferrer"
-                className="btn-outline btn-lift inline-flex items-center justify-center gap-2 text-[0.84rem] px-8 py-2.5">
+                className="btn-outline btn-lift inline-flex items-center justify-center gap-2 text-[0.84rem] px-5 py-2.5">
                 <Download size={13} />
                 <span>Resume</span>
               </a>
