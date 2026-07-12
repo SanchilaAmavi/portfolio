@@ -62,25 +62,26 @@ export default function Skills() {
               const Ico = iconMap[s.icon] || Cpu;
               const isActive = active === i;
               return (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className={`reveal-left focus-ring-pro w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all border ${
-                    isActive
-                      ? "bg-[var(--accent)]/8 border-[var(--accent)]/25 text-[var(--accent)] animate-scale-in"
-                      : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)] border-transparent"
-                  }`}
-                >
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                    isActive ? "bg-[var(--accent)]/15" : "bg-[var(--surface)]"
-                  }`}>
-                    <Ico size={14} />
-                  </div>
-                  <span className="text-xs font-medium">{s.category}</span>
-                  <span className="ml-auto font-mono text-[0.6rem] opacity-40">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                </button>
+                <div key={i} className="reveal-left">
+                  <button
+                    onClick={() => setActive(i)}
+                    className={`focus-ring-pro w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all border ${
+                      isActive
+                        ? "bg-[var(--accent)]/8 border-[var(--accent)]/25 text-[var(--accent)] animate-scale-in"
+                        : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)] border-transparent"
+                    }`}
+                  >
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                      isActive ? "bg-[var(--accent)]/15" : "bg-[var(--surface)]"
+                    }`}>
+                      <Ico size={14} />
+                    </div>
+                    <span className="text-xs font-medium">{s.category}</span>
+                    <span className="ml-auto font-mono text-[0.6rem] opacity-40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </button>
+                </div>
               );
             })}
           </div>
