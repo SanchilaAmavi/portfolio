@@ -4,35 +4,36 @@ import { useEffect, useRef } from "react";
 /**
  * ConstellationBG
  * ────────────────────────────────────────────────────────────────────────
- * A full-bleed, canvas-driven animated network of drifting glowing nodes
- * connected by thin lines when close together — the "constellation" look.
- * Drop it as the FIRST child inside any `relative overflow-hidden` section
- * (it renders absolute, inset-0, pointer-events-none, so it never blocks
- * clicks or scrolling and sits behind the section-inner content).
+ * A quiet, professional animated network of drifting glowing nodes,
+ * connected by faint lines when close together. Designed to sit BEHIND
+ * section content without competing with it:
+ *   - the network is masked so it fades out toward the center/content
+ *     area and stays concentrated along the edges and corners
+ *   - node count, line opacity and glow are all tuned down from a "wow"
+ *     effect to an ambient one — it should read as atmosphere, not noise
  *
- * Usage:
+ * Drop it as the FIRST child inside any `relative overflow-hidden` section:
+ *
  *   <section className="relative overflow-hidden ...">
  *     <ConstellationBG />
  *     ...rest of section
  *   </section>
  *
- * Props let you tune density / speed per-section if a section feels too
- * busy or too quiet, but sane defaults are picked already.
+ * If a section is mostly empty (little text/cards in the middle), pass
+ * `edgeFade={false}` to let the network fill the whole section evenly.
  */
 
 interface ConstellationBGProps {
-  /** Roughly how many nodes to draw. Lower on smaller sections. */
+  /** Roughly how many nodes to draw. Keep this low — this is atmosphere, not a hero visual. */
   density?: number;
   /** Max distance (px) at which two nodes are still linked by a line. */
   linkDistance?: number;
   /** Overall drift speed multiplier. */
   speed?: number;
-  /** Opacity of the whole layer (0–1). */
+  /** Opacity of the whole layer (0–1). Kept low by default so text stays crisp. */
   opacity?: number;
-  /** Show the large soft rotating arc ring in the corner, like the reference art. */
-  showArc?: boolean;
-  /** Show the soft top-left light-beam glow. */
-  showBeam?: boolean;
+  /** Fade the network out toward the center so it doesn't cross busy content. */
+  edgeFade?: boolean;
   className?: string;
 }
 
@@ -45,12 +46,11 @@ interface Node {
 }
 
 export default function ConstellationBG({
-  density = 42,
-  linkDistance = 150,
-  speed = 1,
-  opacity = 0.9,
-  showArc = true,
-  showBeam = true,
+  density = 20,
+  linkDistance = 130,
+  speed = 0.6,
+  opacity = 0.5,
+  edgeFade = true,
   className = "",
 }: ConstellationBGProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -92,20 +92,19 @@ export default function ConstellationBG({
     let nodes: Node[] = [];
     let rafId = 0;
     let running = false;
-    let visible = true;
 
     const rand = (min: number, max: number) => Math.random() * (max - min) + min;
 
     const buildNodes = () => {
       const area = width * height;
-      // Scale count a little by area so tiny sections don't get overcrowded.
-      const count = Math.max(14, Math.min(density, Math.round((area / 1_100_000) * density)));
+      // Scale count by area, but cap hard — this must stay sparse.
+      const count = Math.max(10, Math.min(density, Math.round((area / 900_000) * density * 0.4 + density * 0.5)));
       nodes = Array.from({ length: count }, () => ({
         x: rand(0, width),
         y: rand(0, height),
-        vx: rand(-0.18, 0.18) * speed,
-        vy: rand(-0.14, 0.14) * speed,
-        r: rand(1.1, 2.4),
+        vx: rand(-0.1, 0.1) * speed,
+        vy: rand(-0.08, 0.08) * speed,
+        r: rand(1, 1.9),
       }));
     };
 
@@ -122,21 +121,10 @@ export default function ConstellationBG({
       buildNodes();
     };
 
-    const step = () => {
-      if (!running) return;
+    const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Update + draw nodes
-      for (const n of nodes) {
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < -20) n.x = width + 20;
-        if (n.x > width + 20) n.x = -20;
-        if (n.y < -20) n.y = height + 20;
-        if (n.y > height + 20) n.y = -20;
-      }
-
-      // Draw links first (so nodes glow on top)
+      // Links first, so nodes sit visually on top.
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i];
@@ -146,10 +134,8 @@ export default function ConstellationBG({
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < linkDistance) {
             const t = 1 - dist / linkDistance;
-            const useAccent = (i + j) % 2 === 0;
-            const [r, g, bch] = useAccent ? [ar, ag, ab] : [vr, vg, vb];
-            ctx.strokeStyle = `rgba(${r}, ${g}, ${bch}, ${t * 0.32})`;
-            ctx.lineWidth = 0.7;
+            ctx.strokeStyle = `rgba(${ar}, ${ag}, ${ab}, ${t * 0.16})`;
+            ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -158,25 +144,37 @@ export default function ConstellationBG({
         }
       }
 
-      // Draw glowing nodes
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
-        const useAccent = i % 2 === 0;
+        const useAccent = i % 3 !== 0; // mostly accent, occasional violet
         const [r, g, bch] = useAccent ? [ar, ag, ab] : [vr, vg, vb];
-        const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 6);
-        glow.addColorStop(0, `rgba(${r}, ${g}, ${bch}, 0.55)`);
+
+        const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4.5);
+        glow.addColorStop(0, `rgba(${r}, ${g}, ${bch}, 0.35)`);
         glow.addColorStop(1, `rgba(${r}, ${g}, ${bch}, 0)`);
         ctx.fillStyle = glow;
         ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * 6, 0, Math.PI * 2);
+        ctx.arc(n.x, n.y, n.r * 4.5, 0, Math.PI * 2);
         ctx.fill();
 
-        ctx.fillStyle = `rgba(${r + (255 - r) * 0.5}, ${g + (255 - g) * 0.5}, ${bch + (255 - bch) * 0.5}, 0.9)`;
+        ctx.fillStyle = `rgba(${r}, ${g}, ${bch}, 0.85)`;
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
         ctx.fill();
       }
+    };
 
+    const step = () => {
+      if (!running) return;
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < -20) n.x = width + 20;
+        if (n.x > width + 20) n.x = -20;
+        if (n.y < -20) n.y = height + 20;
+        if (n.y > height + 20) n.y = -20;
+      }
+      draw();
       rafId = requestAnimationFrame(step);
     };
 
@@ -191,106 +189,59 @@ export default function ConstellationBG({
     };
 
     resize();
+    draw();
 
     if (prefersReducedMotion) {
-      // Draw a single static frame so the aesthetic still shows, but
-      // nothing keeps animating for users who asked for reduced motion.
-      ctx.clearRect(0, 0, width, height);
-      for (const n of nodes) {
-        const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 6);
-        glow.addColorStop(0, `rgba(${ar}, ${ag}, ${ab}, 0.4)`);
-        glow.addColorStop(1, `rgba(${ar}, ${ag}, ${ab}, 0)`);
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * 6, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    } else {
-      // Only animate while the section is actually on screen — keeps five
-      // simultaneous canvases (one per page section) cheap on the CPU/GPU.
-      const io = new IntersectionObserver(
-        ([entry]) => {
-          visible = entry.isIntersecting;
-          if (visible) start();
-          else stop();
-        },
-        { threshold: 0.01 }
-      );
-      io.observe(wrap);
-
-      const onResize = () => resize();
-      window.addEventListener("resize", onResize);
-
-      return () => {
-        stop();
-        io.disconnect();
-        window.removeEventListener("resize", onResize);
-      };
+      // Single static frame only — no motion for users who asked for none.
+      return;
     }
+
+    // Only animate while the section is actually on screen — keeps several
+    // simultaneous canvases (one per page section) cheap on CPU/GPU.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) start();
+        else stop();
+      },
+      { threshold: 0.01 }
+    );
+    io.observe(wrap);
+
+    const onResize = () => resize();
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      stop();
+      io.disconnect();
+      window.removeEventListener("resize", onResize);
+    };
   }, [density, linkDistance, speed]);
 
   return (
     <div
       ref={wrapRef}
       className={`absolute inset-0 z-0 pointer-events-none overflow-hidden ${className}`}
-      style={{ opacity }}
+      style={{
+        opacity,
+        maskImage: edgeFade
+          ? "radial-gradient(ellipse 75% 65% at 50% 45%, transparent 30%, black 78%)"
+          : undefined,
+        WebkitMaskImage: edgeFade
+          ? "radial-gradient(ellipse 75% 65% at 50% 45%, transparent 30%, black 78%)"
+          : undefined,
+      }}
       aria-hidden="true"
     >
-      {/* Soft directional light beam, top-left — matches the reference art */}
-      {showBeam && (
-        <div
-          className="absolute -top-1/4 -left-1/4 w-[70%] h-[70%]"
-          style={{
-            background:
-              "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.05), transparent 60%)",
-          }}
-        />
-      )}
-
-      {/* Large slow-rotating arc ring, purely decorative */}
-      {showArc && (
-        <svg
-          className="absolute"
-          style={{
-            top: "50%",
-            left: "58%",
-            width: "min(70vw, 900px)",
-            height: "min(70vw, 900px)",
-            transform: "translate(-50%, -50%)",
-            animation: "constellation-spin 90s linear infinite",
-            opacity: 0.35,
-          }}
-          viewBox="0 0 400 400"
-          fill="none"
-        >
-          <circle
-            cx="200"
-            cy="200"
-            r="150"
-            stroke="url(#constellation-arc-grad)"
-            strokeWidth="1"
-            strokeDasharray="4 10"
-          />
-          <defs>
-            <linearGradient id="constellation-arc-grad" x1="0" y1="0" x2="400" y2="400">
-              <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.5" />
-              <stop offset="100%" stopColor="var(--violet)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      )}
+      {/* Soft directional light, top-left corner only */}
+      <div
+        className="absolute -top-1/4 -left-1/4 w-[60%] h-[60%]"
+        style={{
+          background:
+            "radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.035), transparent 65%)",
+        }}
+      />
 
       <canvas ref={canvasRef} className="absolute inset-0" />
-
-      <style>{`
-        @keyframes constellation-spin {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to   { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          svg[style*="constellation-spin"] { animation: none !important; }
-        }
-      `}</style>
     </div>
   );
 }

@@ -32,7 +32,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-28 px-6 section-pro-background animate-fade-up relative overflow-hidden">
       {/* Animated constellation network background */}
-      <ConstellationBG density={40} />
+      <ConstellationBG density={20} />
 
       <div className="blob w-72 h-72 bg-[var(--green)]/[0.07] top-0 right-0" />
 

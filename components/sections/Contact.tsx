@@ -20,7 +20,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-28 px-6 section-pro-background animate-fade-in relative overflow-hidden">
       {/* Animated constellation network background */}
-      <ConstellationBG density={36} />
+      <ConstellationBG density={16} />
 
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.08] top-0 right-0" />
 

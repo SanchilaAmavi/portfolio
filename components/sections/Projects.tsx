@@ -1577,7 +1577,7 @@ export default function Projects() {
 
 
       {/* Animated constellation network background */}
-      <ConstellationBG density={44} />
+      <ConstellationBG density={22} />
 
       <div className="blob w-96 h-96 bg-[var(--accent)]/[0.05] top-0 right-0" />
       <div className="blob w-72 h-72 bg-[var(--violet)]/[0.06] bottom-0 left-0" />

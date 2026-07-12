@@ -43,7 +43,7 @@ export default function About() {
   return (
     <section id="about" className="py-28 px-6 section-pro-background animate-fade-up relative overflow-hidden">
       {/* Animated constellation network background */}
-      <ConstellationBG density={46} />
+      <ConstellationBG density={22} />
 
       {/* Ambient blobs */}
       <div className="blob w-[32rem] h-[32rem] bg-[var(--violet)]/[0.06] bottom-0 right-0" />
