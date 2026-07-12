@@ -1597,7 +1597,7 @@ export default function Projects() {
             const active = activeCategory === cat;
             return (
               <button key={cat} onClick={() => setActiveCategory(cat)}
-                className="flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border transition-all duration-200"
+                className={`focus-ring-pro btn-lift flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border transition-all duration-200 ${active ? "animate-scale-in" : ""}`}
                 style={active
                   ? { background: "linear-gradient(135deg, var(--accent), var(--violet))", color: "#fff", borderColor: "transparent" }
                   : { borderColor: "var(--border)", color: "var(--text-muted)" }}>

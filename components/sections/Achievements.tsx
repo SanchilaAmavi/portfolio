@@ -117,9 +117,9 @@ export default function Achievements() {
             <ChevronLeft size={16} />
           </button>
 
-          <SidePeek achievement={card(-1)} onClick={prev} />
-          <MainCard achievement={card(0)} onView={openLightbox} />
-          <SidePeek achievement={card(1)} onClick={next} />
+          <SidePeek key={`prev-${index}`} achievement={card(-1)} onClick={prev} />
+          <MainCard key={`main-${index}`} achievement={card(0)} onView={openLightbox} />
+          <SidePeek key={`next-${index}`} achievement={card(1)} onClick={next} />
 
           <button
             onClick={next}
@@ -139,8 +139,8 @@ export default function Achievements() {
               key={i}
               onClick={() => setIndex(i)}
               aria-label={`Go to slide ${i + 1}`}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === index ? "w-6 bg-[var(--accent)]" : "w-1.5 bg-[var(--border)]"
+              className={`focus-ring-pro h-1.5 rounded-full transition-all duration-300 ${
+                i === index ? "w-6 bg-[var(--accent)] accent-pulse-soft" : "w-1.5 bg-[var(--border)] hover:bg-[var(--text-subtle)]"
               }`}
             />
           ))}
@@ -163,7 +163,7 @@ export default function Achievements() {
             {certifications.map((c, i) => {
               const imgs = getImages(c);
               return (
-                <div key={i} className="relative flex gap-4">
+                <div key={i} className="relative flex gap-4 animate-slide-right" style={{ animationDelay: `${i * 70}ms` }}>
 
                   {/* Timeline dot */}
                   <div className="relative z-10 w-8 h-8 rounded-full bg-[var(--surface)]
@@ -327,8 +327,8 @@ function MainCard({
 
   return (
     <div
-      className="card flex-1 max-w-xl overflow-hidden flex flex-col md:flex-row
-                 transition-all duration-300 scale-100 z-10 shadow-lg"
+      className="card animate-scale-in flex-1 max-w-xl overflow-hidden flex flex-col md:flex-row
+                 transition-all duration-300 scale-100 z-10 shadow-lg elevate-breathe"
       style={{ minHeight: "220px" }}
     >
       <div className="p-6 flex-1 flex flex-col gap-3">

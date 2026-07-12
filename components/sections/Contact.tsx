@@ -35,7 +35,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-10">
 
           {/* ── Info column ── */}
-          <div className="space-y-6">
+          <div className="space-y-6 animate-slide-right">
             <div className="card circuit-corners p-7 space-y-6">
               <p className="text-[var(--text-muted)] text-sm leading-relaxed">
                 Let&apos;s build something precise, useful, and a little ambitious. Whether it&apos;s
@@ -104,7 +104,7 @@ export default function Contact() {
           </div>
 
           {/* ── Contact form ── */}
-          <form onSubmit={handleSubmit} className="card circuit-corners p-7 space-y-5">
+          <form onSubmit={handleSubmit} className="card circuit-corners p-7 space-y-5 animate-slide-left">
             <h3 className="font-semibold text-[var(--text)] text-base">Send a message</h3>
 
             {[
@@ -119,7 +119,7 @@ export default function Contact() {
                   value={form[key as "name" | "email"]}
                   onChange={(e) => setForm({ ...form, [key]: e.target.value })}
                   placeholder={ph}
-                  className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-subtle)] focus:outline-none focus:border-[var(--accent)]/50 transition-colors"
+                  className="focus-ring-pro w-full bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-subtle)] focus:outline-none focus:border-[var(--accent)]/50 transition-colors"
                 />
               </div>
             ))}
@@ -132,20 +132,20 @@ export default function Contact() {
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 placeholder="Tell me about your project or opportunity..."
-                className="w-full bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-subtle)] focus:outline-none focus:border-[var(--accent)]/50 transition-colors resize-none"
+                className="focus-ring-pro w-full bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-3 text-sm text-[var(--text)] placeholder:text-[var(--text-subtle)] focus:outline-none focus:border-[var(--accent)]/50 transition-colors resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className={`w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-all ${
+              className={`btn-lift w-full flex items-center justify-center gap-2 py-3 rounded-xl font-semibold text-sm transition-all ${
                 sent
-                  ? "bg-[var(--green)]/15 text-[var(--green)] border border-[var(--green)]/30"
+                  ? "bg-[var(--green)]/15 text-[var(--green)] border border-[var(--green)]/30 animate-scale-in"
                   : "bg-[var(--accent)] text-[#000] hover:bg-[var(--accent)]/90 hover:shadow-lg hover:shadow-[var(--accent)]/25 font-bold"
               }`}
             >
               {sent ? (
-                <><CheckCircle size={14} /> Opening mail client…</>
+                <><CheckCircle size={14} className="animate-scale-in" /> Opening mail client…</>
               ) : (
                 <><Send size={14} /> Send Message</>
               )}

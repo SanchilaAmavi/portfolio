@@ -23,7 +23,7 @@ export default function Footer() {
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="font-mono text-[0.65rem] tracking-widest text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors uppercase"
+                className="underline-draw focus-ring-pro font-mono text-[0.65rem] tracking-widest text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors uppercase"
               >
                 {item}
               </a>
@@ -33,15 +33,17 @@ export default function Footer() {
           {/* Social icons */}
           <div className="flex items-center gap-4">
             <a href={personalInfo.github} target="_blank" rel="noopener noreferrer"
-              className="text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors" aria-label="GitHub">
+              className="float-tiny btn-lift text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors" aria-label="GitHub">
               <Github size={16} />
             </a>
             <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer"
-              className="text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors" aria-label="LinkedIn">
+              className="float-tiny btn-lift text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors" aria-label="LinkedIn"
+              style={{ animationDelay: "0.4s" }}>
               <Linkedin size={16} />
             </a>
             <a href={`mailto:${personalInfo.email}`}
-              className="text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors" aria-label="Email">
+              className="float-tiny btn-lift text-[var(--text-subtle)] hover:text-[var(--accent)] transition-colors" aria-label="Email"
+              style={{ animationDelay: "0.8s" }}>
               <Mail size={16} />
             </a>
           </div>

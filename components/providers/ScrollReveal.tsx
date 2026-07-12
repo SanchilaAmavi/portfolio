@@ -10,7 +10,12 @@ import { useEffect } from "react";
  *  1. .reveal / .reveal-left / .reveal-right / .reveal-scale
  *     → adds .revealed the first time an element enters the viewport
  *       (works with .reveal-stagger parents automatically, since stagger
- *       delays are pure CSS on the children).
+ *       delays are pure CSS on the children). A MutationObserver keeps
+ *       watching after mount, so elements that appear later — tab
+ *       switches, key-based remounts, anything client-rendered after
+ *       the initial paint — still get picked up instead of sitting at
+ *       opacity:0 forever (this was the "cards disappear" bug: they
+ *       weren't being un-revealed, they were never observed at all).
  *
  *  2. .section-scroll-rail
  *     → sets --section-progress (0 → 1) on each matching section as it
@@ -30,10 +35,6 @@ import { useEffect } from "react";
  *     {children}
  *   </body>
  * It renders nothing — it only attaches observers/listeners to the DOM.
- *
- * If you already have a ScrollReveal.tsx with different logic, compare
- * the two and merge rather than blindly overwrite — paste me your current
- * version and I'll fold this in properly.
  */
 export default function ScrollReveal() {
   useEffect(() => {
@@ -42,38 +43,55 @@ export default function ScrollReveal() {
     ).matches;
 
     // ── 1. Reveal-on-scroll (IntersectionObserver) ──────────────────────
-    const revealTargets = document.querySelectorAll<HTMLElement>(
-      ".reveal, .reveal-left, .reveal-right, .reveal-scale"
-    );
+    const REVEAL_SELECTOR = ".reveal, .reveal-left, .reveal-right, .reveal-scale";
 
-    let cleanupReveal: (() => void) | undefined;
+    let revealObserver: IntersectionObserver | undefined;
 
-    if (prefersReducedMotion) {
-      revealTargets.forEach((el) => el.classList.add("revealed"));
-    } else if (revealTargets.length) {
-      const revealObserver = new IntersectionObserver(
+    const observeNewRevealTargets = () => {
+      if (prefersReducedMotion) {
+        document
+          .querySelectorAll<HTMLElement>(REVEAL_SELECTOR)
+          .forEach((el) => el.classList.add("revealed"));
+        return;
+      }
+      if (!revealObserver) return;
+      document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR).forEach((el) => {
+        // data attribute guards against re-observing the same node twice
+        if (!el.dataset.revealObserved && !el.classList.contains("revealed")) {
+          el.dataset.revealObserved = "1";
+          revealObserver!.observe(el);
+        }
+      });
+    };
+
+    if (!prefersReducedMotion) {
+      revealObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               entry.target.classList.add("revealed");
-              revealObserver.unobserve(entry.target);
+              revealObserver!.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
       );
-      revealTargets.forEach((el) => revealObserver.observe(el));
-
-      cleanupReveal = () => revealObserver.disconnect();
     }
 
+    // Initial sweep, then keep watching for anything mounted later.
+    observeNewRevealTargets();
+
+    const revealMutationObserver = new MutationObserver(() => {
+      observeNewRevealTargets();
+    });
+    revealMutationObserver.observe(document.body, { childList: true, subtree: true });
+
     // ── 2. Per-section scroll progress rail ─────────────────────────────
-    const railSections = document.querySelectorAll<HTMLElement>(
-      ".section-scroll-rail"
-    );
+    const getRailSections = () =>
+      document.querySelectorAll<HTMLElement>(".section-scroll-rail");
 
     const updateRails = () => {
-      railSections.forEach((section) => {
+      getRailSections().forEach((section) => {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
         // Progress: 0 when section top is at viewport bottom,
@@ -86,27 +104,25 @@ export default function ScrollReveal() {
     };
 
     // ── 3. Parallax layers ───────────────────────────────────────────────
-    const parallaxEls = document.querySelectorAll<HTMLElement>(
-      "[data-parallax-rate]"
-    );
+    const getParallaxEls = () =>
+      document.querySelectorAll<HTMLElement>("[data-parallax-rate]");
 
     const updateParallax = () => {
       if (prefersReducedMotion) return;
       const scrollY = window.scrollY;
-      parallaxEls.forEach((el) => {
+      getParallaxEls().forEach((el) => {
         const rate = parseFloat(el.dataset.parallaxRate || "0.1");
         el.style.setProperty("--parallax-y", `${scrollY * rate * -1}px`);
       });
     };
 
     // ── 4. Scroll-fade lines (in-focus band) ─────────────────────────────
-    const fadeLines = document.querySelectorAll<HTMLElement>(
-      ".scroll-fade-line"
-    );
+    const getFadeLines = () =>
+      document.querySelectorAll<HTMLElement>(".scroll-fade-line");
 
     const updateFadeLines = () => {
       const vh = window.innerHeight;
-      fadeLines.forEach((el) => {
+      getFadeLines().forEach((el) => {
         const rect = el.getBoundingClientRect();
         const center = rect.top + rect.height / 2;
         const inBand = center > vh * 0.15 && center < vh * 0.85;
@@ -137,7 +153,8 @@ export default function ScrollReveal() {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
-      if (typeof cleanupReveal === "function") cleanupReveal();
+      revealMutationObserver.disconnect();
+      if (revealObserver) revealObserver.disconnect();
     };
   }, []);
 

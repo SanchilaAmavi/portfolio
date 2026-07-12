@@ -34,7 +34,7 @@ export default function Skills() {
 
       <div className="section-inner">
         {/* Heading */}
-        <div className="mb-14 flex items-end justify-between flex-wrap gap-4">
+        <div className="mb-14 flex items-end justify-between flex-wrap gap-4 reveal">
           <div>
             <span className="eyebrow">04 / Skills</span>
             <h2 className="text-4xl md:text-5xl font-extrabold leading-tight" style={{ fontFamily: "Syne, sans-serif" }}>
@@ -56,8 +56,8 @@ export default function Skills() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {/* Category list */}
-          <div className="space-y-1.5">
+          {/* Category list — staggers in on scroll, one tick per button */}
+          <div className="space-y-1.5 reveal-stagger">
             {skills.map((s, i) => {
               const Ico = iconMap[s.icon] || Cpu;
               const isActive = active === i;
@@ -65,9 +65,9 @@ export default function Skills() {
                 <button
                   key={i}
                   onClick={() => setActive(i)}
-                  className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all border ${
+                  className={`reveal-left focus-ring-pro w-full flex items-center gap-3 px-4 py-3.5 rounded-xl text-left transition-all border ${
                     isActive
-                      ? "bg-[var(--accent)]/8 border-[var(--accent)]/25 text-[var(--accent)]"
+                      ? "bg-[var(--accent)]/8 border-[var(--accent)]/25 text-[var(--accent)] animate-scale-in"
                       : "text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--surface)] border-transparent"
                   }`}
                 >
@@ -86,9 +86,9 @@ export default function Skills() {
           </div>
 
           {/* Skill detail panel */}
-          <div className="md:col-span-2 card p-7 space-y-6">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
+          <div className="md:col-span-2 card spotlight-card p-7 space-y-6 reveal-scale">
+            <div key={`head-${active}`} className="animate-fade-up flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--accent)]/10 border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] flex-shrink-0 badge-float">
                 <Icon size={20} />
               </div>
               <div>
@@ -99,11 +99,12 @@ export default function Skills() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {activeSkill.items.map((item) => (
+            <div key={`tags-${active}`} className="flex flex-wrap gap-2">
+              {activeSkill.items.map((item, i) => (
                 <span
                   key={item}
-                  className="inline-flex items-center px-3 py-1.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] text-xs text-[var(--text)] hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-colors cursor-default"
+                  className="animate-color-pop inline-flex items-center px-3 py-1.5 rounded-xl bg-[var(--surface)] border border-[var(--border)] text-xs text-[var(--text)] hover:border-[var(--border-hover)] hover:text-[var(--accent)] transition-colors cursor-default"
+                  style={{ animationDelay: `${i * 30}ms` }}
                 >
                   {item}
                 </span>
@@ -120,12 +121,12 @@ export default function Skills() {
         </div>
 
         {/* Skills chart — breadth bars + radar, computed from real data */}
-        <div className="mt-12">
+        <div className="mt-12 reveal">
           <SkillsChart />
         </div>
 
         {/* Full skill cloud */}
-        <div className="mt-16 pt-10 border-t border-[var(--border)]">
+        <div className="mt-16 pt-10 border-t border-[var(--border)] reveal">
           <div className="flex items-center justify-between flex-wrap gap-3 mb-5">
             <p className="font-mono text-[0.62rem] text-[var(--text-subtle)] tracking-widest uppercase">All Skills at a Glance</p>
             <a

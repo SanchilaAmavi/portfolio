@@ -75,8 +75,8 @@ export default function About() {
               role="tab"
               aria-selected={tab === key}
               onClick={() => setTab(key)}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
-                tab === key ? "text-[var(--text)] shadow-sm" : "text-[var(--text-muted)] hover:text-[var(--text)]"
+              className={`focus-ring-pro flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 whitespace-nowrap outline-none ${
+                tab === key ? "text-[var(--text)] shadow-sm animate-scale-in" : "text-[var(--text-muted)] hover:text-[var(--text)]"
               }`}
               style={tab === key ? {
                 background: "linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--violet) 12%, transparent))",
@@ -161,11 +161,11 @@ export default function About() {
                 </div>
 
                 {/* RIGHT COLUMN — info cards */}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 reveal-stagger">
                   {infoGrid.map((item) => (
                     <div
                       key={item.label}
-                      className="card px-4 py-3 hover:border-[var(--border-hover)] transition-all duration-200 cursor-default group"
+                      className="reveal-left card px-4 py-3 hover:border-[var(--border-hover)] transition-all duration-200 cursor-default group"
                       title={item.full ?? undefined}
                     >
                       <p className="font-mono text-[0.5rem] text-[var(--text-subtle)] tracking-[0.18em] uppercase mb-1">
@@ -188,7 +188,8 @@ export default function About() {
               {education.map((edu, i) => (
                 <div
                   key={i}
-                  className="card p-5 flex items-start gap-4 hover:border-[var(--border-hover)] hover:shadow-lg transition-all duration-200"
+                  className="card p-5 flex items-start gap-4 hover:border-[var(--border-hover)] hover:shadow-lg transition-all duration-200 animate-slide-right"
+                  style={{ animationDelay: `${i * 80}ms` }}
                 >
                   <EduIcon institution={edu.institution} />
                   <div className="flex-1 min-w-0">
@@ -213,7 +214,7 @@ export default function About() {
                 <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-[var(--accent)]/60 via-[var(--violet)]/40 to-transparent" />
                 <div className="space-y-3">
                   {leadership.map((l, i) => (
-                    <div key={i} className="relative group">
+                    <div key={i} className="relative group animate-slide-right" style={{ animationDelay: `${i * 90}ms` }}>
                       <div className="absolute -left-[1.35rem] top-5 w-3 h-3 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)] transition-all duration-200 group-hover:bg-[var(--accent)] group-hover:scale-125" />
                       <div className="card p-4 hover:border-[var(--border-hover)] hover:shadow-lg transition-all duration-200">
                         <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -248,7 +249,8 @@ export default function About() {
                 {coursework.map((c, i) => (
                   <div
                     key={i}
-                    className="flex items-center gap-3 bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-2.5 hover:border-[var(--border-hover)] transition-all duration-150"
+                    className="animate-color-pop flex items-center gap-3 bg-[var(--surface)] border border-[var(--border)] rounded-xl px-4 py-2.5 hover:border-[var(--border-hover)] transition-all duration-150"
+                    style={{ animationDelay: `${i * 35}ms` }}
                   >
                     <span className="font-mono text-[0.52rem] text-[var(--accent)]/50 w-5 flex-shrink-0">
                       {String(i + 1).padStart(2, "0")}

@@ -85,14 +85,15 @@ export default function Navbar() {
                 <li key={item.href}>
                   <button
                     onClick={() => scrollTo(item.href)}
-                    className={`relative px-4 py-2 text-[0.72rem] font-medium tracking-wide rounded-lg transition-all ${
+                    data-active={isActive}
+                    className={`underline-draw focus-ring-pro relative px-4 py-2 text-[0.72rem] font-medium tracking-wide rounded-lg transition-all ${
                       isActive
                         ? "text-[var(--accent)]"
                         : "text-[var(--text-muted)] hover:text-[var(--text)]"
                     }`}
                   >
                     {isActive && (
-                      <span className="absolute inset-0 bg-[var(--accent)]/8 rounded-lg border border-[var(--accent)]/20" />
+                      <span className="absolute inset-0 bg-[var(--accent)]/8 rounded-lg border border-[var(--accent)]/20 animate-scale-in" />
                     )}
                     <span className="relative">{item.label}</span>
                   </button>
@@ -106,7 +107,7 @@ export default function Navbar() {
             href={personalInfo.resumePath}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--accent)]/30 text-[var(--accent)] text-[0.72rem] font-semibold hover:bg-[var(--accent)]/10 transition-all ml-auto font-mono"
+            className="btn-lift focus-ring-pro hidden md:flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--accent)]/30 text-[var(--accent)] text-[0.72rem] font-semibold hover:bg-[var(--accent)]/10 transition-all ml-auto font-mono"
           >
             <Download size={12} />
             Resume
